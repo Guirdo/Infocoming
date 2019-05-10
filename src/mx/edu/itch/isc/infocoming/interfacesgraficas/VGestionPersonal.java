@@ -10,7 +10,6 @@ import java.awt.HeadlessException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import net.miginfocom.swing.MigLayout;
