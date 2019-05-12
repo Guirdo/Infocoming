@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -42,10 +43,8 @@ public class VBajaAlumno extends JFrame{
         curso.setFont(new Font("Arial",2,12));
         buscar = new TextField("Nombre alumno..");
         buscar.setFont(new Font("Arial",2,12));
-        tabla = new JTable();
-        btn = new JButton("Dar de baja");
-
-        
+        tabla = new JTable(new DefaultTableModel(new Object[]{"Cleve empleado","Nombre"}, 2));
+        btn = new JButton("Dar de baja");        
         this.add(titulo1,"span 3 1");
         this.add(buscar, "span 3 1, right");
         this.add(new JScrollPane(tabla),"span 3 1");
