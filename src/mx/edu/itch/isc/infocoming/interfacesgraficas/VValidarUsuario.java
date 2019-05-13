@@ -11,6 +11,10 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 public class VValidarUsuario extends Pantalla{
+    
+    private JTextField tfUsuario;
+    private JPasswordField tfContra;
+    private JButton btnCancelar,btnIngresar;
 
     public VValidarUsuario() {
         super("Inicio de sesión",new MigLayout("debug,wrap 2","","[]15[]15[]"));
@@ -22,10 +26,10 @@ public class VValidarUsuario extends Pantalla{
         imagenUsuario.setBackground(Color.BLACK);
         
         JPanel formInicio = new JPanel(new MigLayout("wrap 2","[120]25[120]","[]10[]20[]"));
-        JTextField tfUsuario = new JTextField(12);
-        JPasswordField tfContra = new JPasswordField(12);
-        JButton btnIngresar = new JButton("Ingresar");
-        JButton btnCancelar = new JButton("Cancelar");
+        tfUsuario = new JTextField(12);
+        tfContra = new JPasswordField(12);
+        btnIngresar = new JButton("Ingresar");
+        btnCancelar = new JButton("Cancelar");
         
         formInicio.add(new JLabel("Nombre usuario: "),"");
         formInicio.add(tfUsuario);
