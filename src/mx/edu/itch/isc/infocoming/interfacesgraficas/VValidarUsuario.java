@@ -12,9 +12,9 @@ import net.miginfocom.swing.MigLayout;
 
 public class VValidarUsuario extends Pantalla{
     
-    private JTextField tfUsuario;
-    private JPasswordField tfContra;
-    private JButton btnCancelar,btnIngresar;
+    public JTextField tfUsuario;
+    public JPasswordField tfContra;
+    public JButton btnCancelar,btnIngresar;
 
     public VValidarUsuario() {
         super("Inicio de sesión",new MigLayout("debug,wrap 2","","[]15[]15[]"));
