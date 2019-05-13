@@ -25,27 +25,29 @@ public class VValidarUsuario extends Pantalla{
         JLabel imagenUsuario = new JLabel();
         imagenUsuario.setBackground(Color.BLACK);
         
-        JPanel formInicio = new JPanel(new MigLayout("wrap 2","[120]25[120]","[]10[]20[]"));
         tfUsuario = new JTextField(12);
         tfContra = new JPasswordField(12);
         btnIngresar = new JButton("Ingresar");
         btnCancelar = new JButton("Cancelar");
         
-        formInicio.add(new JLabel("Nombre usuario: "),"");
-        formInicio.add(tfUsuario);
-        formInicio.add(new JLabel("Contraseña: "),"");
-        formInicio.add(tfContra);
-        formInicio.add(btnIngresar,"growx");
-        formInicio.add(btnCancelar,"growx");
-        
         this.add(imagenInstitucional,"span 2");
         this.add(imagenUsuario,"w 150, h 150,span 2, center");
-        this.add(formInicio,"center,span 2");
+        this.add(this.darPnlFormulario(),"center,span 2");
         
         this.pack();
         this.setLocationRelativeTo(null);
     }
     
-    
-
+    private JPanel darPnlFormulario(){
+        JPanel pnl = new JPanel(new MigLayout("wrap 2","[120]25[120]","[]10[]20[]"));
+        
+        pnl.add(new JLabel("Nombre usuario: "),"");
+        pnl.add(tfUsuario);
+        pnl.add(new JLabel("Contraseña: "),"");
+        pnl.add(tfContra);
+        pnl.add(btnIngresar,"growx");
+        pnl.add(btnCancelar,"growx");
+        
+        return pnl;
+    }
 }
