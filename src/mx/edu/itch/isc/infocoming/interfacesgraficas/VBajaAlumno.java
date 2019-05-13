@@ -13,12 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 
 /**
  *
  * @author diann
  */
-public class VBajaAlumno extends JFrame{
+public class VBajaAlumno extends Pantalla{
     
     private JLabel titulo1, titulo2, matricula, nombre, curso;
     private TextField buscar;
@@ -26,9 +27,10 @@ public class VBajaAlumno extends JFrame{
     private JTable tabla;
     
     public VBajaAlumno(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Baja Alumno.");
-        this.setLayout(new MigLayout("debug, wrap 3", "[][][]","[]15[][200]20[]5[]5[]5[][]20" ));
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setTitle("Baja Alumno.");
+        super("Baja alumno",new MigLayout("debug, wrap 3", "[][][]","[]15[][200]20[]5[]5[]5[][]20" ) );
+//        this.setLayout(new MigLayout("debug, wrap 3", "[][][]","[]15[][200]20[]5[]5[]5[][]20" ));
         
         titulo1 = new JLabel ("Alumnos inscritos");
         titulo1.setFont(new Font("Arial",2,16));
