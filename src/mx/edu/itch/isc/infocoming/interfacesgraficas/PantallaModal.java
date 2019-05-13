@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 public class PantallaModal extends JDialog{
 
     public PantallaModal(String titulo, LayoutManager layoutManager) {
+        this.setTitle(titulo);
         this.setLayout(layoutManager);
         this.setModal(true);
         

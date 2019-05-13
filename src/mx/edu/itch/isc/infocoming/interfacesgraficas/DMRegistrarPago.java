@@ -11,27 +11,46 @@ import javax.swing.SpinnerNumberModel;
 import net.miginfocom.swing.MigLayout;
 
 public class DMRegistrarPago extends PantallaModal {
+    
+    private JLabel lblNombre,lblCurso,lblHorario;
+    private JRadioButton btnComun,btnNuevo;
+    private JComboBox<String> cbConceptos;
+    private JTextField tfConceptoNuevo;
+    private JButton btnCancelar,btnRegistrar;
+    private JSpinner spnPago;
 
     public DMRegistrarPago() {
         super("Registrar pago", new MigLayout("wrap 2", "[]15[]", "[][][][][][]"));
 
-        JLabel lblNombre = new JLabel();
-        JLabel lblCurso = new JLabel();
-        JLabel lblHorario = new JLabel();
-        JRadioButton btnComun = new JRadioButton("Común");
-        JRadioButton btnNuevo = new JRadioButton("Nuevo");
-        JComboBox<String> cbConceptos = new JComboBox<>();
-        JTextField tfConceptoNuevo = new JTextField(12);
-        JButton btnCancelar = new JButton("Cancelar");
-        JButton btnRegistrar = new JButton("Registrar pago");
-        JSpinner spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));
+        lblNombre = new JLabel();
+        lblCurso = new JLabel();
+        lblHorario = new JLabel();
+        btnComun = new JRadioButton("Común");
+        btnNuevo = new JRadioButton("Nuevo");
+        cbConceptos = new JComboBox<>();
+        tfConceptoNuevo = new JTextField(12);
+        btnCancelar = new JButton("Cancelar");
+        btnRegistrar = new JButton("Registrar pago");
+        spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));
 
         cbConceptos.addItem("Pago semanal");
         cbConceptos.addItem("Inscripción");
         cbConceptos.addItem("ExC-2019-1");
+        cbConceptos.setEnabled(false);
+        tfConceptoNuevo.setEnabled(false);
         ButtonGroup bg = new ButtonGroup();
         bg.add(btnNuevo);
         bg.add(btnComun);
+        
+        btnComun.addActionListener((ActionEvent)->{
+            cbConceptos.setEnabled(true);
+            tfConceptoNuevo.setEnabled(false);
+        });
+        
+        btnNuevo.addActionListener((ActionEvent)->{
+            cbConceptos.setEnabled(false);
+            tfConceptoNuevo.setEnabled(true);
+        });
         
         this.add(new JLabel("Nombre: "));
         this.add(lblNombre);

@@ -6,9 +6,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import mx.edu.itch.isc.infocoming.utilidades.TextPrompt;
 import net.miginfocom.swing.MigLayout;
 
 public class VVisualizarAlumnos extends Pantalla{
+    
+    private JTextField tfBuscar;
+    
     public VVisualizarAlumnos() {
         super("Alumnos inscritos",new MigLayout("wrap 3","[][][]","[]15[]10[150]20[]15[]10[]10[]10[]"));
         
@@ -21,7 +25,7 @@ public class VVisualizarAlumnos extends Pantalla{
         lblTitulo1.setFont(new Font("Arial",1,16));
         
         //Objetos que cambian
-        JTextField tfBuscar = new JTextField("Nombre del alumno");
+        tfBuscar = new JTextField(12);
         JTable tabla = new JTable();
         JLabel lblMatricula = new JLabel();
         JLabel lblNombre = new JLabel();
@@ -30,6 +34,9 @@ public class VVisualizarAlumnos extends Pantalla{
         
         //Configuraciones de los objetos que cambian
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre"},2 ));
+        TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
+        ph.changeAlpha(0.75f);
+        ph.changeStyle(Font.ITALIC);
         
         //Añadiendo objetos a la ventana
         this.add(lblTitulo,"span 3");

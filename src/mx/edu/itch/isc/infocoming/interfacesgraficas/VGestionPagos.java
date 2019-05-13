@@ -7,9 +7,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import mx.edu.itch.isc.infocoming.utilidades.TextPrompt;
 import net.miginfocom.swing.MigLayout;
 
 public class VGestionPagos extends Pantalla{
+    
+    private JLabel lblMatricula,lblNombre,lblCurso,lblHorario;
+    private JTextField tfBuscar;
+    private JTable tabla;
+    private JButton btnRegistrarPago;
 
     public VGestionPagos() {
         super("Gestión de pagos", new MigLayout("debug,wrap 3","[]10[200]10[]"
@@ -20,16 +26,18 @@ public class VGestionPagos extends Pantalla{
         lblTitulo.setFont(new Font("Arial",1,16));
         lblTitulo1.setFont(new Font("Arial",1,16));
         
-        JTextField tfBuscar = new JTextField(12);
-        
-        JTable tabla = new JTable();
-        JButton btnRegistrarPago = new JButton("Registrar pago");
-        JLabel lblMatricula = new JLabel();
-        JLabel lblNombre = new JLabel("____");
-        JLabel lblCurso = new JLabel("_____");
-        JLabel lblHorario = new JLabel(); 
+        tfBuscar = new JTextField(12);
+        tabla = new JTable();
+        btnRegistrarPago = new JButton("Registrar pago");
+        lblMatricula = new JLabel();
+        lblNombre = new JLabel();
+        lblCurso = new JLabel();
+        lblHorario = new JLabel(); 
         
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre","Fecha pago","ConceptoPago"}, 0));
+        TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
+        ph.changeAlpha(0.75f);
+        ph.changeStyle(Font.ITALIC);
         
         this.add(lblTitulo,"span 3");
         this.add(tfBuscar,"span 3,right");
