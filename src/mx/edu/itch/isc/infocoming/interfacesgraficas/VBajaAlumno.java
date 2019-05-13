@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import mx.edu.itch.isc.infocoming.utilidades.TextPrompt;
 import net.miginfocom.swing.MigLayout;
 //import net.miginfocom.swing.MigLayout;
 
@@ -22,30 +25,32 @@ import net.miginfocom.swing.MigLayout;
 public class VBajaAlumno extends Pantalla{
     
     private JLabel titulo1, titulo2, matricula, nombre, curso;
-    private TextField buscar;
+    private JTextField buscar;
     private JButton btn;
     private JTable tabla;
     
     public VBajaAlumno(){
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.setTitle("Baja Alumno.");
         super("Baja alumno",new MigLayout("debug, wrap 3", "[][][]","[]15[][200]20[]5[]5[]5[][]20" ) );
-//        this.setLayout(new MigLayout("debug, wrap 3", "[][][]","[]15[][200]20[]5[]5[]5[][]20" ));
         
         titulo1 = new JLabel ("Alumnos inscritos");
         titulo1.setFont(new Font("Arial",2,16));
         titulo2 = new JLabel ("Datos del alumno");
-        titulo2.setFont(new Font("Arial",2,14));
+        titulo2.setFont(new Font("Arial",2,15));
         matricula = new JLabel ("Matrícula: ");
         matricula.setFont(new Font("Arial",2,12));
         nombre = new JLabel ("Nombre: ");
         nombre.setFont(new Font("Arial",2,12));
         curso = new JLabel ("Curso: ");
         curso.setFont(new Font("Arial",2,12));
-        buscar = new TextField("Nombre alumno..");
+        buscar = new JTextField(10);
         buscar.setFont(new Font("Arial",2,12));
         tabla = new JTable();
+        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre"},2));
         btn = new JButton("Dar de baja");
+        
+        TextPrompt b = new TextPrompt("Nombre alumno", buscar);
+        b.changeAlpha(0.75f);
+        b.changeStyle(Font.ITALIC);
 
         
         this.add(titulo1,"span 3 1");
