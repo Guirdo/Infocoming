@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -25,21 +26,21 @@ public class VGestionPersonal extends Pantalla {
     private JTable tabla;
 
     public VGestionPersonal() {
-        super("Gestion Personal", new MigLayout("debug,wrap 3","[][][]","10[]15[100]10[]15[][][][][][]"));
+        super("Gestion Personal", new MigLayout("debug,wrap 3","[][][]","20[]15[100]20[]15[]10[]10[]10[]10[]10[]"));
         titulo1= new JLabel("Persona que labora en la empresa");
         titulo2= new JLabel("Datos del empleado");
         claveEmpleado= new JLabel("Clave empleado:");
         nombre= new JLabel("Nombre:");
         domicilio= new JLabel("Domicilio:");
         telefono= new JLabel("Telefono:");
-        tabla=new JTable();
+        tabla=new JTable(new DefaultTableModel(new Object []{"Clave Empleado","Nombre"},10));
         btn=new JButton("Dar de baja");
-        titulo1.setFont(new Font("Arial",1,20));
-        titulo2.setFont(new Font("Arial",1,20));
-        claveEmpleado.setFont(new Font("Arial",2,12));
-        nombre.setFont(new Font("Arial",2,12));
-        domicilio.setFont(new Font("Arial",2,12));
-        telefono.setFont(new Font("Arial",2,12));
+        titulo1.setFont(new Font("Arial",1,16));
+        titulo2.setFont(new Font("Arial",1,15));
+        claveEmpleado.setFont(new Font("Arial",0,12));
+        nombre.setFont(new Font("Arial",0,12));
+        domicilio.setFont(new Font("Arial",0,12));
+        telefono.setFont(new Font("Arial",0,12));
         this.add(titulo1,"span 3 1");
         this.add(new JScrollPane(tabla),"span 3 1");
         this.add(titulo2,"span 3 1");
