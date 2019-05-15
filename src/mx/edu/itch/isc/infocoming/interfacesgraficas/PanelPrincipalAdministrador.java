@@ -16,7 +16,7 @@ import net.miginfocom.swing.MigLayout;
  * @author pacop
  */
 public class PanelPrincipalAdministrador extends Pantalla {
-  private JButton etiqueta1,etiqueta2,etiqueta3,etiqueta4,etiqueta5,etiqueta6,etiqueta7,etiqueta8,etiqueta9,titulo4,titulo5;  
+  public JButton etiqueta1,etiqueta2,etiqueta3,etiqueta4,etiqueta5,etiqueta6,etiqueta7,etiqueta8,etiqueta9,titulo4,titulo5;  
   private JLabel titulo1,titulo2,titulo3;
   public PanelPrincipalAdministrador(){
       super("Panel Principal",new MigLayout("debug,wrap 2","100[150]50[150]100","20[150]20[150]20[150]20"));

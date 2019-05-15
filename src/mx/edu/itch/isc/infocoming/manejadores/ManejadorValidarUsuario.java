@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAcademico;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 
 public class ManejadorValidarUsuario implements ActionListener {
@@ -50,16 +54,16 @@ public class ManejadorValidarUsuario implements ActionListener {
                 //Este switch se encargara de desplegar los paneles que corresponden
                 switch (usuario) {
                     case "Administrador":
-                        System.out.println("Soy el administrador");
+                        new ManejadorPrincipal(intBD,new PanelPrincipalAdministrador());
                         break;
                     case "Recepcionista":
-                        System.out.println("Soy el Recepcionista");
+                        new ManejadorPrincipal(intBD,new PanelPrincipalRecepcionista());
                         break;
                     case "CoordinadorAca":
-                        System.out.println("Soy el Coordinador");
+                        new ManejadorPrincipal(intBD,new PanelPrincipalCoordinadorAcademico());
                         break;
                     case "Director":
-                        System.out.println("Soy el Director");
+                        new ManejadorPrincipal(intBD,new PanelPrincipalDirector());
                         break;
                     case "root":
                         new ManejadorPrincipal(intBD,new PanelPrincipalEquipo());
