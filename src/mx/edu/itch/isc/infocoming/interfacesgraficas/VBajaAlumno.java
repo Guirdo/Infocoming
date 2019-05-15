@@ -13,13 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-<<<<<<< HEAD
 import javax.swing.table.DefaultTableModel;
-=======
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.utilidades.TextPrompt;
->>>>>>> 5a8db5b62847cde87df455bbadbad32bcdb9732a
 import net.miginfocom.swing.MigLayout;
 //import net.miginfocom.swing.MigLayout;
 
@@ -51,11 +47,6 @@ public class VBajaAlumno extends Pantalla{
         curso.setFont(new Font("Arial",2,12));
         buscar = new JTextField(10);
         buscar.setFont(new Font("Arial",2,12));
-<<<<<<< HEAD
-        tabla = new JTable(new DefaultTableModel(new Object[]{"Cleve empleado","Nombre"}, 2));
-        btn = new JButton("Dar de baja");        
-        this.add(titulo1,"span 3 1");
-=======
         tabla = new JTable();
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre"},2));
         btn = new JButton("Dar de baja");
@@ -67,7 +58,6 @@ public class VBajaAlumno extends Pantalla{
 
         
         this.add(titulo1,"span 3");
->>>>>>> 5a8db5b62847cde87df455bbadbad32bcdb9732a
         this.add(buscar, "span 3 1, right");
         this.add(new JScrollPane(tabla),"span 3");
         this.add(titulo2, "span 3");
