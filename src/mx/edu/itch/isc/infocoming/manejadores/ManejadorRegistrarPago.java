@@ -14,8 +14,12 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
  * @author pacop
  */
 public class ManejadorRegistrarPago implements ActionListener {
+    private DMRegistrarPago dM;
+
     public ManejadorRegistrarPago(DMRegistrarPago dmrg){
-        dmrg.setVisible(true);
+       this.dM=dmrg;
+       dM.btnRegistrar.addActionListener(this);
+
     }
 
     @Override
