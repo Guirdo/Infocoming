@@ -38,7 +38,7 @@ public class DMExamen_CENNI extends PantallaModal{
         select.setFont(new Font("Arial",2,12));
         examenes = new JComboBox(exCENNI);
         tabla =new JTable();
-        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre", "Curso", "Promedio"},4));
+        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre", "Curso",},3));
         btn= new JButton("Imprimir lista");
         btn.setBackground(Color.decode("#c3c3c3"));
         

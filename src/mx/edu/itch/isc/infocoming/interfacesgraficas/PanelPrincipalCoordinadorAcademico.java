@@ -17,7 +17,7 @@ import net.miginfocom.swing.MigLayout;
  */
 public class PanelPrincipalCoordinadorAcademico extends Pantalla {
     private JLabel titulo;
-    private JButton visualizarAlumno,darBajaAlumno,registrarEvaluaciones;
+    public JButton visualizarAlumno,darBajaAlumno,registrarEvaluaciones;
     public PanelPrincipalCoordinadorAcademico() {
         super("Panel principal",new MigLayout("debug,wrap 3","[150][:150:][150]","[150][150][150]"));
         titulo= new JLabel("Gestión del alumnado");

@@ -44,6 +44,7 @@ public class ManejadorPrincipal implements ActionListener {
 
         //Aqui van a ir los addActionListener de los botnes
         ppa.etiqueta3.addActionListener(this);
+        ppa.etiqueta2.addActionListener(this);//vusualizar alumno
 
         ppa.setVisible(true);
     }
@@ -53,6 +54,7 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
+        ppc.visualizarAlumno.addActionListener(this);//Visualizar alumno
         ppc.setVisible(true);
     }
 
@@ -61,13 +63,16 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
+        ppd.visualizar.addActionListener(this);//Visualizar alumno
         ppa.setVisible(true);
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalRecepcionista p) {
         this.ppr = p;
         this.intBD = inter;
-
+        
+        
+        ppr.etiqueta1.addActionListener(this);//Visualizar alumno
         ppr.setVisible(true);
     }
 
