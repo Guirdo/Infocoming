@@ -12,7 +12,9 @@ import net.miginfocom.swing.MigLayout;
 
 public class VVisualizarAlumnos extends Pantalla{
     
-    private JTextField tfBuscar;
+    public JTextField tfBuscar;
+    public JTable tabla;
+    public JLabel lblMatricula,lblNombre,lblCurso,lblHorario;
     
     public VVisualizarAlumnos() {
         super("Alumnos inscritos",new MigLayout("wrap 3","10[][][]10","10[]15[]10[150]20[]15[]10[]10[]10[]10"));
@@ -29,11 +31,11 @@ public class VVisualizarAlumnos extends Pantalla{
         
         //Objetos que cambian
         tfBuscar = new JTextField(12);
-        JTable tabla = new JTable();
-        JLabel lblMatricula = new JLabel();
-        JLabel lblNombre = new JLabel();
-        JLabel lblCurso = new JLabel();
-        JLabel lblHorario = new JLabel();
+        tabla = new JTable();
+        lblMatricula = new JLabel();
+        lblNombre = new JLabel();
+        lblCurso = new JLabel();
+        lblHorario = new JLabel();
         
         //Configuraciones de los objetos que cambian
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre"},2 ));

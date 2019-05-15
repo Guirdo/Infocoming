@@ -14,10 +14,10 @@ public class InterfazBD {
     private String usuario;
     private String contrasena;
     
-    private Connection con;
-    private Statement st;
-    private ResultSet rs;
-    private ResultSetMetaData rsmd;
+    public Connection con;
+    public Statement st;
+    public ResultSet rs;
+    public ResultSetMetaData rsmd;
     
     public InterfazBD(String usuario, String contrasena) throws ClassNotFoundException, SQLException{
         this.usuario=usuario;
