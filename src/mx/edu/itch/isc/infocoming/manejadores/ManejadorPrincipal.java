@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAcademico;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
@@ -46,7 +47,9 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
+        ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
+        
 
         ppa.setVisible(true);
     }
@@ -64,7 +67,7 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
-        ppa.setVisible(true);
+        ppd.setVisible(true);
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalRecepcionista p) {
@@ -90,6 +93,8 @@ public class ManejadorPrincipal implements ActionListener {
         } else if (ppa != null) {
             if (e.getSource() == ppa.etiqueta3) {
                 this.manejaEventoReinscribirAlumno();
+            }else if(e.getSource()==ppa.etiqueta1){
+                
             }
         }else if(ppd != null){//PanelDirector
       
@@ -114,7 +119,8 @@ public class ManejadorPrincipal implements ActionListener {
 
     private void manejaEventoReinscribirAlumno() {
         try {
-            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno());
+            ppa.dispose();
+            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(),ppa);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
