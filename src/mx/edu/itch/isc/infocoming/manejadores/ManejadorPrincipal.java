@@ -104,7 +104,11 @@ public class ManejadorPrincipal implements ActionListener {
     }
 
     private void manejaEventoReinscribirAlumno() {
-        new ManejadorReinscribirAlumno(intBD, new DMInscribirAlumno());
+        new ManejadorReinscribirAlumno(intBD,new DMInscribirAlumno());
     }
+    private void ManejaEventoRegistrarPago(){
+        
+    }
+            
 
 }
