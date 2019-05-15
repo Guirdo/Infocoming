@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class InterfazBDEquipo {
 
     private InterfazBD intBD;
-
     private Object[][] datos;
 
     public InterfazBDEquipo(InterfazBD intBD) {
