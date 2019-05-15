@@ -14,7 +14,7 @@ public class VGestionPagos extends Pantalla{
     
     private JLabel lblMatricula,lblNombre,lblCurso,lblHorario;
     private JTextField tfBuscar;
-    private JTable tabla;
+    public JTable tabla;
     private JButton btnRegistrarPago;
 
     public VGestionPagos() {

@@ -16,6 +16,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
 
 public class ManejadorPrincipal implements ActionListener {
 
@@ -67,7 +68,7 @@ public class ManejadorPrincipal implements ActionListener {
 
         //Aqui van a ir los addActionListener de los botnes
         ppd.visualizar.addActionListener(this);//Visualizar alumno
-        ppa.setVisible(true);
+        ppd.setVisible(true);
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalRecepcionista p) {
@@ -96,14 +97,23 @@ public class ManejadorPrincipal implements ActionListener {
             if (e.getSource() == ppa.etiqueta3) {
                 this.manejaEventoReinscribirAlumno();
             }
+            if(e.getSource()==ppa.etiqueta2){
+                this.manejaEventoVisualizarAlumno();
+            }
         }else if(ppd != null){//PanelDirector
-      
+            if(e.getSource()==ppd.visualizar){
+                this.manejaEventoVisualizarAlumno();
+            }
+            
         }else if(ppc != null){//Panel Coordinador
-            
+            if(e.getSource()==ppc.visualizarAlumno){
+                this.manejaEventoVisualizarAlumno();
+            }
         }else if(ppr != null){//Panel Recepcionista
-            
+            if(e.getSource()==ppr.etiqueta1){
+                this.manejaEventoVisualizarAlumno();
+            }
         }
-
     }
 
     private void manejaEventobtnConsultarAlumno() throws SQLException {
@@ -120,6 +130,14 @@ public class ManejadorPrincipal implements ActionListener {
     private void manejaEventoReinscribirAlumno() {
         try {
             new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    private void manejaEventoVisualizarAlumno() {
+        try {
+            new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

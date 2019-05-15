@@ -44,7 +44,6 @@ public class ManejadorReinscribirAlumno implements ActionListener{
         
         v.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula","Nombre","Horario"}));
     }
-
     private void manejaEventoReinscribirAlumno() throws SQLException {
         
     }
