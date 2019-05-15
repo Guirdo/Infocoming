@@ -25,6 +25,13 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
     private int alumnoSeleccionado;
     private int grupoSeleccionado;
 
+    /**
+     * Constructor principal
+     * @param inter Objeto de la conexion a la base de datos
+     * @param vv ventana a mostrar
+     * @param ant ventana de donde viene el evento, la ventana anterior
+     * @throws SQLException 
+     */
     public ManejadorReinscribirAlumno(InterfazBD inter, VReinscribirAlumno vv, Pantalla ant) throws SQLException {
         this.v = vv;
         this.intBD = inter;
@@ -32,10 +39,15 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
 
         //ActionListerner de los botones del dm
         v.btnReinscribir.addActionListener(this);
+        
+        //Esta linea sirve para que al dar enter busque
         v.tfBuscar.addKeyListener(this);
+        //Esta linea sirve para mostrar los datos abajo
         v.tabla.getSelectionModel().addListSelectionListener(this);
+        //Esta linea sirve para poder regresar al panel anterior
         v.addWindowListener(this);
 
+        //Esta linea sirve para consultar antes de entrar
         this.consultarAlumnos();
 
         v.btnReinscribir.setEnabled(false);
@@ -120,6 +132,11 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
         dm.tabla.setModel(new DefaultTableModel(datos, new Object[]{"NumGrupo","Horario", "Curso"}));
     }
 
+    /**
+     * Metodo que llena los label que estan debajo de la tabla
+     * @param matri La matricula del alumno seleccionado
+     * @throws SQLException 
+     */
     private void consultarAlumnoVentana(int matri) throws SQLException {
         Object[][] datos = intBD.consultar("select nombreAlumno,apellidoPaternoAlumno,"
                 + "apellidoMaternoAlumno,tipocurso,horario from Alumno,Curso,Grupo "
@@ -140,7 +157,9 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //Si el usuario presiona la tecla enter en el Textfield buscar, entonces...
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            //Si el textfield no esta vacio entonces..
             if (!v.tfBuscar.getText().isEmpty()) {
                 try {
                     this.buscarAlumno();
@@ -163,7 +182,9 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
 
     @Override
     public void windowClosing(WindowEvent e) {
+        //Cierro la ventana actua
         v.dispose();
+        //Se vuelve a mostrar la ventana anterior
         this.vistaAnterior.setVisible(true);
     }
 
@@ -194,15 +215,19 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        //Este es para la tabla de mi ventana
         if (e.getSource() == v.tabla.getSelectionModel()) {
-            alumnoSeleccionado = (int) v.tabla.getValueAt(v.tabla.getSelectedRow(), 0);
+            //De esta forma obtengo la matricula del alumno seleccionado
+            alumnoSeleccionado = (int) v.tabla.getValueAt(v.tabla.getSelectedRow(), 0);//<-- Este ultimo numero corresponde a la col de la tabla
             try {
                 this.consultarAlumnoVentana(alumnoSeleccionado);
                 v.btnReinscribir.setEnabled(true);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }else if(e.getSource() == dm.tabla.getSelectionModel()){
+        }//Este es para la tabla de mi dm
+        else if(e.getSource() == dm.tabla.getSelectionModel()){
+            //De esta forma obtengo el id del grupo seleccionado
             grupoSeleccionado = (int) dm.tabla.getValueAt(dm.tabla.getSelectedRow(), 0);
             System.out.println(grupoSeleccionado);
         }
