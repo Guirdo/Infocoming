@@ -3,6 +3,8 @@ package mx.edu.itch.isc.infocoming.manejadores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
@@ -12,6 +14,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAc
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 
 public class ManejadorPrincipal implements ActionListener {
@@ -93,6 +96,12 @@ public class ManejadorPrincipal implements ActionListener {
             if (e.getSource() == ppa.etiqueta3) {
                 this.manejaEventoReinscribirAlumno();
             }
+        }else if(ppd != null){//PanelDirector
+      
+        }else if(ppc != null){//Panel Coordinador
+            
+        }else if(ppr != null){//Panel Recepcionista
+            
         }
 
     }
@@ -100,7 +109,7 @@ public class ManejadorPrincipal implements ActionListener {
     private void manejaEventobtnConsultarAlumno() throws SQLException {
         Object[][] datos = new InterfazBDEquipo(intBD).consultarAlumnos();
 
-        ppe.tabla.setModel(new DefaultTableModel(datos, new Object[]{"idAlumno", "nombre", "apePat", "apeMat", "Domicilio", "Tel"}));
+        ppe.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre", "Apellido pat", "apeMat", "Domicilio", "Tel"}));
 
     }
 
@@ -109,7 +118,11 @@ public class ManejadorPrincipal implements ActionListener {
     }
 
     private void manejaEventoReinscribirAlumno() {
-        new ManejadorReinscribirAlumno(intBD, new DMInscribirAlumno());
+        try {
+            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
