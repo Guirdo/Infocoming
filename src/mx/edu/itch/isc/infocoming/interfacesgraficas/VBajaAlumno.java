@@ -13,11 +13,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+<<<<<<< HEAD
 
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.utilidades.TextPrompt;
 
+=======
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import mx.edu.itch.isc.infocoming.utilidades.TextPrompt;
+>>>>>>> 6bd579e5a087ba21990e6c81108069c0e744ff26
 import net.miginfocom.swing.MigLayout;
 //import net.miginfocom.swing.MigLayout;
 
@@ -49,7 +55,10 @@ public class VBajaAlumno extends Pantalla{
         curso.setFont(new Font("Arial",2,12));
         buscar = new JTextField(10);
         buscar.setFont(new Font("Arial",2,12));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6bd579e5a087ba21990e6c81108069c0e744ff26
         tabla = new JTable();
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre"},2));
         btn = new JButton("Dar de baja");
