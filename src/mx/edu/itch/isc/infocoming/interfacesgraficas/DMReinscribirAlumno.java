@@ -20,10 +20,10 @@ import net.miginfocom.swing.MigLayout;
  * @author pacop
  */
 public class DMReinscribirAlumno extends PantallaModal {
-    private JLabel lblNombre,lblApellidoPaterno,lblApellidoMaterno,lblDomicilio,lblTitulo;
-    private JTable tabla;
+    public JLabel lblNombre,lblApellidoPaterno,lblApellidoMaterno,lblDomicilio,lblTitulo;
+    public JTable tabla;
     public JTextField telefono;
-    private JButton btnCancelar,btnModificar;
+    public JButton btnCancelar,btnModificar;
     
     public DMReinscribirAlumno(){
         super("Reinscribir Alumno", new MigLayout("wrap 2", "10[]5[]10", "10[]15[]15[]15[]15[]15[]15[150]10"));

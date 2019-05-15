@@ -12,19 +12,16 @@ import net.miginfocom.swing.MigLayout;
 
 public class DMRegistrarPago extends PantallaModal {
     
-    private JLabel lblNombre,lblCurso,lblHorario;
     private JRadioButton btnComun,btnNuevo;
     private JComboBox<String> cbConceptos;
-    private JTextField tfConceptoNuevo;
+    private JTextField tfConceptoNuevo,tfAlumno;
     private JButton btnCancelar,btnRegistrar;
     private JSpinner spnPago;
 
     public DMRegistrarPago() {
-        super("Registrar pago", new MigLayout("wrap 2", "[]15[]", "[][][][][][]"));
+        super("Registrar pago", new MigLayout("wrap 2", "[]15[]", "[]10[]10[]10[]10[]10[]"));
 
-        lblNombre = new JLabel();
-        lblCurso = new JLabel();
-        lblHorario = new JLabel();
+        tfAlumno = new JTextField(12);
         btnComun = new JRadioButton("Común");
         btnNuevo = new JRadioButton("Nuevo");
         cbConceptos = new JComboBox<>();
@@ -52,12 +49,8 @@ public class DMRegistrarPago extends PantallaModal {
             tfConceptoNuevo.setEnabled(true);
         });
         
-        this.add(new JLabel("Nombre: "));
-        this.add(lblNombre);
-        this.add(new JLabel("Curso: "));
-        this.add(lblCurso);
-        this.add(new JLabel("Horario: "));
-        this.add(lblHorario);
+        this.add(new JLabel("Matrícula: "));
+        this.add(tfAlumno);
         this.add(new JLabel("Concepto: "),"span 2");
         this.add(btnComun);
         this.add(cbConceptos);

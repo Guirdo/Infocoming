@@ -36,7 +36,8 @@ public class ManejadorVisualizarHistorialPago implements ActionListener {
     }
 
     private void consultarPagos() throws SQLException{
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno");
-        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula","Nombre"}));
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno, fecha, conceptoPago, cantidad, idPago from Concepto, Alumno, Pago where idAlumno");
+        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula","Nombre","Fecha pago","Concepto pago", "Cantidad", "Folio"}));
+        
     }
 }
