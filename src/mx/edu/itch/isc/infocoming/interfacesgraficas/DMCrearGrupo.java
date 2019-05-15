@@ -1,5 +1,6 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Font;
 import java.awt.PopupMenu;
 import javax.swing.JCheckBox;
@@ -27,6 +28,8 @@ public class DMCrearGrupo extends PantallaModal{
         cbHoraFinal = new JComboBox<>();
         cbCursos= new JComboBox<>();
         tfClaveMaestro = new JTextField(12);
+        
+        JDateChooser fechaSelector =new JDateChooser();
         
         this.cargarCBHoras();
         this.cargarChBDias();
