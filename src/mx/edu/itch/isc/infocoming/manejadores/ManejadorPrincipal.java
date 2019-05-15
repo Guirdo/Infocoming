@@ -48,6 +48,7 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
+        ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
         ppa.etiqueta7.addActionListener(this);
         ppa.setVisible(true);
@@ -96,6 +97,8 @@ public class ManejadorPrincipal implements ActionListener {
               if (e.getSource() == ppa.etiqueta7) {
                 this.manejaEventoBajaAlumno();
             }  
+            }else if(e.getSource()==ppa.etiqueta1){
+                
             }
         }else if(ppd != null){//PanelDirector
       
@@ -120,7 +123,8 @@ public class ManejadorPrincipal implements ActionListener {
 
     private void manejaEventoReinscribirAlumno() {
         try {
-            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno());
+            ppa.dispose();
+            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(),ppa);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

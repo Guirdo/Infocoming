@@ -2,6 +2,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,7 +19,9 @@ public class VReinscribirAlumno extends Pantalla{
     
 
     public VReinscribirAlumno() {
-        super("Reinscribir alumno",new MigLayout("wrap 3","[][200][]","[]15[]10[150]20[]15[]10[]10[]10[]10[]"));
+        super("Reinscribir alumno",new MigLayout("wrap 3","[]15[200]15[]","[]15[]10[150]20[]15[]10[]10[]10[]10[]"));
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         JLabel lblTitulo1 = new JLabel("Alumnos inscritos");
         JLabel lblTitulo2 = new JLabel("Datos del alumno");
