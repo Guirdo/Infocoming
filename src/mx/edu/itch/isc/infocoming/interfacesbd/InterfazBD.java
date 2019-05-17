@@ -1,5 +1,6 @@
 package mx.edu.itch.isc.infocoming.interfacesbd;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,28 +11,29 @@ import java.util.ArrayList;
 import java.util.TimeZone;
 
 public class InterfazBD {
-    
-    private String url="jdbc:mysql://localhost:3306/Infocoming?serverTimezone="+TimeZone.getDefault().getID();
+
+    private String url = "jdbc:mysql://localhost:3306/Infocoming?serverTimezone=" + TimeZone.getDefault().getID();
     private String usuario;
     private String contrasena;
-    
+
     public Connection con;
     public Statement st;
     public ResultSet rs;
     public ResultSetMetaData rsmd;
-    
-    public InterfazBD(String usuario, String contrasena) throws ClassNotFoundException, SQLException{
-        this.usuario=usuario;
-        this.contrasena=contrasena;
-        
-        this.con=null;
-        
+    private CallableStatement cst;
+
+    public InterfazBD(String usuario, String contrasena) throws ClassNotFoundException, SQLException {
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+
+        this.con = null;
+
         Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection(url,this.usuario,this.contrasena);
-        
+        con = DriverManager.getConnection(url, this.usuario, this.contrasena);
+
     }
-    
-    public Object[][] consultar(String consulta) throws SQLException{
+
+    public Object[][] consultar(String consulta) throws SQLException {
         //Matriz para obtener los registros de la tabla
         Object[][] datos;
         //Array dinamico para obtener los n registros de la tabla
@@ -50,14 +52,14 @@ public class InterfazBD {
         while (rs.next()) {//Mientras el ResultSet tenga registros por leer, entonces...
             //Guardaremos la fila en un array
             Object[] array = new Object[rsmd.getColumnCount()];
-            
+
             //Según cuantas columnas devuelva nuestra consulta,
             //comenzamos un ciclo
             for (int i = 0; i < rsmd.getColumnCount(); i++) {
                 //Guarda columna por columna en el array
                 array[i] = rs.getObject(i + 1);
             }
-            
+
             //Añadimos la fila a nuestro array dinamico
             lista.add(array);
         }
@@ -65,11 +67,11 @@ public class InterfazBD {
         //Iniciaizamos nuestra matriz con el numero de filas
         //y el numero de columnas obtenidas por la consulta
         datos = new Object[lista.size()][rsmd.getColumnCount()];
-        
+
         //Segun cuantas filas obtuvimos, entocnes
         for (int i = 0; i < lista.size(); i++) {
             Object[] array = lista.get(i);//Variable auxiliar
-            
+
             //Vamos agregando dato por dato a la matriz
             for (int j = 0; j < rsmd.getColumnCount(); j++) {
                 datos[i][j] = array[j];
@@ -78,20 +80,47 @@ public class InterfazBD {
 
         return datos;
     }
-    
-    public void actualizar(String modificacion) throws SQLException{
+
+    /**
+     * Metodo que realizar un update o un insert en la base de datos
+     *
+     * @param modificacion cadena de caracteres con el query
+     * @throws SQLException
+     */
+    public void actualizar(String modificacion) throws SQLException {
         int filasAfectada;
         rs = null;
         st = con.createStatement();
-        
+
         filasAfectada = st.executeUpdate(modificacion);
     }
-    
-    public void eliminar(String eliminacion) throws SQLException{
+
+    public void eliminar(String eliminacion) throws SQLException {
         int filasAfectada;
         rs = null;
         st = con.createStatement();
-        
+
         filasAfectada = st.executeUpdate(eliminacion);
+    }
+
+    /**
+     * Metodo que llama un procedimiento almacenado con los respectivo parametros de este
+     * @param procedimiento Llamada al procedimiento
+     * @param parametros Los argumentos que pide el procedimiento almacenado
+     * @throws SQLException 
+     */
+    public void procedimientoInsertar(String procedimiento,Object... parametros) throws SQLException {
+        //Se prepara la llamada
+        cst = con.prepareCall(procedimiento);
+        
+        int i=1;
+        //El ciclo que va agregando los parametros que recibe el procedimiento
+        for(Object dato : parametros){
+            cst.setObject(i, dato);
+            i++;
+        }
+        
+        //Ejecuta la llamada
+        cst.execute();
     }
 }

@@ -50,6 +50,7 @@ public class ManejadorPrincipal implements ActionListener {
         //Aqui van a ir los addActionListener de los botnes
         ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
+        ppa.etiqueta2.addActionListener(this);
         ppa.etiqueta7.addActionListener(this);
         ppa.setVisible(true);
     }
@@ -91,14 +92,12 @@ public class ManejadorPrincipal implements ActionListener {
                 this.manejaEventobtnConsultarPersonal();
             }
         } else if (ppa != null) {
-            if (e.getSource() == ppa.etiqueta3) {
-                this.manejaEventoReinscribirAlumno();
-            }else if(ppa!=null){
-              if (e.getSource() == ppa.etiqueta7) {
+            if (e.getSource() == ppa.etiqueta1) {
+                this.insertarAlumno();//Metodo de prueba, borralo cuando ya no lo necesites
+            }else if(e.getSource() == ppa.etiqueta3){
+               this.manejaEventoReinscribirAlumno();
+            }else if(e.getSource()==ppa.etiqueta7){
                 this.manejaEventoBajaAlumno();
-            }  
-            }else if(e.getSource()==ppa.etiqueta1){
-                
             }
         }else if(ppd != null){//PanelDirector
       
@@ -138,6 +137,18 @@ public class ManejadorPrincipal implements ActionListener {
     }
     private void ManejaEventoRegistrarPago(){
         new ManejadorRegistrarPago(new DMRegistrarPago());
+    }
+
+    /**
+     * Este metodo es de prueba, borralo cuando ya no lo necesites
+     */
+    private void insertarAlumno() {
+        try {
+            intBD.procedimientoInsertar("{call insertarAlumno(?,?,?,?,?,?)}", //Llamada al procedimeinto
+                    "Daniel","Ramirez","Contreras","Col. Ye","3435363733",2);//Cada ? representa cada parametro que recibe
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
             
 
