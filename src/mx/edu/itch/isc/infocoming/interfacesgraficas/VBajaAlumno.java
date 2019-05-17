@@ -25,13 +25,13 @@ import net.miginfocom.swing.MigLayout;
  */
 public class VBajaAlumno extends Pantalla{
     
-    public JLabel titulo1, titulo2, matricula, nombre, curso;
+    public JLabel titulo1, titulo2, matricula, nombre, curso,lblApePat,lblApeMat;
     public JTextField buscar;
     public JButton btn;
     public JTable tabla;
     
     public VBajaAlumno(){
-        super("Baja alumno",new MigLayout("debug, wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10" ));
+        super("Baja alumno",new MigLayout("debug, wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10" ));
         
         titulo1 = new JLabel ("Alumnos inscritos");
         titulo1.setFont(new Font("Arial",1,16));
@@ -47,12 +47,14 @@ public class VBajaAlumno extends Pantalla{
         curso.setFont(new Font("Arial",2,12));
         buscar = new JTextField(10);
         buscar.setFont(new Font("Arial",2,12));
+        lblApePat = new JLabel();
+        lblApePat.setFont(new Font("Arial",2,12));
+        lblApeMat=new JLabel();lblApePat.setFont(new Font("Arial",2,12));
         tabla = new JTable();
-        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre"},2));
         btn = new JButton("Dar de baja");
         btn.setBackground(Color.decode("#cee5f2"));
         
-        TextPrompt b = new TextPrompt("Nombre alumno", buscar);
+        TextPrompt b = new TextPrompt("Apellidop o matricula", buscar);
         b.changeAlpha(0.75f);
         b.changeStyle(Font.ITALIC);
 
@@ -65,6 +67,10 @@ public class VBajaAlumno extends Pantalla{
         this.add(matricula,"wrap");
         this.add(new JLabel("Nombre: "));
         this.add(nombre,"wrap");
+        this.add(new JLabel("Apellido Paterno: "));
+        this.add(lblApePat,"wrap");
+        this.add(new JLabel("Apellido Materno: "));
+        this.add(lblApeMat,"wrap");
         this.add(new JLabel("Curso"));
         this.add(curso, "wrap");
         this.add(btn, "span 3 1, right");

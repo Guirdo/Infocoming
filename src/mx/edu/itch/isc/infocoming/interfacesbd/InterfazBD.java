@@ -13,8 +13,8 @@ import java.util.TimeZone;
 public class InterfazBD {
 
     private String url = "jdbc:mysql://localhost:3306/Infocoming?serverTimezone=" + TimeZone.getDefault().getID();
-    private String usuario;
-    private String contrasena;
+    public String usuario;
+    public String contrasena;
 
     public Connection con;
     public Statement st;

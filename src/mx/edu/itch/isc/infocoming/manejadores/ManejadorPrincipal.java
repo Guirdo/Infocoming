@@ -3,12 +3,9 @@ package mx.edu.itch.isc.infocoming.manejadores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
-import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAcademico;
@@ -60,8 +57,8 @@ public class ManejadorPrincipal implements ActionListener {
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalCoordinadorAcademico p) {
         this.ppc = p;
         this.intBD = inter;
-
         //Aqui van a ir los addActionListener de los botnes
+        ppc.darBajaAlumno.addActionListener(this);
         ppc.setVisible(true);
     }
 
@@ -70,6 +67,7 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
+        ppd.bajaA.addActionListener(this);
         ppd.setVisible(true);
     }
 
@@ -103,11 +101,17 @@ public class ManejadorPrincipal implements ActionListener {
             } else if (e.getSource() == ppa.titulo5) {
                 this.manejaEventoGestionGrupo();
             }
-        } else if (ppd != null) {//PanelDirector
-
-        } else if (ppc != null) {//Panel Coordinador
-
-        } else if (ppr != null) {//Panel Recepcionista
+        }else if(ppd != null){//PanelDirector
+            if(e.getSource()==ppd.bajaA){
+                this.manejaEventoBajaAlumno();
+            }
+      
+        }else if(ppc != null){//Panel Coordinador
+            if(e.getSource()==ppc.darBajaAlumno){
+                this.manejaEventoBajaAlumno();
+            }
+        }else if(ppr != null){//Panel Recepcionista
+            
 
         }
 
@@ -135,7 +139,16 @@ public class ManejadorPrincipal implements ActionListener {
 
     private void manejaEventoBajaAlumno() {
         try {
-            new ManejadorBajaAlumno(intBD, new VBajaAlumno());
+            if(ppa != null){
+            ppa.dispose();
+            new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppa);
+            }else if(ppc!=null){
+                ppc.dispose();
+                new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppc);
+            }else if(ppd!=null){
+               ppd.dispose();
+                new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppd); 
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
