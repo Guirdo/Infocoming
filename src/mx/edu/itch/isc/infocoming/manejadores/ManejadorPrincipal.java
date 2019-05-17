@@ -15,6 +15,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAc
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
@@ -51,7 +52,8 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
         ppa.etiqueta2.addActionListener(this);//vusualizar alumno
-        
+        ppa.etiqueta7.addActionListener(this);
+
         ppa.setVisible(true);
     }
 
@@ -99,6 +101,10 @@ public class ManejadorPrincipal implements ActionListener {
         } else if (ppa != null) {
             if (e.getSource() == ppa.etiqueta3) {
                 this.manejaEventoReinscribirAlumno();
+            }else if(ppa!=null){
+              if (e.getSource() == ppa.etiqueta7) {
+                this.manejaEventoBajaAlumno();
+            }  
             }else if(e.getSource()==ppa.etiqueta1){
                 
             }
@@ -140,7 +146,7 @@ public class ManejadorPrincipal implements ActionListener {
             ex.printStackTrace();
         }
     }
-    
+
     private void manejaEventoVisualizarAlumno() {
         try {
             new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos());
@@ -148,5 +154,16 @@ public class ManejadorPrincipal implements ActionListener {
             ex.printStackTrace();
         }
     }
+    private void manejaEventoBajaAlumno() {
+        try {
+            new ManejadorBajaAlumno(intBD, new VBajaAlumno());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
+    private void ManejaEventoRegistrarPago(){
+        new ManejadorRegistrarPago(new DMRegistrarPago());
+    }
+            
 }
