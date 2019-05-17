@@ -3,10 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/principal/Principal.java</file>
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VValidarUsuario.java</file>
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorReinscribirAlumno.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VVisualizarAlumnos.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesbd/InterfazBDUsuario.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalRecepcionista.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/Manejador.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/principal/Principal.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesbd/InterfazBD.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VGestionGrupo.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VGestionPersonal.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VGestionUsuario.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorValidarUsuario.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalCoordinadorAcademico.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMGenerarDocumentos.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistrarPago.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VValidarUsuario.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VGestionPagos.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMReinscribirAlumno.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMConfirmarBaja.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMCrearGrupo.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalAdministrador.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistroES.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VBajaAlumno.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMInscribirAlumno.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistrarPersonal.java</file>
         </group>
     </open-files>
 </project-private>

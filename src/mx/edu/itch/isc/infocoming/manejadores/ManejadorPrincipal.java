@@ -58,8 +58,8 @@ public class ManejadorPrincipal implements ActionListener {
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalCoordinadorAcademico p) {
         this.ppc = p;
         this.intBD = inter;
-
         //Aqui van a ir los addActionListener de los botnes
+        ppc.darBajaAlumno.addActionListener(this);
         ppc.setVisible(true);
     }
 
@@ -68,6 +68,7 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
+        ppd.bajaA.addActionListener(this);
         ppd.setVisible(true);
     }
 
@@ -100,9 +101,14 @@ public class ManejadorPrincipal implements ActionListener {
                 this.manejaEventoBajaAlumno();
             }
         }else if(ppd != null){//PanelDirector
+            if(e.getSource()==ppd.bajaA){
+                this.manejaEventoBajaAlumno();
+            }
       
         }else if(ppc != null){//Panel Coordinador
-            
+            if(e.getSource()==ppc.darBajaAlumno){
+                this.manejaEventoBajaAlumno();
+            }
         }else if(ppr != null){//Panel Recepcionista
             
         }
@@ -130,7 +136,16 @@ public class ManejadorPrincipal implements ActionListener {
     }
     private void manejaEventoBajaAlumno() {
         try {
-            new ManejadorBajaAlumno(intBD, new VBajaAlumno());
+            if(ppa != null){
+            ppa.dispose();
+            new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppa);
+            }else if(ppc!=null){
+                ppc.dispose();
+                new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppc);
+            }else if(ppd!=null){
+               ppd.dispose();
+                new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppd); 
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
