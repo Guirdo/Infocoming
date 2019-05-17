@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Font;
@@ -19,15 +15,18 @@ import net.miginfocom.swing.MigLayout;
  * @author pacop
  */
 public class DMRegistrarPersonal extends PantallaModal{
-    private JLabel lblTelefono,lblTitulo,inicioContrato,tipoEmp;
-    private JTable tabla;
+    public JLabel lblTelefono,lblTitulo,inicioContrato,tipoEmp;
+    public JTable tabla;
     public JTextField telefono,nombre,apellidoPaterno,apellidoMaterno,domicilio,cargo;
     public JRadioButton docente,administrativo;
-    private JButton btnCancelar,btnModificar;
+    public JButton btnCancelar;
+    public JButton btnModificar;
+   public JButton btnRegistrarEmpleado;
     
-    public DMRegistrarPersonal(){
+    
+    public DMRegistrarPersonal (){
         super("Registro de empleado", new MigLayout("wrap 1", "10[]10", "10[]15[15]15[]15[]15[]15[]15[]15[]10"));
-        lblTitulo=new JLabel("Datos del alumno a modificar");
+        lblTitulo=new JLabel("Datos del personal");
         docente=new JRadioButton("Docente");
         administrativo=new JRadioButton("Administrativo");
         ButtonGroup vg=new ButtonGroup();
@@ -42,7 +41,7 @@ public class DMRegistrarPersonal extends PantallaModal{
         telefono=new JTextField(12);
         inicioContrato=new JLabel();
         btnCancelar = new JButton("Cancelar");
-        btnModificar = new JButton("Modificar alumno");
+        btnRegistrarEmpleado = new JButton("Registrar");
         lblTitulo.setFont(new Font("Arial",1,16));
         this.add(lblTitulo);
         this.add(new JLabel("Nombre: "),"split 2");
@@ -63,7 +62,7 @@ public class DMRegistrarPersonal extends PantallaModal{
         this.add(new JLabel("Inicio de contrato: "));
         this.add(inicioContrato);
         this.add(btnCancelar);
-        this.add(btnModificar);
+        this.add(btnRegistrarEmpleado);
         this.pack();
         this.setLocationRelativeTo(null);
     }

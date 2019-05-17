@@ -10,6 +10,7 @@ import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPersonal;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAcademico;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
@@ -40,6 +41,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppe.btnConsultarPersonal.addActionListener(this);
 
         ppe.setVisible(true);
+        
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalAdministrador p) {
@@ -49,9 +51,12 @@ public class ManejadorPrincipal implements ActionListener {
         //Aqui van a ir los addActionListener de los botnes
         ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
+        ppa.etiqueta8.addActionListener(this);
         
 
         ppa.setVisible(true);
+        
+        
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalCoordinadorAcademico p) {
@@ -95,7 +100,11 @@ public class ManejadorPrincipal implements ActionListener {
                 this.manejaEventoReinscribirAlumno();
             }else if(e.getSource()==ppa.etiqueta1){
                 
-            }
+            }else if (e.getSource()==ppa.etiqueta8){
+                this.manejaEventoRegistrarEmpleado();
+            }else if(ppd!=null){
+                
+          }
         }else if(ppd != null){//PanelDirector
       
         }else if(ppc != null){//Panel Coordinador
@@ -103,6 +112,7 @@ public class ManejadorPrincipal implements ActionListener {
         }else if(ppr != null){//Panel Recepcionista
             
         }
+        
 
     }
 
@@ -121,6 +131,23 @@ public class ManejadorPrincipal implements ActionListener {
         try {
             ppa.dispose();
             new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(),ppa);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    private void manejaEventobtRegistrarEmleado() throws SQLException{
+        Object [][] datos = new InterfazBDEquipo (intBD).consultarEmpleado();
+        ppe.tabla.setModel (new DefaultTableModel(datos, new Object[]{"Nombre","Apellido Materno", "Apellido Paterno", "Domicilio","Tel" }));
+        
+    }
+    private void manejaEventobtConsultarPersonal(){
+        System.out.println("Estas consultado al personal");
+        
+    }
+    private void manejaEventoRegistrarEmpleado(){
+        ppa.dispose();
+        try {
+            new ManejadorRegistrarEmpleado(intBD, new DMRegistrarPersonal(),ppa);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
