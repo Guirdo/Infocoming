@@ -27,10 +27,11 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
 
     /**
      * Constructor principal
+     *
      * @param inter Objeto de la conexion a la base de datos
      * @param vv ventana a mostrar
      * @param ant ventana de donde viene el evento, la ventana anterior
-     * @throws SQLException 
+     * @throws SQLException
      */
     public ManejadorReinscribirAlumno(InterfazBD inter, VReinscribirAlumno vv, Pantalla ant) throws SQLException {
         this.v = vv;
@@ -39,7 +40,7 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
 
         //ActionListerner de los botones del dm
         v.btnReinscribir.addActionListener(this);
-        
+
         //Esta linea sirve para que al dar enter busque
         v.tfBuscar.addKeyListener(this);
         //Esta linea sirve para mostrar los datos abajo
@@ -76,16 +77,24 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
     }
 
     private void consultarAlumnos() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,horario from Alumno,Grupo where grupID = idGrupo");
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,apellidoPaternoAlumno,apellidoMaternoAlumno,horario "
+                + "from Alumno,Grupo where grupID = idGrupo");
 
-        v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre", "Horario"}));
+        v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","ApePaterno","ApeMaterno", "Horario"}));
     }
 
-    private void buscarAlumno() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,horario from Alumno,Grupo "
-                + "where grupID = idGrupo and nombreAlumno = '" + v.tfBuscar.getText() + "'");
+    private void buscarAlumnoPorApellido() throws SQLException {
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,apellidoPaternoAlumno,apellidoMaternoAlumno,horario from Alumno,Grupo "
+                + "where grupID = idGrupo and apellidoPaternoAlumno = '" + v.tfBuscar.getText() + "'");
 
-        v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre", "Horario"}));
+        v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","ApePaterno","ApeMaterno", "Horario"}));
+    }
+    
+    private void buscarAlumnoPorMatricula() throws SQLException{
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,apellidoPaternoAlumno,apellidoMaternoAlumno,horario from Alumno,Grupo "
+                + "where grupID = idGrupo and idAlumno = " + v.tfBuscar.getText());
+
+        v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","ApePaterno","ApeMaterno", "Horario"}));
     }
 
     private void manejaEventoReinscribirAlumno() throws SQLException {
@@ -112,16 +121,14 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
         dm.lblApellidoMaterno.setText((String) datos[0][2]);
         dm.lblDomicilio.setText((String) datos[0][3]);
         dm.telefono.setText((String) datos[0][4]);
-        
+
     }
 
     private void manejaEventoModificarAlumno() throws SQLException {
-        intBD.actualizar("update Alumno set telefonoalumno = '"+dm.telefono.getText()+"', "
-                + "grupid = "+grupoSeleccionado+" where idAlumno =  "+alumnoSeleccionado);
-        
-        
+        intBD.actualizar("update Alumno set telefonoalumno = '" + dm.telefono.getText() + "', "
+                + "grupid = " + grupoSeleccionado + " where idAlumno =  " + alumnoSeleccionado);
+
         //  this.consultarAlumnos();
-        
         dm.dispose();
     }
 
@@ -129,13 +136,14 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
         Object[][] datos = intBD.consultar("select idGrupo,horario,tipocurso from Grupo,Curso "
                 + "where curso=idCurso");
 
-        dm.tabla.setModel(new DefaultTableModel(datos, new Object[]{"NumGrupo","Horario", "Curso"}));
+        dm.tabla.setModel(new DefaultTableModel(datos, new Object[]{"NumGrupo", "Horario", "Curso"}));
     }
 
     /**
      * Metodo que llena los label que estan debajo de la tabla
+     *
      * @param matri La matricula del alumno seleccionado
-     * @throws SQLException 
+     * @throws SQLException
      */
     private void consultarAlumnoVentana(int matri) throws SQLException {
         Object[][] datos = intBD.consultar("select nombreAlumno,apellidoPaternoAlumno,"
@@ -161,8 +169,14 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             //Si el textfield no esta vacio entonces..
             if (!v.tfBuscar.getText().isEmpty()) {
+                String busqueda = v.tfBuscar.getText();
+
                 try {
-                    this.buscarAlumno();
+                    if (busqueda.matches("[A-Za-z]+")) {
+                        this.buscarAlumnoPorApellido();
+                    } else if (busqueda.matches("[0-9]+")) {
+                        this.buscarAlumnoPorMatricula();
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -226,7 +240,7 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
                 ex.printStackTrace();
             }
         }//Este es para la tabla de mi dm
-        else if(e.getSource() == dm.tabla.getSelectionModel()){
+        else if (e.getSource() == dm.tabla.getSelectionModel()) {
             //De esta forma obtengo el id del grupo seleccionado
             grupoSeleccionado = (int) dm.tabla.getValueAt(dm.tabla.getSelectedRow(), 0);
             System.out.println(grupoSeleccionado);

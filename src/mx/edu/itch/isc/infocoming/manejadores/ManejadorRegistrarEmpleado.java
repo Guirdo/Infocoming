@@ -61,11 +61,13 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
     //}
     private void manejaEventoRegistrarEmpleado() throws SQLException {// TODO ARREGLAR ESTE METODO
         String telfono = dm.telefono.getText();
+        String nombre = dm.nombre.getText();
         String apellPaterno= dm.apellidoPaterno.getText();
         String apellMaterno= dm. apellidoMaterno.getText();
         String domi= dm.domicilio.getText();
         
-       
+       iBD.procedimientoInsertar("{call insertarPersonal(?,?,?,?,?)}",
+               nombre,apellPaterno,apellMaterno,domi, telfono);
     }
 
     private void consultarEmpleadoDM() throws SQLException {

@@ -16,8 +16,8 @@ import net.miginfocom.swing.MigLayout;
  * @author pacop
  */
 public class PanelPrincipalAdministrador extends Pantalla {
-  public JButton etiqueta1,etiqueta2,etiqueta3,etiqueta4,etiqueta5,etiqueta6,etiqueta7,etiqueta8,etiqueta9,titulo4,titulo5;  
-  private JLabel titulo1,titulo2,titulo3;
+  public JButton etiqueta1,etiqueta2,etiqueta3,etiqueta4,etiqueta5,etiqueta6,etiqueta7,etiqueta8,etiqueta9,titulo5,etiqueta10,etiqueta11;  
+  private JLabel titulo1,titulo2,titulo3,titulo4;
   public PanelPrincipalAdministrador(){
       super("Panel Principal",new MigLayout("debug,wrap 2","100[150]50[150]100","20[150]20[150]20[150]20"));
       titulo1= new JLabel("Gestión del alumnado");
@@ -32,7 +32,9 @@ public class PanelPrincipalAdministrador extends Pantalla {
       etiqueta7=new JButton("Dar baja Alumno");
       etiqueta8=new JButton("Registrar Empleado");
       etiqueta9=new JButton("Modificar Contraseña");
-      titulo4=new JButton("Gestión de Pagos");
+      etiqueta10=new JButton("Registrar Pago");
+      etiqueta11=new JButton("Visualizar pagos");
+      titulo4=new JLabel("Gestión de Pagos");
       titulo5=new JButton("Gestión de Grupos");
       titulo1.setFont(new Font("Arial",1,16));
       titulo2.setFont(new Font("Arial",1,16));
@@ -48,6 +50,8 @@ public class PanelPrincipalAdministrador extends Pantalla {
       etiqueta7.setFont(new Font("Arial",2,12));
       etiqueta8.setFont(new Font("Arial",2,12));
       etiqueta9.setFont(new Font("Arial",2,12));
+      etiqueta10.setFont(new Font("Arial",2,12));
+      etiqueta11.setFont(new Font("Arial",2,12));
       JPanel menu1=new JPanel(new MigLayout("wrap",""));
       menu1.add(titulo1);
       menu1.add(etiqueta1);
@@ -68,6 +72,8 @@ public class PanelPrincipalAdministrador extends Pantalla {
       this.add(menu3,"cell 0 1");
       JPanel menu4=new JPanel(new MigLayout("wrap",""));
       menu4.add(titulo4);
+      menu4.add(etiqueta10);
+      menu4.add(etiqueta11);
       this.add(menu4,"cell 1 1");
       JPanel menu5=new JPanel(new MigLayout("wrap",""));
       menu5.add(titulo5);

@@ -3,10 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorRegistrarEmpleado.java</file>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorReinscribirAlumno.java</file>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorValidarUsuario.java</file>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
+=======
+            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
+            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/principal/Principal.java</file>
+            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VValidarUsuario.java</file>
+            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorReinscribirAlumno.java</file>
+>>>>>>> 4226a9e149ba6fa20041a201c423ecfb1cfad27c
         </group>
     </open-files>
 </project-private>

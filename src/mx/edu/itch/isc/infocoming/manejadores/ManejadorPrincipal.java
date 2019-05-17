@@ -16,6 +16,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAc
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 
@@ -41,7 +42,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppe.btnConsultarPersonal.addActionListener(this);
 
         ppe.setVisible(true);
-        
+
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalAdministrador p) {
@@ -52,11 +53,10 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
         ppa.etiqueta8.addActionListener(this);
-        
-
+        ppa.etiqueta2.addActionListener(this);
+        ppa.etiqueta7.addActionListener(this);
         ppa.setVisible(true);
-        
-        
+
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalCoordinadorAcademico p) {
@@ -98,21 +98,23 @@ public class ManejadorPrincipal implements ActionListener {
         } else if (ppa != null) {
             if (e.getSource() == ppa.etiqueta3) {
                 this.manejaEventoReinscribirAlumno();
-            }else if(e.getSource()==ppa.etiqueta1){
-                
-            }else if (e.getSource()==ppa.etiqueta8){
+            }else if (e.getSource() == ppa.etiqueta8) {
                 this.manejaEventoRegistrarEmpleado();
-            }else if(ppd!=null){
-                
-          }
-        }else if(ppd != null){//PanelDirector
-      
-        }else if(ppc != null){//Panel Coordinador
+            }else if (e.getSource() == ppa.etiqueta1) {
+                this.insertarAlumno();//Metodo de prueba, borralo cuando ya no lo necesites
+            } else if (e.getSource() == ppa.etiqueta3) {
+                this.manejaEventoReinscribirAlumno();
+            } else if (e.getSource() == ppa.etiqueta7) {
+                this.manejaEventoBajaAlumno();
+            }
             
-        }else if(ppr != null){//Panel Recepcionista
-            
+        } else if (ppd != null) {//PanelDirector
+
+        } else if (ppc != null) {//Panel Coordinador
+
+        } else if (ppr != null) {//Panel Recepcionista
+
         }
-        
 
     }
 
@@ -130,24 +132,51 @@ public class ManejadorPrincipal implements ActionListener {
     private void manejaEventoReinscribirAlumno() {
         try {
             ppa.dispose();
-            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(),ppa);
+            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(), ppa);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    private void manejaEventobtRegistrarEmleado() throws SQLException{
-        Object [][] datos = new InterfazBDEquipo (intBD).consultarEmpleado();
-        ppe.tabla.setModel (new DefaultTableModel(datos, new Object[]{"Nombre","Apellido Materno", "Apellido Paterno", "Domicilio","Tel" }));
-        
+
+    private void manejaEventobtRegistrarEmleado() throws SQLException {
+        Object[][] datos = new InterfazBDEquipo(intBD).consultarEmpleado();
+        ppe.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Nombre", "Apellido Materno", "Apellido Paterno", "Domicilio", "Tel"}));
+
     }
-    private void manejaEventobtConsultarPersonal(){
+
+    private void manejaEventobtConsultarPersonal() {
         System.out.println("Estas consultado al personal");
-        
+
     }
-    private void manejaEventoRegistrarEmpleado(){
+
+    private void manejaEventoRegistrarEmpleado() {
         ppa.dispose();
         try {
-            new ManejadorRegistrarEmpleado(intBD, new DMRegistrarPersonal(),ppa);
+            new ManejadorRegistrarEmpleado(intBD, new DMRegistrarPersonal(), ppa);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void manejaEventoBajaAlumno() {
+        try {
+            new ManejadorBajaAlumno(intBD, new VBajaAlumno());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void ManejaEventoRegistrarPago() {
+        new ManejadorRegistrarPago(new DMRegistrarPago());
+    }
+
+    /**
+     * Este metodo es de prueba, borralo cuando ya no lo necesites
+     */
+    private void insertarAlumno() {
+        try {
+            intBD.procedimientoInsertar("{call insertarAlumno(?,?,?,?,?,?)}", //Llamada al procedimeinto
+                    "Daniel", "Ramirez", "Contreras", "Col. Ye", "3435363733", 2);//Cada ? representa cada parametro que recibe
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

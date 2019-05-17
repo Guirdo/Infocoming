@@ -14,8 +14,13 @@ public class DMRegistrarPago extends PantallaModal {
     
     private JRadioButton btnComun,btnNuevo;
     private JComboBox<String> cbConceptos;
-    private JTextField tfConceptoNuevo,tfAlumno;
-    private JButton btnCancelar,btnRegistrar;
+
+    private JTextField tfConceptoNuevo;
+    public JButton btnCancelar;
+    public JButton btnRegistrar;
+
+    private JTextField tfAlumno;
+
     private JSpinner spnPago;
 
     public DMRegistrarPago() {

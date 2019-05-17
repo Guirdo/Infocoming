@@ -1,5 +1,6 @@
 package mx.edu.itch.isc.infocoming.interfacesbd;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ public class InterfazBD {
     public Statement st;
     public ResultSet rs;
     public ResultSetMetaData rsmd;
+    private CallableStatement cst;
 
     public InterfazBD(String usuario, String contrasena) throws ClassNotFoundException, SQLException {
         this.usuario = usuario;
@@ -79,6 +81,12 @@ public class InterfazBD {
         return datos;
     }
 
+    /**
+     * Metodo que realizar un update o un insert en la base de datos
+     *
+     * @param modificacion cadena de caracteres con el query
+     * @throws SQLException
+     */
     public void actualizar(String modificacion) throws SQLException {
         int filasAfectada;
         rs = null;
@@ -93,5 +101,26 @@ public class InterfazBD {
         st = con.createStatement();
 
         filasAfectada = st.executeUpdate(eliminacion);
+    }
+
+    /**
+     * Metodo que llama un procedimiento almacenado con los respectivo parametros de este
+     * @param procedimiento Llamada al procedimiento
+     * @param parametros Los argumentos que pide el procedimiento almacenado
+     * @throws SQLException 
+     */
+    public void procedimientoInsertar(String procedimiento,Object... parametros) throws SQLException {
+        //Se prepara la llamada
+        cst = con.prepareCall(procedimiento);
+        
+        int i=1;
+        //El ciclo que va agregando los parametros que recibe el procedimiento
+        for(Object dato : parametros){
+            cst.setObject(i, dato);
+            i++;
+        }
+        
+        //Ejecuta la llamada
+        cst.execute();
     }
 }
