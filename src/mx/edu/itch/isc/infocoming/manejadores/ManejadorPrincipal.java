@@ -16,6 +16,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionGrupo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 
@@ -52,6 +53,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta3.addActionListener(this);
         ppa.etiqueta2.addActionListener(this);
         ppa.etiqueta7.addActionListener(this);
+        ppa.titulo5.addActionListener(this);
         ppa.setVisible(true);
     }
 
@@ -94,17 +96,19 @@ public class ManejadorPrincipal implements ActionListener {
         } else if (ppa != null) {
             if (e.getSource() == ppa.etiqueta1) {
                 this.insertarAlumno();//Metodo de prueba, borralo cuando ya no lo necesites
-            }else if(e.getSource() == ppa.etiqueta3){
-               this.manejaEventoReinscribirAlumno();
-            }else if(e.getSource()==ppa.etiqueta7){
+            } else if (e.getSource() == ppa.etiqueta3) {
+                this.manejaEventoReinscribirAlumno();
+            } else if (e.getSource() == ppa.etiqueta7) {
                 this.manejaEventoBajaAlumno();
+            } else if (e.getSource() == ppa.titulo5) {
+                this.manejaEventoGestionGrupo();
             }
-        }else if(ppd != null){//PanelDirector
-      
-        }else if(ppc != null){//Panel Coordinador
-            
-        }else if(ppr != null){//Panel Recepcionista
-            
+        } else if (ppd != null) {//PanelDirector
+
+        } else if (ppc != null) {//Panel Coordinador
+
+        } else if (ppr != null) {//Panel Recepcionista
+
         }
 
     }
@@ -123,11 +127,12 @@ public class ManejadorPrincipal implements ActionListener {
     private void manejaEventoReinscribirAlumno() {
         try {
             ppa.dispose();
-            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(),ppa);
+            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(), ppa);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
     private void manejaEventoBajaAlumno() {
         try {
             new ManejadorBajaAlumno(intBD, new VBajaAlumno());
@@ -135,7 +140,19 @@ public class ManejadorPrincipal implements ActionListener {
             ex.printStackTrace();
         }
     }
-    private void ManejaEventoRegistrarPago(){
+
+    private void manejaEventoGestionGrupo() {
+        try {
+            if (ppa != null) {
+                ppa.dispose();
+                new ManejadorGenerarLista(intBD, new VGestionGrupo(), ppa);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void ManejaEventoRegistrarPago() {
         new ManejadorRegistrarPago(new DMRegistrarPago());
     }
 
@@ -145,11 +162,10 @@ public class ManejadorPrincipal implements ActionListener {
     private void insertarAlumno() {
         try {
             intBD.procedimientoInsertar("{call insertarAlumno(?,?,?,?,?,?)}", //Llamada al procedimeinto
-                    "Daniel","Ramirez","Contreras","Col. Ye","3435363733",2);//Cada ? representa cada parametro que recibe
+                    "Daniel", "Ramirez", "Contreras", "Col. Ye", "3435363733", 2);//Cada ? representa cada parametro que recibe
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-            
 
 }
