@@ -2,23 +2,28 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.Font;
-import java.awt.PopupMenu;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 public class DMCrearGrupo extends PantallaModal{
     
-    private JComboBox<String> cbHoraInicio,cbHoraFinal,cbCursos;
-    private JCheckBox[] cbDias = new JCheckBox[7];
-    private JTextField tfClaveMaestro;
+    public JComboBox<String> cbHoraInicio,cbHoraFinal,cbCursos;
+    public JCheckBox[] cbDias = new JCheckBox[7];
+    public JTextField tfClaveMaestro;
+    public JButton btnCrear;
+    public JTable tabla;
+    public JDateChooser fechaSelector;
     
 
     public DMCrearGrupo() {
-        super("Crear grupo", new MigLayout("wrap 2","[]15[]","[]15[]10[]10[]10[]10[]10[]"));
+        super("Crear grupo", new MigLayout("wrap 2","[]15[:150:]","[]15[]10[]10[]10[]10[150]10[]"));
         
         JLabel lblTitulo = new JLabel("Crear grupo");
         
@@ -28,12 +33,12 @@ public class DMCrearGrupo extends PantallaModal{
         cbHoraFinal = new JComboBox<>();
         cbCursos= new JComboBox<>();
         tfClaveMaestro = new JTextField(12);
-        
-        JDateChooser fechaSelector =new JDateChooser();
+        tabla = new JTable();
+        btnCrear = new JButton("Crear grupo");
+        fechaSelector = new com.toedter.calendar.JDateChooser();
         
         this.cargarCBHoras();
         this.cargarChBDias();
-        this.cargarCBCursos();
         
         this.add(lblTitulo,"span 2");
         this.add(new JLabel("Día(s) del curso: "));
@@ -43,9 +48,10 @@ public class DMCrearGrupo extends PantallaModal{
         this.add(new JLabel("Curso: "));
         this.add(cbCursos);
         this.add(new JLabel("Inicio de curso: "));
-        this.add(new JLabel(" Aquí va un calendario "));
+        this.add(fechaSelector,"w 120");
         this.add(new JLabel("Maestro asignado: "));
-        this.add(tfClaveMaestro);
+        this.add(new JScrollPane(tabla));
+        this.add(btnCrear,"span 2, right");
         
         this.pack();
         this.setLocationRelativeTo(null);
@@ -83,15 +89,6 @@ public class DMCrearGrupo extends PantallaModal{
         cbDias[4]= new JCheckBox("Vie");
         cbDias[5]= new JCheckBox("Sa");
         cbDias[6]= new JCheckBox("Do");
-    }
-
-    private void cargarCBCursos() {
-        //TODO Mejorar
-        
-        cbCursos.addItem("Ingles - A1");
-        cbCursos.addItem("Ingles - A2");
-        cbCursos.addItem("Ingles - B1");
-        cbCursos.addItem("Ingles - Infantil");
     }
 
     private JPanel darPnlDias() {

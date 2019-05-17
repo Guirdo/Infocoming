@@ -11,9 +11,13 @@
 =======
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/principal/Principal.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VValidarUsuario.java</file>
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorReinscribirAlumno.java</file>
 >>>>>>> 4226a9e149ba6fa20041a201c423ecfb1cfad27c
+=======
+            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorGenerarLista.java</file>
+>>>>>>> 7c237bda78f2c262709547f2e427bb549a9bd136
         </group>
     </open-files>
 </project-private>
