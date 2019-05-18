@@ -19,7 +19,7 @@ public class VReinscribirAlumno extends Pantalla{
     
 
     public VReinscribirAlumno() {
-        super("Reinscribir alumno",new MigLayout("wrap 3","[]15[200]15[]","[]15[]10[150]20[]15[]10[]10[]10[]10[]"));
+        super("Reinscribir alumno",new MigLayout("debug,wrap 3","[]15[200]15[]","[]15[]10[150]20[]15[]10[]10[]10[]10[]"));
         
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
@@ -44,7 +44,7 @@ public class VReinscribirAlumno extends Pantalla{
         
         this.add(lblTitulo1,"span 3");
         this.add(tfBuscar,"span 3,right");
-        this.add(new JScrollPane(tabla),"span 3");
+        this.add(new JScrollPane(tabla),"span 3,growx");
         this.add(lblTitulo2,"span 3");
         this.add(new JLabel("Nombre: "));
         this.add(lblNombre,"wrap");

@@ -16,6 +16,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPagos;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
@@ -53,7 +54,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta3.addActionListener(this);
         ppa.etiqueta2.addActionListener(this);//vusualizar alumno
         ppa.etiqueta7.addActionListener(this);
-
+        ppa.etiqueta11.addActionListener(this);//Visualizar pago
         ppa.setVisible(true);
     }
 
@@ -82,6 +83,7 @@ public class ManejadorPrincipal implements ActionListener {
         
         
         ppr.etiqueta1.addActionListener(this);//Visualizar alumno
+        ppr.etiqueta4.addActionListener(this);
         ppr.setVisible(true);
     }
 
@@ -99,14 +101,12 @@ public class ManejadorPrincipal implements ActionListener {
                 this.manejaEventobtnConsultarPersonal();
             }
         } else if (ppa != null) {
-            if (e.getSource() == ppa.etiqueta3) {
-                this.manejaEventoReinscribirAlumno();
-            }else if(ppa!=null){
-              if (e.getSource() == ppa.etiqueta7) {
+            if (e.getSource() == ppa.etiqueta1) {
+                this.insertarAlumno();//Metodo de prueba, borralo cuando ya no lo necesites
+            }else if(e.getSource() == ppa.etiqueta3){
+               this.manejaEventoReinscribirAlumno();
+            }else if(e.getSource()==ppa.etiqueta7){
                 this.manejaEventoBajaAlumno();
-            }  
-            }else if(e.getSource()==ppa.etiqueta1){
-                
             }
             if(e.getSource()==ppa.etiqueta2){
                 this.manejaEventoVisualizarAlumno();
@@ -149,7 +149,19 @@ public class ManejadorPrincipal implements ActionListener {
 
     private void manejaEventoVisualizarAlumno() {
         try {
-            new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos());
+            if(ppa!=null){
+                ppa.dispose();
+                new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos(),ppa);
+            }else if (ppd!=null){
+                ppd.dispose();
+                new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos(),ppd);
+            }else if(ppc!=null){
+                ppc.dispose();
+                new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos(),ppc);
+            }else if(ppr!=null){
+                ppr.dispose();
+                new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos(),ppr);
+            } 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -164,6 +176,28 @@ public class ManejadorPrincipal implements ActionListener {
 
     private void ManejaEventoRegistrarPago(){
         new ManejadorRegistrarPago(new DMRegistrarPago());
+    }
+    
+    private void ManejaEventoVisualizarHistPago() throws SQLException{
+        if(ppr!=null){
+            ppr.dispose();
+                new ManejadorVisualizarHistorialPago(intBD, new VGestionPagos(),ppr);
+        }else if(ppa!=null){
+            ppa.dispose();
+            new ManejadorVisualizarHistorialPago(intBD, new VGestionPagos(),ppa);
+        }
+    }
+
+    /**
+     * Este metodo es de prueba, borralo cuando ya no lo necesites
+     */
+    private void insertarAlumno() {
+        try {
+            intBD.procedimientoInsertar("{call insertarAlumno(?,?,?,?,?,?)}", //Llamada al procedimeinto
+                    "Daniel","Ramirez","Contreras","Col. Ye","3435363733",2);//Cada ? representa cada parametro que recibe
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
             
 }

@@ -13,7 +13,7 @@ import net.miginfocom.swing.MigLayout;
 public class VGestionPagos extends Pantalla{
     
     private JLabel lblMatricula,lblNombre,lblCurso,lblHorario;
-    private JTextField tfBuscar;
+    public JTextField tfBuscar;
     public JTable tabla;
     private JButton btnRegistrarPago;
 

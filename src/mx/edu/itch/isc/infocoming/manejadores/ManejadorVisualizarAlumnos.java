@@ -5,52 +5,54 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
-import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
-import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.Pantalla;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
 
-public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener,ListSelectionListener{
+public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener, WindowListener, ListSelectionListener{
     private VVisualizarAlumnos vv;
     private InterfazBD intBD;
     private int alumnoSeleccionado;
+    private Pantalla vistaAnterior;
     
-    public ManejadorVisualizarAlumnos(InterfazBD inter, VVisualizarAlumnos v) throws SQLException {
+    public ManejadorVisualizarAlumnos(InterfazBD inter, VVisualizarAlumnos v, Pantalla ant) throws SQLException {
         this.vv = v;
         this.intBD=inter;
-        
-
+        this.vistaAnterior = ant;
+        vv.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         //Agregar actionListener a los botones de la vista
-//        this.consultarAlumnos();
         //Esta linea sirve para que al dar enter busque
         vv.tfBuscar.addKeyListener(this);
         vv.tabla.getSelectionModel().addListSelectionListener(this);//datos de abajo
+        vv.addWindowListener(this);
         this.consultarAlumnos();
         vv.setVisible(true);
     }
 
     private void consultarAlumnos() throws SQLException{
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno");
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno from Alumno");
         
-        vv.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula","Nombre"}));
+        vv.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula","Nombre", "Apellido Paterno", "Apellido Materno"}));
     }
     
-    private void buscarAlumno() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno "
-                + "where nombreAlumno = '" + vv.tfBuscar.getText() + "'");
-
-        vv.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre"}));
+    private void buscarAlumnoPorMatricula() throws SQLException{
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno from Alumno where idAlumno=" + vv.tfBuscar.getText());
+        vv.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre", "Apellido Paterno", "Apellido Materno"}));
+    }
+    private void buscarAlumnoPorApellido() throws SQLException {
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno from Alumno where apellidoPaternoAlumno= '" + vv.tfBuscar.getText() + "'");
+        vv.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","Apellido Paterno", "Apellido Materno"}));
     }
 
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -66,23 +68,38 @@ public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener,L
         }
     }
     private void consultarAlumnoVentana(int matri) throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, idgrupo from Alumno, Grupo where idAlumno="+matri+" and idgrupo=idGrupo");
+        Object[][] datos = intBD.consultar(" select idAlumno, nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, domicilioAlumno, telefonoAlumno,  horario, tipocurso from Alumno, Grupo, Curso where idAlumno="+matri+" and idgrupo=grupid and idcurso=curso;");
         
         vv.lblMatricula.setText((int) datos[0][0]+"");
         vv.lblNombre.setText((String) datos[0][1]);
-        vv.lblCurso.setText((String) datos[0][2]);
-//        vv.lblHorario.setText((String) datos[0][3]);
+        vv.lblApellidoP.setText((String) datos[0][2]);
+        vv.lblApellidoM.setText((String) datos[0][3]);
+        vv.lblDomicilio.setText((String) datos[0][4]);
+        vv.lblTelefono.setText((String) datos[0][5]);
+        vv.lblCurso.setText((String) datos[0][6]);
+        vv.lblHorario.setText((String) datos[0][7]);
         
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        //El enter
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //El enter :(
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             //Si el textfield no esta vacio entonces..
             if (!vv.tfBuscar.getText().isEmpty()) {
+                String busqueda = vv.tfBuscar.getText();
+
                 try {
-                    this.buscarAlumno();
+                    if (busqueda.matches("[A-Za-z]+")) {
+                        this.buscarAlumnoPorApellido();
+                    } else if (busqueda.matches("[0-9]+")) {
+                        this.buscarAlumnoPorMatricula();
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -91,11 +108,38 @@ public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener,L
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {
+    public void keyReleased(KeyEvent ke) {
+        
     }
 
     @Override
-    public void keyReleased(KeyEvent ke) {
-        
+    public void windowOpened(WindowEvent we) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent we) {        
+        vv.dispose();
+        this.vistaAnterior.setVisible(true);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent we) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent we) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent we) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent we) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent we) {
+      
     }
 }

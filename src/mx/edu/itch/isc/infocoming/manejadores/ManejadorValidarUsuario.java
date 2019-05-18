@@ -2,6 +2,8 @@ package mx.edu.itch.isc.infocoming.manejadores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
@@ -12,7 +14,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 
-public class ManejadorValidarUsuario implements ActionListener {
+public class ManejadorValidarUsuario implements ActionListener,KeyListener {
 
     private VValidarUsuario v;
 
@@ -22,6 +24,7 @@ public class ManejadorValidarUsuario implements ActionListener {
         //Agregar actionListener a los botones de la vista
         v.btnIngresar.addActionListener(this);
         v.btnCancelar.addActionListener(this);
+        v.tfContra.addKeyListener(this);
 
         v.setVisible(true);
     }
@@ -75,6 +78,23 @@ public class ManejadorValidarUsuario implements ActionListener {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña invalido", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
             }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            this.manejaEventoIngresar();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
     }
 
 }

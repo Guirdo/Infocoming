@@ -16,22 +16,26 @@ import net.miginfocom.swing.MigLayout;
  * @author pacop
  */
 public class PanelPrincipalRecepcionista extends Pantalla{
-      public JButton etiqueta1,etiqueta2,titulo3,titulo4;  
-  private JLabel titulo1,titulo2;
+      public JButton etiqueta1,etiqueta2,titulo3, etiqueta3, etiqueta4;  
+  private JLabel titulo1,titulo2, titulo4;
     public PanelPrincipalRecepcionista(){
         super("Panel principal",new MigLayout("debug,wrap 2","100[150]50[150]100","20[150]20[100]20[100]20"));
         titulo1= new JLabel("Gestión del alumnado");
         titulo2= new JLabel("Gestión del personal");     
         etiqueta1=new JButton("Visualizar Alumno");
-        etiqueta2=new JButton("Registrar entarda y salida del personal");
+        etiqueta2=new JButton("Registrar entrada y salida del personal");
+        etiqueta3 = new JButton("Registrar Pago");
+        etiqueta4= new JButton("Visualizar historial de pagos");
         titulo3=new JButton("Gestión de Pagos");
-        titulo4=new JButton("Gestión de Grupos");
+        titulo4=new JLabel("Gestión de Grupos");
         titulo1.setFont(new Font("Arial",1,16));
         titulo2.setFont(new Font("Arial",1,16));
         titulo3.setFont(new Font("Arial",1,16));
         titulo4.setFont(new Font("Arial",1,16));
         etiqueta1.setFont(new Font("Arial",2,12));
         etiqueta2.setFont(new Font("Arial",2,12));
+        etiqueta3.setFont(new Font("Arial",2,12));
+        etiqueta4.setFont(new Font("Arial",2,12));
         JPanel panel1=new JPanel(new MigLayout("wrap","",""));
         panel1.add(titulo1);
         panel1.add(etiqueta1);
@@ -42,6 +46,8 @@ public class PanelPrincipalRecepcionista extends Pantalla{
         this.add(panel2,"cell 1 0");
          JPanel panel3=new JPanel(new MigLayout("wrap","",""));
         panel3.add(titulo3);
+        panel3.add(etiqueta3);
+        panel3.add(etiqueta4);
         this.add(panel3,"cell 0 1");
         JPanel panel4=new JPanel(new MigLayout("wrap","",""));
         panel4.add(titulo4);
