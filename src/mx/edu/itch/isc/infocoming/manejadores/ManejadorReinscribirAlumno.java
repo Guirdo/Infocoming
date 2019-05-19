@@ -127,8 +127,10 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
     private void manejaEventoModificarAlumno() throws SQLException {
         intBD.actualizar("update Alumno set telefonoalumno = '" + dm.telefono.getText() + "', "
                 + "grupid = " + grupoSeleccionado + " where idAlumno =  " + alumnoSeleccionado);
-
-        //  this.consultarAlumnos();
+        
+        this.v.tabla.getSelectionModel().removeListSelectionListener(this);
+        this.consultarAlumnos();
+        this.v.tabla.getSelectionModel().addListSelectionListener(this);
         dm.dispose();
     }
 
@@ -243,7 +245,6 @@ public class ManejadorReinscribirAlumno implements ActionListener, KeyListener, 
         else if (e.getSource() == dm.tabla.getSelectionModel()) {
             //De esta forma obtengo el id del grupo seleccionado
             grupoSeleccionado = (int) dm.tabla.getValueAt(dm.tabla.getSelectedRow(), 0);
-            System.out.println(grupoSeleccionado);
         }
     }
 
