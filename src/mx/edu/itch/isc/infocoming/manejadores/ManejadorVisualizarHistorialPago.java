@@ -27,7 +27,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPagos;
 public class ManejadorVisualizarHistorialPago implements ActionListener, KeyListener, WindowListener, ListSelectionListener {
     private VGestionPagos vgp;
     private InterfazBD intBD;
-    private int alumnoSeleccionado;
+    private int alumnoS;
     private Pantalla vistaAnterior;
     
     public ManejadorVisualizarHistorialPago(InterfazBD inter, VGestionPagos vg, Pantalla ant) throws SQLException {
@@ -47,25 +47,24 @@ public class ManejadorVisualizarHistorialPago implements ActionListener, KeyList
         vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago"}));        
     }
     private void buscarAlumnoPorMatricula() throws SQLException{
-        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago from Pago,Alumno, Concepto where idAlumno="+vgp.tfBuscar.getText()+" and idconcepto=conceptoid");
-        vgp.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre", "Apellido Paterno", "Apellido Materno"}));
+        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago from Pago,Alumno, Concepto where idAlumno="+vgp.tfBuscar.getText()+" and idAlumno=idalum and idconcepto=conceptoid");
+        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula", "Nombre", "Fecha pago", "Concepto pago"}));
     }
     private void buscarAlumnoPorApellido() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno, fecha, conceptopago from Pago,Alumno,Concepto where apellidoPaternoAlumno= '" + vgp.tfBuscar.getText() + "' and idconcepto=conceptoid");
-        vgp.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","Apellido Paterno", "Apellido Materno"}));
+        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago from Pago,Alumno, Concepto where apellidoPaternoAlumno= '"+vgp.tfBuscar.getText()+"' and idAlumno=idalum and idconcepto=conceptoid");
+        vgp.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","Fecha pago", "Concepto pago"}));
     }
     
     private void consultarAlumnoVentana(int matri) throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, domicilioAlumno, telefonoAlumno,  horario, tipocurso from Alumno, Grupo, Curso where idAlumno="+matri+" and idgrupo=idgrupo");
+        Object[][] datos = intBD.consultar("select nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, idpago, cantidad, conceptopago, horario from pago, alumno, concepto, grupo where idAlumno=idalum and idAlumno="+matri+" and idconcepto=conceptoid and idGrupo=grupid;");
         
-        vv.lblMatricula.setText((int) datos[0][0]+"");
-        vv.lblNombre.setText((String) datos[0][1]);
-        vv.lblApellidoP.setText((String) datos[0][2]);
-        vv.lblApellidoM.setText((String) datos[0][3]);
-        vv.lblDomicilio.setText((String) datos[0][4]);
-        vv.lblTelefono.setText((String) datos[0][5]);
-        vv.lblCurso.setText((String) datos[0][6]);
-        vv.lblHorario.setText((String) datos[0][7]);
+        vgp.lblNombre.setText((String) datos[0][0]);
+        vgp.lblApellidoP.setText((String) datos[0][1]);
+        vgp.lblApellidoM.setText((String) datos[0][2]);
+        vgp.lblFolio.setText((int) datos[0][3]+"");
+        vgp.lblCantidad.setText((Double) datos[0][4]+"");
+        vgp.lblConcepto.setText((String) datos[0][5]);
+        vgp.lblHorario.setText((String) datos[0][6]);
         
     }
     @Override
@@ -74,61 +73,68 @@ public class ManejadorVisualizarHistorialPago implements ActionListener, KeyList
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            //Si el textfield no esta vacio entonces..
+            if (!vgp.tfBuscar.getText().isEmpty()) {
+                String busqueda = vgp.tfBuscar.getText();
+
+                try {
+                    if (busqueda.matches("[A-Za-z]+")) {
+                        this.buscarAlumnoPorApellido();
+                    } else if (busqueda.matches("[0-9]+")) {
+                        this.buscarAlumnoPorMatricula();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowOpened(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosing(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        vgp.dispose();
+        this.vistaAnterior.setVisible(true);
     }
 
     @Override
     public void windowClosed(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowIconified(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeiconified(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowActivated(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeactivated(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (e.getSource() == vgp.tabla.getSelectionModel()) {
-            //se obtiene matricula
-            alumnoSeleccionado = (int) vgp.tabla.getValueAt(vgp.tabla.getSelectedRow(), 0);//<-- Este ultimo numero corresponde a la col de la tabla
+            alumnoS = (int) vgp.tabla.getValueAt(vgp.tabla.getSelectedRow(), 0);//<-- Este ultimo numero corresponde a la col de la tabla
             try {
-                this.consultarAlumnoVentana(alumnoSeleccionado);
+                this.consultarAlumnoVentana(alumnoS);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

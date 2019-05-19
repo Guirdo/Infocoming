@@ -7,7 +7,6 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.LayoutManager;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

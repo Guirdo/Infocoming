@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMExamen_CENNI;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
@@ -17,6 +18,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPagos;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionGrupo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
@@ -55,15 +57,18 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta2.addActionListener(this);//vusualizar alumno
         ppa.etiqueta7.addActionListener(this);
         ppa.etiqueta11.addActionListener(this);//Visualizar pago
+        ppa.titulo5.addActionListener(this);
+        ppa.etiqueta6.addActionListener(this);
         ppa.setVisible(true);
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalCoordinadorAcademico p) {
         this.ppc = p;
         this.intBD = inter;
-
         //Aqui van a ir los addActionListener de los botnes
         ppc.visualizarAlumno.addActionListener(this);//Visualizar alumno
+        ppc.darBajaAlumno.addActionListener(this);
+
         ppc.setVisible(true);
     }
 
@@ -72,8 +77,9 @@ public class ManejadorPrincipal implements ActionListener {
         this.intBD = inter;
 
         //Aqui van a ir los addActionListener de los botnes
-        ppd.visualizar.addActionListener(this);//Visualizar alumno
 
+        ppd.visualizar.addActionListener(this);//Visualizar alumno
+        ppd.bajaA.addActionListener(this);
         ppd.setVisible(true);
     }
 
@@ -83,7 +89,8 @@ public class ManejadorPrincipal implements ActionListener {
         
         
         ppr.etiqueta1.addActionListener(this);//Visualizar alumno
-        ppr.etiqueta4.addActionListener(this);
+        ppr.etiqueta4.addActionListener(this);//Visualizar pago
+        
         ppr.setVisible(true);
     }
 
@@ -100,13 +107,27 @@ public class ManejadorPrincipal implements ActionListener {
             } else if (e.getSource() == ppe.btnConsultarPersonal) {
                 this.manejaEventobtnConsultarPersonal();
             }
-        } else if (ppa != null) {
+        } else if (ppa != null) {//PanelAdministrador
             if (e.getSource() == ppa.etiqueta1) {
                 this.insertarAlumno();//Metodo de prueba, borralo cuando ya no lo necesites
-            }else if(e.getSource() == ppa.etiqueta3){
-               this.manejaEventoReinscribirAlumno();
-            }else if(e.getSource()==ppa.etiqueta7){
+            } else if (e.getSource() == ppa.etiqueta3) {
+                this.manejaEventoReinscribirAlumno();
+            } else if (e.getSource() == ppa.etiqueta7) {
                 this.manejaEventoBajaAlumno();
+            } else if (e.getSource() == ppa.titulo5) {
+                this.manejaEventoGestionGrupo();
+            }else if(e.getSource()==ppa.etiqueta11){
+                try {
+                    this.ManejaEventoVisualizarHistPago();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManejadorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if(e.getSource()==ppa.etiqueta6){
+                try {
+                    this.ManejaEventoExamenCENNI();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManejadorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(e.getSource()==ppa.etiqueta2){
                 this.manejaEventoVisualizarAlumno();
@@ -114,6 +135,9 @@ public class ManejadorPrincipal implements ActionListener {
         }else if(ppd != null){//PanelDirector
             if(e.getSource()==ppd.visualizar){
                 this.manejaEventoVisualizarAlumno();
+            }
+            if(e.getSource()==ppd.bajaA){
+                this.manejaEventoBajaAlumno();
             }
             
         }else if(ppc != null){//Panel Coordinador
@@ -123,7 +147,19 @@ public class ManejadorPrincipal implements ActionListener {
         }else if(ppr != null){//Panel Recepcionista
             if(e.getSource()==ppr.etiqueta1){
                 this.manejaEventoVisualizarAlumno();
+            }else if(e.getSource()==ppr.etiqueta4){
+                try {
+                    this.ManejaEventoVisualizarHistPago();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManejadorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+        }else if(ppc != null){//Panel Coordinador
+            if(e.getSource()==ppc.darBajaAlumno){
+                this.manejaEventoBajaAlumno();
             }
+        }else if(ppr != null){//Panel Recepcionista
+            
         }
     }
 
@@ -133,7 +169,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppe.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre", "Apellido pat", "apeMat", "Domicilio", "Tel"}));
 
     }
-
+        
     private void manejaEventobtnConsultarPersonal() {
         System.out.println("Estas consultado al personal");
     }
@@ -141,7 +177,7 @@ public class ManejadorPrincipal implements ActionListener {
     private void manejaEventoReinscribirAlumno() {
         try {
             ppa.dispose();
-            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(),ppa);
+            new ManejadorReinscribirAlumno(intBD, new VReinscribirAlumno(), ppa);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -166,15 +202,39 @@ public class ManejadorPrincipal implements ActionListener {
             ex.printStackTrace();
         }
     }
+
     private void manejaEventoBajaAlumno() {
         try {
-            new ManejadorBajaAlumno(intBD, new VBajaAlumno());
+            if(ppa != null){
+            ppa.dispose();
+            new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppa);
+            }else if(ppc!=null){
+                ppc.dispose();
+                new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppc);
+            }else if(ppd!=null){
+               ppd.dispose();
+                new ManejadorBajaAlumno(intBD, new VBajaAlumno(),ppd); 
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    private void ManejaEventoRegistrarPago(){
+//    private void ManejaEventoRegistrarPago(){
+
+    private void manejaEventoGestionGrupo() {
+        try {
+            if (ppa != null) {
+                ppa.dispose();
+                new ManejadorGenerarLista(intBD, new VGestionGrupo(), ppa);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void ManejaEventoRegistrarPago() {
+
         new ManejadorRegistrarPago(new DMRegistrarPago());
     }
     
@@ -193,11 +253,15 @@ public class ManejadorPrincipal implements ActionListener {
      */
     private void insertarAlumno() {
         try {
-            intBD.procedimientoInsertar("{call insertarAlumno(?,?,?,?,?,?)}", //Llamada al procedimeinto
-                    "Daniel","Ramirez","Contreras","Col. Ye","3435363733",2);//Cada ? representa cada parametro que recibe
+//            intBD.procedimientoInsertar("{call insertarAlumno(?,?,?,?,?,?)}", //Llamada al procedimeinto
+//                    "Daniel", "Ramirez", "Contreras", "Col. Ye", "3435363733", 2);//Cada ? representa cada parametro que recibe
+            new ManejadorInscribirAlumno(intBD, new DMInscribirAlumno());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-            
+
+    private void ManejaEventoExamenCENNI() throws SQLException {
+        new ManejadorExamenCENNI(intBD, new DMExamen_CENNI());
+    }
 }

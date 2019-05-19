@@ -30,7 +30,7 @@ public class VGestionGrupo extends Pantalla{
     public JButton btn1, btn2;
     
     public VGestionGrupo() {
-        super("Gestión de grupos", new MigLayout("debug, wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10" ));
+        super("Gestión de grupos", new MigLayout("wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10" ));
         
         titulo1 = new JLabel("Grupos");
         titulo1.setFont(new Font("Arial",1,16));
@@ -57,7 +57,7 @@ public class VGestionGrupo extends Pantalla{
         
         
         //Buscar
-        TextPrompt b = new TextPrompt("Nombre alumno", buscar);
+        TextPrompt b = new TextPrompt("Numero de grupo...", buscar);
         b.changeAlpha(0.75f);
         b.changeStyle(Font.ITALIC);
         
@@ -73,8 +73,8 @@ public class VGestionGrupo extends Pantalla{
         this.add(curso,"wrap");
         this.add(new JLabel("Maestro asignado: "));
         this.add(maestro,"wrap");
-        this.add(new JLabel("Semanas: "));
-        this.add(semanas,"wrap");
+//        this.add(new JLabel("Semanas: "));
+//        this.add(semanas,"wrap");
         this.add(btn2, "span 3 1, right");
         this.pack();
         this.setLocationRelativeTo(null);

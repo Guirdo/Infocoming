@@ -20,14 +20,13 @@ import net.miginfocom.swing.MigLayout;
  */
 public class DMRegistrarPersonal extends PantallaModal{
     private JLabel lblTelefono,lblTitulo,inicioContrato,tipoEmp;
-    private JTable tabla;
     public JTextField telefono,nombre,apellidoPaterno,apellidoMaterno,domicilio,cargo;
     public JRadioButton docente,administrativo;
     private JButton btnCancelar,btnModificar;
     
     public DMRegistrarPersonal(){
         super("Registro de empleado", new MigLayout("wrap 1", "10[]10", "10[]15[15]15[]15[]15[]15[]15[]15[]10"));
-        lblTitulo=new JLabel("Datos del alumno a modificar");
+        lblTitulo=new JLabel("Datos del personal");
         docente=new JRadioButton("Docente");
         administrativo=new JRadioButton("Administrativo");
         ButtonGroup vg=new ButtonGroup();

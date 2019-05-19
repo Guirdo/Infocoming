@@ -28,7 +28,7 @@ public class DMInscribirAlumno extends PantallaModal{
     public JButton btn1, btn2;
     
     public DMInscribirAlumno() {
-        super("Inscribir alumno", new MigLayout("debug, wrap 4", "[][][][]","10[]15[]10[]10[]10[]10[]10[]10"));
+        super("Inscribir alumno", new MigLayout("wrap 4", "[][][][]","10[]15[]10[]10[]10[]10[]10[]10"));
         
         titulo = new JLabel("Datos del alumno de nuevo ingreso");
         titulo.setFont(new Font("Arial",1,16));

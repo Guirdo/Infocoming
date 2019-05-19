@@ -12,14 +12,13 @@ import net.miginfocom.swing.MigLayout;
 
 public class VGestionPagos extends Pantalla{
     
-    private JLabel lblMatricula,lblNombre,lblCurso,lblHorario;
+    public JLabel lblNombre,lblApellidoP,lblApellidoM, lblFolio,lblCantidad, lblConcepto, lblHorario;
     public JTextField tfBuscar;
     public JTable tabla;
-    private JButton btnRegistrarPago;
 
     public VGestionPagos() {
-        super("Gestión de pagos", new MigLayout("debug,wrap 3","[]10[200]10[]"
-                                  ,"[]15[]10[150]25[]15[]10[]10[]10[]"));
+        super("Gestión de pagos", new MigLayout("wrap 3","[]10[200]10[]"
+                                  ,"10[]15[]10[150]25[]15[]10[]10[]10[]10[]10[]10[]10"));
         
         JLabel lblTitulo = new JLabel("Historial de pago por alumno");
         JLabel lblTitulo1 = new JLabel("Datos del alumno");
@@ -28,13 +27,15 @@ public class VGestionPagos extends Pantalla{
         
         tfBuscar = new JTextField(12);
         tabla = new JTable();
-        btnRegistrarPago = new JButton("Registrar pago");
-        lblMatricula = new JLabel();
         lblNombre = new JLabel();
-        lblCurso = new JLabel();
+        lblApellidoP = new JLabel();
+        lblApellidoM = new JLabel();
+        lblFolio =new JLabel();
+        lblCantidad = new JLabel();
+        lblConcepto= new JLabel();
         lblHorario = new JLabel(); 
         
-        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago", "Cantidad", "Folio"}, 0));
+        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago"}, 4));
         TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
         ph.changeAlpha(0.75f);
         ph.changeStyle(Font.ITALIC);
@@ -43,15 +44,20 @@ public class VGestionPagos extends Pantalla{
         this.add(tfBuscar,"span 3,right");
         this.add(new JScrollPane(tabla),"span 3");
         this.add(lblTitulo1,"span 3");
-        this.add(new JLabel("Matrícula: "));
-        this.add(lblMatricula,"growx,wrap");
         this.add(new JLabel("Nombre: "));
-        this.add(lblNombre,"growx,pushx");
-        this.add(btnRegistrarPago,"span 1 2,right");
-        this.add(new JLabel("Curso: "));
-        this.add(lblCurso,"growx");
+        this.add(lblNombre,"wrap");
+        this.add(new JLabel("Apellido Paterno: "));
+        this.add(lblApellidoP, "wrap");
+        this.add(new JLabel("Apellido Materno: "));
+        this.add(lblApellidoM,"wrap");
+        this.add(new JLabel("Folio: "));
+        this.add(lblFolio,"wrap");
+        this.add(new JLabel("Cantidad: "));
+        this.add(lblCantidad,"wrap");
+        this.add(new JLabel("Concepto: "));
+        this.add(lblConcepto,"wrap");
         this.add(new JLabel("Horario: "));
-        this.add(lblHorario,"growx");
+        this.add(lblHorario,"wrap");
         
         this.pack();
         this.setLocationRelativeTo(null);

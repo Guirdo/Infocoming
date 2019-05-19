@@ -7,8 +7,8 @@ import net.miginfocom.swing.MigLayout;
 
 public class DMConfirmarBaja extends PantallaModal{
     
-    private JPasswordField tfContra;
-    private JButton btnConfirmar,btnCancelar;
+    public JPasswordField tfContra;
+    public JButton btnConfirmar,btnCancelar;
 
     public DMConfirmarBaja() {
         super("Confirmar baja",new MigLayout("wrap 2","[]15[]","[]10[]15[]"));
