@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,13 +28,16 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPagos;
 public class ManejadorVisualizarHistorialPago implements ActionListener, KeyListener, WindowListener, ListSelectionListener {
     private VGestionPagos vgp;
     private InterfazBD intBD;
-    private int alumnoS;
+    private int[] alumnoS;
+    
     private Pantalla vistaAnterior;
+    private int matricula, folio;
     
     public ManejadorVisualizarHistorialPago(InterfazBD inter, VGestionPagos vg, Pantalla ant) throws SQLException {
         this.vgp = vg;
         this.intBD=inter;
         this.vistaAnterior = ant;
+        alumnoS= new int[2];
         vgp.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         vgp.tfBuscar.addKeyListener(this);
         vgp.tabla.getSelectionModel().addListSelectionListener(this);//datos de abajo
@@ -43,20 +47,20 @@ public class ManejadorVisualizarHistorialPago implements ActionListener, KeyList
     }
     
     private void consultarPagos() throws SQLException{
-        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago from Pago,Alumno, Concepto where idAlumno=idalum and idconcepto=conceptoid");
-        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago"}));        
+        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago, idPago from Pago,Alumno, Concepto where idAlumno=idalum and idconcepto=conceptoid");
+        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago","Folio"}));        
     }
     private void buscarAlumnoPorMatricula() throws SQLException{
-        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago from Pago,Alumno, Concepto where idAlumno="+vgp.tfBuscar.getText()+" and idAlumno=idalum and idconcepto=conceptoid");
-        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula", "Nombre", "Fecha pago", "Concepto pago"}));
+        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago, idpago from Pago,Alumno, Concepto where idAlumno="+vgp.tfBuscar.getText()+" and idAlumno=idalum and idconcepto=conceptoid");
+        vgp.tabla.setModel(new DefaultTableModel(datos,new Object[]{"Matricula", "Nombre", "Fecha pago", "Concepto pago", "Folio"}));
     }
     private void buscarAlumnoPorApellido() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago from Pago,Alumno, Concepto where apellidoPaternoAlumno= '"+vgp.tfBuscar.getText()+"' and idAlumno=idalum and idconcepto=conceptoid");
-        vgp.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","Fecha pago", "Concepto pago"}));
+        Object[][] datos = intBD.consultar("select idAlumno, nombreAlumno, fecha, conceptopago, idpago from Pago,Alumno, Concepto where apellidoPaternoAlumno= '"+vgp.tfBuscar.getText()+"' and idAlumno=idalum and idconcepto=conceptoid");
+        vgp.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre","Fecha pago", "Concepto pago", "Folio"}));
     }
     
-    private void consultarAlumnoVentana(int matri) throws SQLException {
-        Object[][] datos = intBD.consultar("select nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, idpago, cantidad, conceptopago, horario from pago, alumno, concepto, grupo where idAlumno=idalum and idAlumno="+matri+" and idconcepto=conceptoid and idGrupo=grupid;");
+    private void consultarAlumnoVentana(int[] dat) throws SQLException {
+        Object[][] datos = intBD.consultar("select nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, idpago, cantidad, conceptopago, horario from pago, alumno, concepto, grupo where idAlumno=idalum and idAlumno="+dat[0]+" and idconcepto=conceptoid and idGrupo=grupid and idpago="+dat[1]);
         
         vgp.lblNombre.setText((String) datos[0][0]);
         vgp.lblApellidoP.setText((String) datos[0][1]);
@@ -132,7 +136,10 @@ public class ManejadorVisualizarHistorialPago implements ActionListener, KeyList
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (e.getSource() == vgp.tabla.getSelectionModel()) {
-            alumnoS = (int) vgp.tabla.getValueAt(vgp.tabla.getSelectedRow(), 0);//<-- Este ultimo numero corresponde a la col de la tabla
+            matricula= ((int) vgp.tabla.getValueAt(vgp.tabla.getSelectedRow(), 0));//<-- Este ultimo numero corresponde a la col de la tabla
+            folio= ((int) vgp.tabla.getValueAt(vgp.tabla.getSelectedRow(),4));
+            alumnoS[0]=matricula;
+            alumnoS[1]=folio;
             try {
                 this.consultarAlumnoVentana(alumnoS);
             } catch (SQLException ex) {

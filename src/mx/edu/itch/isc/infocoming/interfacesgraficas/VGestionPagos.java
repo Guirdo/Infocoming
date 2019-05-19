@@ -35,7 +35,7 @@ public class VGestionPagos extends Pantalla{
         lblConcepto= new JLabel();
         lblHorario = new JLabel(); 
         
-        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago"}, 4));
+        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago, Folio"}, 5));
         TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
         ph.changeAlpha(0.75f);
         ph.changeStyle(Font.ITALIC);
