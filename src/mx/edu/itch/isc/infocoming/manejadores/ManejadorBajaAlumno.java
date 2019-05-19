@@ -90,7 +90,9 @@ public class ManejadorBajaAlumno implements ActionListener,ListSelectionListener
         if( gContra.equals(intBD.contrasena)){
         intBD.eliminar("delete from alumno where idalumno= "+alumnoSeleccionado);
 
-        //  this.consultarAlumnos();
+        v.tabla.getSelectionModel().removeListSelectionListener(this);
+        this.consultarAlumnos();
+        v.tabla.getSelectionModel().addListSelectionListener(this);
         dm.dispose();
         }else
             JOptionPane.showMessageDialog(null, "contraseña invalida", "Mensaje de error", JOptionPane.ERROR_MESSAGE);

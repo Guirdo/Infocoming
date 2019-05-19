@@ -28,7 +28,7 @@ public class DMInscribirAlumno extends PantallaModal{
     public JButton btn1, btn2;
     
     public DMInscribirAlumno() {
-        super("Inscribir alumno", new MigLayout("debug, wrap 4", "[][][][]","10[]15[]10[]10[]10[]10[]10[]10"));
+        super("Inscribir alumno", new MigLayout("wrap 4", "[][][][]","10[]15[]10[]10[]10[]10[]10[]10"));
         
         titulo = new JLabel("Datos del alumno de nuevo ingreso");
         titulo.setFont(new Font("Arial",1,16));
@@ -73,7 +73,7 @@ public class DMInscribirAlumno extends PantallaModal{
         this.add(telefono, "cell 0 4");
         this.add(tel, "cell 1 4");
         this.add(horario, "cell 0 5");
-        this.add(new JScrollPane(tabla),"w 150, h 100,span 4 1");
+        this.add(new JScrollPane(tabla),"w 200, h 100,span 4 1");
         this.add(btn1, "cell 1 7, center");
         this.add(btn2, "cell 2 7");
         this.pack();
