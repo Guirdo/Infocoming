@@ -18,7 +18,8 @@ import net.miginfocom.swing.MigLayout;
 
 /**
  *
- * @author pacop
+ * @author pacoppublic class VGestionPersonal extends Pantalla {
+
  */
 public class VGestionPersonal extends Pantalla {
      private JLabel titulo1, titulo2, claveEmpleado, nombre, domicilio,telefono;

@@ -111,12 +111,12 @@ public class ManejadorBajaAlumno implements ActionListener,ListSelectionListener
 //        v.setVisible(true);
     }
      private void buscarAlumnoPorApellido() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno where grupID = idGrupo and apellidoPaternoAlumno = '" + v.buscar.getText() + "'");
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno,grupo where grupID = idGrupo and apellidoPaternoAlumno = '" + v.buscar.getText() + "'");
         v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre"}));
     }
     
     private void buscarAlumnoPorMatricula() throws SQLException{
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno where grupID = idGrupo and idAlumno = " + v.buscar.getText());
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno from Alumno,grupo where grupID = idGrupo and idAlumno = " + v.buscar.getText());
         v.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre"}));
     }
     @Override
@@ -141,7 +141,7 @@ public class ManejadorBajaAlumno implements ActionListener,ListSelectionListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-                //Si el usuario presiona la tecla enter en el Textfield buscar, entonces...
+               //Si el usuario presiona la tecla enter en el Textfield buscar, entonces...
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             //Si el textfield no esta vacio entonces..
             if (!v.buscar.getText().isEmpty()) {
