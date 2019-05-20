@@ -4,8 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorES.java</file>
+            <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/Pantalla.java</file>
+            <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesbd/InterfazBD.java</file>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistroES.java</file>
+            <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalRecepcionista.java</file>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorRegistrarEmpleado.java</file>
+            <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VGestionGrupo.java</file>
             <file>file:/C:/Users/azucena/Downloads/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
         </group>
     </open-files>

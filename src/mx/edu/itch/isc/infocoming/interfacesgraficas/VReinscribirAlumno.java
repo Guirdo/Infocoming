@@ -19,7 +19,7 @@ public class VReinscribirAlumno extends Pantalla{
     
 
     public VReinscribirAlumno() {
-        super("Reinscribir alumno",new MigLayout("debug,wrap 3","[]15[200]15[]","[]15[]10[150]20[]15[]10[]10[]10[]10[]"));
+        super("Reinscribir alumno",new MigLayout("wrap 3","[]15[200]15[]","[]15[]10[150]20[]15[]10[]10[]10[]10[]"));
         
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         

@@ -7,7 +7,6 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.LayoutManager;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,9 +20,8 @@ import net.miginfocom.swing.MigLayout;
  * @author diann
  */
 public class DMExamen_CENNI extends PantallaModal{
-    public String[] exCENNI = { "EC-1-2018", "EC-2-2018", "EC-1-2019", "EC-2-2019"};
     public JLabel titulo, select;
-    public JComboBox examenes;
+    public JComboBox<String> examenes;
     public JTable tabla;
     public JButton btn;
     
@@ -36,9 +34,9 @@ public class DMExamen_CENNI extends PantallaModal{
         titulo.setForeground(Color.decode("#37718e"));
         select = new JLabel("Seleccione el examen: ");
         select.setFont(new Font("Arial",2,12));
-        examenes = new JComboBox(exCENNI);
+        examenes = new JComboBox();
         tabla =new JTable();
-        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre", "Curso", "Promedio"},4));
+        tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre", "Curso",},3));
         btn= new JButton("Imprimir lista");
         btn.setBackground(Color.decode("#c3c3c3"));
         
