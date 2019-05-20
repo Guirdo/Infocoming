@@ -137,6 +137,9 @@ public class ManejadorGenerarLista implements ActionListener, KeyListener, ListS
         if (e.getSource() == v.btn1) {
             try {
                 new ManejadorCrearGrupo(intBD, new DMCrearGrupo());
+                v.tabla.getSelectionModel().removeListSelectionListener(this);
+                this.consultarGrupos();
+                v.tabla.getSelectionModel().addListSelectionListener(this);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

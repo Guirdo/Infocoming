@@ -1,7 +1,10 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -37,6 +40,8 @@ public class DMCrearGrupo extends PantallaModal{
         btnCrear = new JButton("Crear grupo");
         fechaSelector = new com.toedter.calendar.JDateChooser();
         
+        btnCrear.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/agregar24.png")));
+        btnCrear.setBackground(Color.decode("#7c98b3"));
         this.cargarCBHoras();
         this.cargarChBDias();
         
