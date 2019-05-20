@@ -13,6 +13,8 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.DMExamen_CENNI;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarEvaluacion;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPersonal;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistroES;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAcademico;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
@@ -47,6 +49,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppe.btnConsultarPersonal.addActionListener(this);
 
         ppe.setVisible(true);
+
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalAdministrador p) {
@@ -56,6 +59,7 @@ public class ManejadorPrincipal implements ActionListener {
         //Aqui van a ir los addActionListener de los botnes
         ppa.etiqueta1.addActionListener(this);
         ppa.etiqueta3.addActionListener(this);
+        ppa.etiqueta8.addActionListener(this);
         ppa.etiqueta2.addActionListener(this);
         ppa.etiqueta5.addActionListener(this);
         ppa.etiqueta7.addActionListener(this);
@@ -64,6 +68,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta6.addActionListener(this);
         ppa.etiqueta10.addActionListener(this);
         ppa.setVisible(true);
+
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalCoordinadorAcademico p) {
@@ -84,15 +89,19 @@ public class ManejadorPrincipal implements ActionListener {
         //Aqui van a ir los addActionListener de los botnes
         ppd.visualizar.addActionListener(this);//Visualizar alumno
         ppd.bajaA.addActionListener(this);
+        ppd.registrarE.addActionListener(this);
+
         ppd.setVisible(true);
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalRecepcionista p) {
+
         this.ppr = p;
         this.intBD = inter;
         ppr.titulo4.addActionListener(this);
         ppr.etiqueta1.addActionListener(this);//Visualizar alumno
         ppr.etiqueta4.addActionListener(this);//Visualizar pago
+        ppr.etiqueta2.addActionListener(this);
 
         ppr.setVisible(true);
     }
@@ -127,14 +136,20 @@ public class ManejadorPrincipal implements ActionListener {
                     this.ManejaEventoExamenCENNI();
                 } else if (e.getSource() == ppa.etiqueta2) {
                     this.manejaEventoVisualizarAlumno();
+
                 }else if (e.getSource() == ppa.etiqueta10) {
                     this.ManejaEventoRegistrarPago();
+
+                } else if (e.getSource() == ppa.etiqueta8) {
+                    this.manejaEventoRegistrarEmpleado();
                 }
             } else if (ppd != null) {//PanelDirector
                 if (e.getSource() == ppd.bajaA) {
                     this.manejaEventoBajaAlumno();
                 } else if (e.getSource() == ppd.visualizar) {
                     this.manejaEventoVisualizarAlumno();
+                } else if (e.getSource() == ppd.registrarE) {
+                    this.manejaEventoRegistrarEmpleado();
                 }
             } else if (ppc != null) {//Panel Coordinador
                 if (e.getSource() == ppc.darBajaAlumno) {
@@ -152,6 +167,8 @@ public class ManejadorPrincipal implements ActionListener {
                     this.manejaEventoVisualizarAlumno();
                 } else if (e.getSource() == ppr.etiqueta4) {
                     this.ManejaEventoVisualizarHistPago();
+                } else if (e.getSource() == ppr.etiqueta2) {
+                    this.manejaEventoRegistroES();
                 }
             }
         } catch (SQLException ex) {
@@ -210,6 +227,14 @@ public class ManejadorPrincipal implements ActionListener {
 
     }
 
+    private void manejaEventobtConsultarPersonal() {
+        System.out.println("Estas consultado al personal");
+    }
+
+    private void manejaEventoRegistrarEmpleado() throws SQLException {
+        new ManejadorRegistrarEmpleado(intBD, new DMRegistrarPersonal());
+    }
+
     private void manejaEventoGestionGrupo() throws SQLException {
         if (ppa != null) {
             ppa.dispose();
@@ -221,7 +246,6 @@ public class ManejadorPrincipal implements ActionListener {
     }
 
     private void ManejaEventoRegistrarPago() {
-
         new ManejadorRegistrarPago(new DMRegistrarPago());
     }
 
@@ -233,6 +257,15 @@ public class ManejadorPrincipal implements ActionListener {
             ppa.dispose();
             new ManejadorVisualizarHistorialPago(intBD, new VGestionPagos(), ppa);
         }
+    }
+
+    private void manejaEventoRegistroES() throws SQLException {
+        new ManejadorRegistroES(intBD, new DMRegistroES());
+    }
+
+    private void manejaEventobtConsultarES() {
+        System.out.println("Estas consultado al personal");
+
     }
 
     private void manejaEventoInscribirAlumno() throws SQLException {

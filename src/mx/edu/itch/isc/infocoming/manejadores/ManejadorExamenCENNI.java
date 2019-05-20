@@ -17,10 +17,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMExamen_CENNI;
@@ -29,11 +33,11 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.DMExamen_CENNI;
  *
  * @author diann
  */
-public class ManejadorExamenCENNI implements ActionListener, KeyListener {
+public class ManejadorExamenCENNI implements ActionListener, KeyListener{
 
     private InterfazBD intBD;
     private DMExamen_CENNI dm;
-
+    
     public ManejadorExamenCENNI(InterfazBD intBD, DMExamen_CENNI d) throws SQLException {
         this.intBD = intBD;
         this.dm = d;
@@ -41,28 +45,26 @@ public class ManejadorExamenCENNI implements ActionListener, KeyListener {
         dm.examenes.addActionListener(this);
         dm.btn.addActionListener(this);
 
-        this.consultaCandidatos();
+        this.consultaCandidatos(4);
         this.consultarExamenes();
         dm.setVisible(true);
     }
 
     private void consultarExamenes() throws SQLException {
         Object[][] datos = intBD.consultar("select conceptoPago from Concepto "
-                + "where idConcepto > 2");
-
+                + "where idConcepto > 3");
         for (Object[] fila : datos) {
             dm.examenes.addItem((String) fila[0]);
         }
     }
 
-    private void consultaCandidatos() throws SQLException {
-        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,horario,curso "
-                + "from Alumno,Grupo,Curso where grupid=idGrupo and curso=idCurso "
-                + "and idAlumno = ( "
-                + "select idAlum from Pago where conceptoid = 3)");
+    private void consultaCandidatos(int index) throws SQLException {
+        Object[][] datos = intBD.consultar("select idAlumno,nombreAlumno,horario,curso from Alumno,Grupo,Curso, concepto, pago "
+                +"where grupid=idGrupo and curso=idCurso and conceptoid ="+(index+4)+" and idAlum=idAlumno and conceptoid=idconcepto");
         dm.tabla.setModel(new DefaultTableModel(datos,
                 new Object[]{"Matricula", "Nombre", "Horario", "Curso"}));
     }
+    
 
     private void imprimirLista() throws FileNotFoundException, SQLException, IOException {
 
@@ -70,7 +72,7 @@ public class ManejadorExamenCENNI implements ActionListener, KeyListener {
                 + "apellidoPaternoAlumno,apellidoMaternoAlumno,horario,tipocurso "
                 + "from Alumno,Grupo,Curso where grupid=idGrupo and curso=idCurso "
                 + "and idAlumno = ( "
-                + "select idAlum from Pago where conceptoid = 3)");
+                + "select idAlum from Pago where conceptoid = 4)");
 
         //Lineas fundamentales para generar un PDF
         PdfDocument pdf = new PdfDocument(
@@ -116,6 +118,17 @@ public class ManejadorExamenCENNI implements ActionListener, KeyListener {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        if(ae.getSource()==dm.examenes){
+          int index=dm.examenes.getSelectedIndex();
+          System.out.println(index);
+          System.out.println(index+4);
+            try {
+                this.consultaCandidatos(index);
+            } catch (SQLException ex) {
+                Logger.getLogger(ManejadorExamenCENNI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }        
+        
     }
 
     @Override
@@ -129,8 +142,7 @@ public class ManejadorExamenCENNI implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        
+    public void keyReleased(KeyEvent e) {   
     }
 
 }
