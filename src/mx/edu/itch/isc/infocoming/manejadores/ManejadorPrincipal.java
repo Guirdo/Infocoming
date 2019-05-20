@@ -11,6 +11,7 @@ import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMEscanearDocumento;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMExamen_CENNI;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarEvaluacion;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPersonal;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistroES;
@@ -65,7 +66,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta11.addActionListener(this);//Visualizar pago
         ppa.titulo5.addActionListener(this);
         ppa.etiqueta6.addActionListener(this);
-
+        ppa.etiqueta10.addActionListener(this);
         ppa.setVisible(true);
 
     }
@@ -76,6 +77,7 @@ public class ManejadorPrincipal implements ActionListener {
         //Aqui van a ir los addActionListener de los botnes
         ppc.visualizarAlumno.addActionListener(this);//Visualizar alumno
         ppc.darBajaAlumno.addActionListener(this);
+        ppc.registrarEvaluaciones.addActionListener(this);
 
         ppc.setVisible(true);
     }
@@ -134,6 +136,10 @@ public class ManejadorPrincipal implements ActionListener {
                     this.ManejaEventoExamenCENNI();
                 } else if (e.getSource() == ppa.etiqueta2) {
                     this.manejaEventoVisualizarAlumno();
+
+                }else if (e.getSource() == ppa.etiqueta10) {
+                    this.ManejaEventoRegistrarPago();
+
                 } else if (e.getSource() == ppa.etiqueta8) {
                     this.manejaEventoRegistrarEmpleado();
                 }
@@ -150,6 +156,9 @@ public class ManejadorPrincipal implements ActionListener {
                     this.manejaEventoBajaAlumno();
                 } else if (e.getSource() == ppc.visualizarAlumno) {
                     this.manejaEventoVisualizarAlumno();
+                }
+                else if (e.getSource() == ppc.registrarEvaluaciones) {
+                    this.manejaEventoRegistrarevaluacion();
                 }
             } else if (ppr != null) {//Panel Recepcionista
                 if (e.getSource() == ppr.titulo4) {
@@ -266,4 +275,7 @@ public class ManejadorPrincipal implements ActionListener {
     private void ManejaEventoExamenCENNI() throws SQLException {
         new ManejadorExamenCENNI(intBD, new DMExamen_CENNI());
     }
+    private void manejaEventoRegistrarevaluacion() throws  SQLException{
+        new ManejadorRegistrarEvaluaciones(intBD,new DMRegistrarEvaluacion());
+    }        
 }
