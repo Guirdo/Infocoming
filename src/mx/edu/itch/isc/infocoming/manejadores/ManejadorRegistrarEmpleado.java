@@ -17,7 +17,7 @@ import sun.awt.WindowClosingListener;
 
 public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, WindowListener, ListSelectionListener {
 
-    private DMRegistrarPersonal dm;// es DMregistrar empleado 
+    private DMRegistrarPersonal dm;
     private InterfazBD iBD;
     private Pantalla VistaAnterior;
 
@@ -32,9 +32,6 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
         this.dm.btnRegistrarEmpleado.addActionListener(this);
         dm.btnCancelar.addActionListener(this);
         this.dm.addWindowListener(this);
-
-        //Esta linea sirve para consultar antes de entrar
-        //this.consultarEmpleado();
         dm.setVisible(true);
     }
 
@@ -51,14 +48,6 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
         }
     }
 
-    //private void  consultarEmpleado () throws SQLException{
-    //Object[][] datos = iBD.consultar("select idPersonal,nombrepersonal,apellidoPaterno,apellidoMaterno,domicilio, telefono from Personal");
-    //dm.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre"}));
-    // }
-    //private void buscarEmpleado() throws SQLException {
-    // Object[][] datos = iBD.consultar("select idEmpleado,nombreEmpleado  '" + dm.tfBuscar.getText() + "'");
-    // dm.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Matricula", "Nombre"}));
-    //}
     private void manejaEventoRegistrarEmpleado() throws SQLException {// TODO ARREGLAR ESTE METODO
         String telfono = dm.telefono.getText();
         String nombre = dm.nombre.getText();
@@ -85,8 +74,6 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
     private void manejaEventoModificarEmpleado() throws SQLException {
         iBD.actualizar("update Empleado set telefonoEmpleado = '" + dm.telefono.getText() + "', "
                 + " where idEmpleado =  " + empleadoSeleccionado);
-
-        //  this.consultarEmpleado();
         dm.dispose();
     }
 
@@ -111,16 +98,9 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
 
         //Si el usuario presiona la tecla enter en el Textfield buscar, entonces...
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            //Si el textfield no esta vacio entonces..
-            // if (!dm.tfBuscar.getText().isEmpty()) {
-            // try {
-            // this.buscarEmpleado();
-            //} catch (SQLException ex) {
-            // ex.printStackTrace();
         }
     }
-    // }
-    //}
+  
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -167,17 +147,6 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        //Este es para la tabla de mi ventana
-        /* if (e.getSource() == dm.tabla.getSelectionModel()) {
-            //De esta forma obtengo la matricula del empleado seleccionado
-            empleadoSeleccionado = (int) dm.tabla.getValueAt(dm.tabla.getSelectedRow(), 0);//<-- Este ultimo numero corresponde a la col de la tabla
-            try {
-                this.consultarEmpleadoVentana(empleadoSeleccionado);
-                dm.btnRegistrarEmpleado.setEnabled(true);
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-         */
-    }//Este es para la tabla de mi dm
+    }
 
 }

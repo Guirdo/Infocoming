@@ -3,11 +3,14 @@ package mx.edu.itch.isc.infocoming.manejadores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBDEquipo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPersonal;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistroES;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalAdministrador;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalCoordinadorAcademico;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalDirector;
@@ -54,6 +57,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta2.addActionListener(this);
         ppa.etiqueta7.addActionListener(this);
         ppa.titulo5.addActionListener(this);
+        
         ppa.setVisible(true);
 
     }
@@ -76,8 +80,12 @@ public class ManejadorPrincipal implements ActionListener {
     }
 
     public ManejadorPrincipal(InterfazBD inter, PanelPrincipalRecepcionista p) {
+    
         this.ppr = p;
         this.intBD = inter;
+        
+        //Aquivan los botones
+        ppr.etiqueta2.addActionListener(this);
 
         ppr.setVisible(true);
     }
@@ -119,8 +127,15 @@ public class ManejadorPrincipal implements ActionListener {
                 this.manejaEventoBajaAlumno();
             }
         } else if (ppr != null) {//Panel Recepcionista
-
-        }
+            
+                try {
+                    if (e.getSource() == ppr.etiqueta2) {
+                    this.manejaEventobtRegistroES();
+                    } } catch (SQLException ex) {
+                    Logger.getLogger(ManejadorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
 
     }
 
@@ -144,7 +159,7 @@ public class ManejadorPrincipal implements ActionListener {
         }
     }
 
-    private void manejaEventobtRegistrarEmleado() throws SQLException {
+    private void manejaEventobtRegistrarEmpleado() throws SQLException {
         Object[][] datos = new InterfazBDEquipo(intBD).consultarEmpleado();
         ppe.tabla.setModel(new DefaultTableModel(datos, new Object[]{"Nombre", "Apellido Materno", "Apellido Paterno", "Domicilio", "Tel"}));
 
@@ -206,6 +221,26 @@ public class ManejadorPrincipal implements ActionListener {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    
+    private void manejaEventobtRegistroES() throws SQLException {
+        ppr.dispose();
+        try {
+            new ManejadorES(intBD, new DMRegistroES(), ppr);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void manejaEventobtConsultarES() {
+        System.out.println("Estas consultado al personal");
+
+    }
+
+    private void manejaEventoRegistroES() {
+        
     }
 
 }

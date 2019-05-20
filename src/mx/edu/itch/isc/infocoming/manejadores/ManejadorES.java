@@ -7,19 +7,54 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPersonal;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistroES;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.Pantalla;
 
 public class ManejadorES  implements ActionListener, KeyListener, WindowListener,ListSelectionListener{
-   // private DMRg ;
-    
-    
-    
-    
-
+     private DMRegistroES dmES;
+     private InterfazBD iBD;
+     private Pantalla VistaAnterior;
+     
+     private int empleadoSeleccionado;
+     
+     public ManejadorES(InterfazBD ibd, DMRegistroES dmES, Pantalla ant) throws SQLException { 
+       this.VistaAnterior = ant;
+        this.dmES = dmES;
+        this.iBD = ibd;  
+        
+        //ActionListerner de los botones del dm
+        this.dmES.btnRegistrar.addActionListener(this);
+        dmES.tfClaveEmpleado.addActionListener(this);
+        //Esta linea sirve para mostrar los datos abajo
+        dmES.tabla.getSelectionModel().addListSelectionListener(this);
+        this.dmES.addWindowListener(this);
+        dmES.setVisible(true);
+     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getSource() == dmES.btnRegistrar) {
+            try {
+                this.manejaEventoRegistrarES();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } 
+    }
+    private void manejaEventoRegistrarES() throws SQLException {// TODO ARREGLAR ESTE METODO
+        //","Nombre","HoraEntrada","HoraSalida"
+        String claveEmpleado = dmES.tfClaveEmpleado.getText();
+        iBD.procedimientoInsertar("{call insertarAsistencia(?)}", claveEmpleado);
+      
+    }
+    private void consultaES() throws SQLException {
+        //Object[][] datos = iBD.consultar("select claveEmpleado,nombreEmpleado,"
+              //  + "horaEntrada,horaSalida" + empleadoSeleccionado + "");
+
     }
 
     @Override
@@ -29,52 +64,52 @@ public class ManejadorES  implements ActionListener, KeyListener, WindowListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+    //Si el usuario presiona la tecla enter en el Textfield buscar, entonces...
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    //Cierro la ventana actua
+        dmES.dispose();
+        //Se vuelve a mostrar la ventana anterior
+        this.VistaAnterior.setVisible(true);
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

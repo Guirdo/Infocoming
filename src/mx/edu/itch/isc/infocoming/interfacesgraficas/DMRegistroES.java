@@ -14,10 +14,10 @@ import net.miginfocom.swing.MigLayout;
 
 public class DMRegistroES extends PantallaModal{
     
-    private JLabel lblFecha;
-    private JTable tabla;
-    private JButton btnRegistrar;
-    private JTextField tfClaveEmpleado;
+    public JLabel lblFecha;
+    public JTable tabla;
+    public  JButton btnRegistrar;
+    public  JTextField tfClaveEmpleado;
 
     public DMRegistroES() {
         super("Registro entrada/salida", new MigLayout("wrap","[]","[]15[150]25[]"));
