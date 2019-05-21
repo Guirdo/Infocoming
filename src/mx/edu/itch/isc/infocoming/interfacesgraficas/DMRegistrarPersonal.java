@@ -43,6 +43,11 @@ public class DMRegistrarPersonal extends PantallaModal{
         btnCancelar = new JButton("Cancelar");
         btnRegistrarEmpleado = new JButton("Registrar");
         lblTitulo.setFont(new Font("Arial",1,16));
+        
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(docente);
+        bg.add(administrativo);
+        
         this.add(lblTitulo);
         this.add(new JLabel("Nombre: "),"split 2");
         this.add(nombre,"wrap");
@@ -57,11 +62,11 @@ public class DMRegistrarPersonal extends PantallaModal{
         this.add(new JLabel("Tipo de empleado: "));
         this.add(docente,"split 2");
         this.add(administrativo);
-        this.add(new JLabel("Cargo: "),"split 2");
-        this.add(cargo,"wrap");
-        this.add(new JLabel("Inicio de contrato: "));
-        this.add(inicioContrato);
-        this.add(btnCancelar);
+//        this.add(new JLabel("Cargo: "),"split 2");
+//        this.add(cargo,"wrap");
+//        this.add(new JLabel("Inicio de contrato: "));
+//        this.add(inicioContrato);
+        this.add(btnCancelar,"split 2");
         this.add(btnRegistrarEmpleado);
         this.pack();
         this.setLocationRelativeTo(null);

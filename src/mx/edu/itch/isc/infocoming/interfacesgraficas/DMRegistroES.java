@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +19,7 @@ public class DMRegistroES extends PantallaModal{
     public JTable tabla;
     public  JButton btnRegistrar;
     public  JTextField tfClaveEmpleado;
+    public JComboBox<String> cbTipo;
 
     public DMRegistroES() {
         super("Registro entrada/salida", new MigLayout("wrap","[]","[]15[150]25[]"));
@@ -31,6 +33,7 @@ public class DMRegistroES extends PantallaModal{
         tabla = new JTable();
         btnRegistrar = new JButton("Registrar entrada/salida");
         tfClaveEmpleado = new JTextField(12);
+        cbTipo = new JComboBox<>();
         
         tabla.setModel(new DefaultTableModel(new Object[]{"ClaveEmpleado","Nombre","HoraEntrada","HoraSalida"},0));
         lblFecha.setText(fecha.get(Calendar.DATE)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR));
@@ -45,12 +48,16 @@ public class DMRegistroES extends PantallaModal{
     }
     
     private JPanel darPanel(){
-        JPanel panel = new JPanel(new MigLayout("wrap 2","[]15[]","[]10[]15[]"));
+        JPanel panel = new JPanel(new MigLayout("wrap 2","[]15[]","[]10[]10[]15[]"));
+        
+        cbTipo.addItem("ENTRADA");
+        cbTipo.addItem("SALIDA");
         
         panel.add(new JLabel("Fecha: "));
         panel.add(lblFecha);
         panel.add(new JLabel("Clave del empleado: "));
         panel.add(tfClaveEmpleado);
+        panel.add(cbTipo);
         panel.add(btnRegistrar,"span 2,center");
         
         return panel;

@@ -15,24 +15,21 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPersonal;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.Pantalla;
 import sun.awt.WindowClosingListener;
 
-public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, WindowListener, ListSelectionListener {
+public class ManejadorRegistrarEmpleado implements ActionListener{
 
     private DMRegistrarPersonal dm;
     private InterfazBD iBD;
-    private Pantalla VistaAnterior;
 
     private int empleadoSeleccionado;
 
-    public ManejadorRegistrarEmpleado(InterfazBD ibd, DMRegistrarPersonal dm, Pantalla ant) throws SQLException { // DMregistrar Empleado 
-
-        this.VistaAnterior = ant;
+    public ManejadorRegistrarEmpleado(InterfazBD ibd, DMRegistrarPersonal dm) throws SQLException { // DMregistrar Empleado 
         this.dm = dm;
         this.iBD = ibd;
         //ActionListerner de los botones del dm
         this.dm.btnRegistrarEmpleado.addActionListener(this);
-        dm.btnCancelar.addActionListener(this);
-        this.dm.addWindowListener(this);
-        dm.setVisible(true);
+        this.dm.btnCancelar.addActionListener(this);
+        
+        this.dm.setVisible(true);
     }
 
     @Override
@@ -54,9 +51,18 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
         String apellPaterno= dm.apellidoPaterno.getText();
         String apellMaterno= dm. apellidoMaterno.getText();
         String domi= dm.domicilio.getText();
+        String tipoPersonal="";
         
-       iBD.procedimientoInsertar("{call insertarPersonal(?,?,?,?,?)}",
-               nombre,apellPaterno,apellMaterno,domi, telfono);
+        if(dm.docente.isSelected()){
+            tipoPersonal = "DOCENTE";
+        }else if(dm.administrativo.isSelected()){
+            tipoPersonal="ADMINISTRATIVO";
+        }
+        
+       iBD.procedimientoInsertar("{call insertarPersonal(?,?,?,?,?,?)}",
+               nombre,apellPaterno,apellMaterno,domi, telfono,tipoPersonal);
+       
+       dm.dispose();
     }
 
     private void consultarEmpleadoDM() throws SQLException {
@@ -86,67 +92,6 @@ public class ManejadorRegistrarEmpleado implements ActionListener, KeyListener, 
         dm.apellidoMaterno.setText((String) datos[0][1]);
         dm.apellidoPaterno.setText((String) datos[0][2]);
 
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-        //Si el usuario presiona la tecla enter en el Textfield buscar, entonces...
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-        }
-    }
-  
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-        //Cierro la ventana actua
-        dm.dispose();
-        //Se vuelve a mostrar la ventana anterior
-        this.VistaAnterior.setVisible(true);
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
     }
 
 }
