@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import mx.edu.itch.isc.infocoming.manejadores.ManejadorBajaEmpleado;
+import mx.edu.itch.isc.infocoming.manejadores.ManejadorVisualizarEmpleados;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -61,7 +61,6 @@ public class VGestionPersonal extends Pantalla {
         this.add(lblDomicilio,"wrap");
         this.add(telefono);
         this.add(lblTelefono,"wrap");
-        this.add(btnBajaEmpleado,"right");
         this.pack();
         this.setLocationRelativeTo(null);
     }
