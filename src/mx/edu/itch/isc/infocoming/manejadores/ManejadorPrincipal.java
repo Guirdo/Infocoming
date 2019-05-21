@@ -20,6 +20,7 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPagos;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionGrupo;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPersonal;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMGestionUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
@@ -63,6 +64,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.titulo5.addActionListener(this);
         ppa.etiqueta6.addActionListener(this);
         ppa.etiqueta10.addActionListener(this);
+        ppa.etiqueta9.addActionListener(this);
         ppa.setVisible(true);
 
     }
@@ -127,7 +129,7 @@ public class ManejadorPrincipal implements ActionListener {
                 } else if (e.getSource() == ppa.etiqueta8) {
                     this.manejaEventoRegistrarEmpleado();
                 } else if (e.getSource() == ppa.etiqueta9) {
-                    this.manejaEventoRegistrarEmpleado();
+                    this.manejaEventoModificarContrasena();
                 }
             } else if (ppd != null) {//PanelDirector
                 if (e.getSource() == ppd.bajaA) {
@@ -253,5 +255,9 @@ public class ManejadorPrincipal implements ActionListener {
 
     private void manejaEventoRegistrarevaluacion() throws SQLException {
         new ManejadorRegistrarEvaluaciones(intBD, new DMRegistrarEvaluacion());
+    }
+
+    private void manejaEventoModificarContrasena() {
+        new ManejadorModificarContrasena(intBD);
     }
 }
