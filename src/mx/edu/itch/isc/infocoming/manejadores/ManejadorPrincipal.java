@@ -66,6 +66,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.etiqueta11.addActionListener(this);//Visualizar pago
         ppa.titulo5.addActionListener(this);
         ppa.etiqueta6.addActionListener(this);
+        ppa.etiqueta9.addActionListener(this);
 
         ppa.setVisible(true);
 
@@ -138,7 +139,7 @@ public class ManejadorPrincipal implements ActionListener {
                     this.manejaEventoRegistrarEmpleado();
                 }
                 else if (e.getSource() == ppa.etiqueta9) {
-                    this.manejaEventoRegistrarEmpleado();
+                    this.manejaEventoModificarContrasena();
                 }
                 
                 
@@ -291,8 +292,10 @@ public class ManejadorPrincipal implements ActionListener {
         new ManejadorExamenCENNI(intBD, new DMExamen_CENNI());
     }
     
-    private void ManejaEventoMoificarContrasena() throws SQLException {
-       // new ManejadorModificarContrasena(intBD, new VGestionUsuario());
+
+    private void manejaEventoModificarContrasena() {
+        ppa.dispose();
+        new ManejadorModificarContrasena(intBD, new VGestionUsuario(),ppa);
     }
     
 }
