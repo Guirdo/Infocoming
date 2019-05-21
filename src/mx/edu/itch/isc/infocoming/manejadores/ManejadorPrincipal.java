@@ -23,6 +23,8 @@ import mx.edu.itch.isc.infocoming.interfacesgraficas.PanelPrincipalRecepcionista
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VBajaAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPagos;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionGrupo;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionPersonal;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.VGestionUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VReinscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VValidarUsuario;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.VVisualizarAlumnos;
@@ -47,7 +49,6 @@ public class ManejadorPrincipal implements ActionListener {
 
         ppe.btnConsultarAlu.addActionListener(this);
         ppe.btnConsultarPersonal.addActionListener(this);
-
         ppe.setVisible(true);
 
     }
@@ -90,6 +91,7 @@ public class ManejadorPrincipal implements ActionListener {
         ppd.visualizar.addActionListener(this);//Visualizar alumno
         ppd.bajaA.addActionListener(this);
         ppd.registrarE.addActionListener(this);
+        ppd.bajaE.addActionListener(this);
 
         ppd.setVisible(true);
     }
@@ -102,7 +104,6 @@ public class ManejadorPrincipal implements ActionListener {
         ppr.etiqueta1.addActionListener(this);//Visualizar alumno
         ppr.etiqueta4.addActionListener(this);//Visualizar pago
         ppr.etiqueta2.addActionListener(this);
-
         ppr.setVisible(true);
     }
 
@@ -143,6 +144,11 @@ public class ManejadorPrincipal implements ActionListener {
                 } else if (e.getSource() == ppa.etiqueta8) {
                     this.manejaEventoRegistrarEmpleado();
                 }
+                else if (e.getSource() == ppa.etiqueta9) {
+                    this.manejaEventoRegistrarEmpleado();
+                }
+                
+                
             } else if (ppd != null) {//PanelDirector
                 if (e.getSource() == ppd.bajaA) {
                     this.manejaEventoBajaAlumno();
@@ -151,6 +157,11 @@ public class ManejadorPrincipal implements ActionListener {
                 } else if (e.getSource() == ppd.registrarE) {
                     this.manejaEventoRegistrarEmpleado();
                 }
+                else if (e.getSource() == ppd.bajaE) {
+                    this.manejaEventoBajaEmpleado();
+                }
+                
+                
             } else if (ppc != null) {//Panel Coordinador
                 if (e.getSource() == ppc.darBajaAlumno) {
                     this.manejaEventoBajaAlumno();
@@ -212,7 +223,6 @@ public class ManejadorPrincipal implements ActionListener {
             new ManejadorVisualizarAlumnos(intBD, new VVisualizarAlumnos(), ppr);
         }
     }
-
     private void manejaEventoBajaAlumno() throws SQLException {
         if (ppa != null) {
             ppa.dispose();
@@ -226,6 +236,19 @@ public class ManejadorPrincipal implements ActionListener {
         }
 
     }
+    private void manejaEventoBajaEmpleado() throws SQLException {
+        if (ppa != null) {
+            ppa.dispose();
+            new ManejadorBajaEmpleado(intBD, new VGestionPersonal(), ppa);
+        } else if (ppc != null) {
+            ppc.dispose();
+            new ManejadorBajaEmpleado(intBD, new VGestionPersonal(), ppc);
+        } else if (ppd != null) {
+            ppd.dispose();
+            new ManejadorBajaEmpleado(intBD, new VGestionPersonal(), ppd);
+        }
+
+    }
 
     private void manejaEventobtConsultarPersonal() {
         System.out.println("Estas consultado al personal");
@@ -234,6 +257,8 @@ public class ManejadorPrincipal implements ActionListener {
     private void manejaEventoRegistrarEmpleado() throws SQLException {
         new ManejadorRegistrarEmpleado(intBD, new DMRegistrarPersonal());
     }
+    
+    
 
     private void manejaEventoGestionGrupo() throws SQLException {
         if (ppa != null) {
@@ -275,6 +300,7 @@ public class ManejadorPrincipal implements ActionListener {
     private void ManejaEventoExamenCENNI() throws SQLException {
         new ManejadorExamenCENNI(intBD, new DMExamen_CENNI());
     }
+
     private void manejaEventoRegistrarevaluacion() throws  SQLException{
         new ManejadorRegistrarEvaluaciones(intBD,new DMRegistrarEvaluacion());
     }        

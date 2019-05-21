@@ -13,9 +13,9 @@ import net.miginfocom.swing.MigLayout;
 public class VGestionUsuario extends Pantalla{
     
     private JTable tabla;
-    private JLabel lblUsuario;
-    private JPasswordField tfNuevoContra,tfConfirmarContra;
-    private JButton btnModificar;
+    public JLabel lblUsuario;
+    public JPasswordField tfNuevoContra,tfConfirmarContra;
+    public JButton btnModificar;
 
     public VGestionUsuario() {
         super("Gestión de usuarios",new MigLayout("wrap 3","[][][]","[]15[150]25[]15[]10[]10[]"));
