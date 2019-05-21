@@ -33,6 +33,8 @@ public class VValidarUsuario extends Pantalla{
         
         btnCancelar.setBackground(Color.decode("#cee5f2"));
         btnIngresar.setBackground(Color.decode("#7c98b3"));
+        btnCancelar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/cancelar24.png")));
+        btnIngresar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/entrar24.png")));
         
         this.add(imagenInstitucional,"span 2");
         this.add(imagenUsuario,"w 150, h 150,span 2, center");

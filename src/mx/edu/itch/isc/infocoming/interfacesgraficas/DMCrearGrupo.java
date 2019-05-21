@@ -3,7 +3,6 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -98,8 +97,10 @@ public class DMCrearGrupo extends PantallaModal{
 
     private JPanel darPnlDias() {
         JPanel pnl = new JPanel(new MigLayout("","",""));
+        pnl.setBackground(this.getContentPane().getBackground());
         
         for(int i=0;i<cbDias.length;i++){
+            cbDias[i].setBackground(this.getContentPane().getBackground());
             pnl.add(cbDias[i]);
         }
         
@@ -108,6 +109,7 @@ public class DMCrearGrupo extends PantallaModal{
 
     private JPanel darPnlHorario() {
         JPanel pnl = new JPanel(new MigLayout("","[]15[]15[]",""));
+        pnl.setBackground(this.getContentPane().getBackground());
         
         pnl.add(cbHoraInicio);
         pnl.add(new JLabel(" -- "));

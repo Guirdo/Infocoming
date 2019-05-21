@@ -1,6 +1,8 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Color;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -35,14 +37,16 @@ public class DMRegistrarPago extends PantallaModal {
         btnRegistrar = new JButton("Registrar pago");
         spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));
 
-        cbConceptos.addItem("Pago semanal");
-        cbConceptos.addItem("Inscripción");
-        cbConceptos.addItem("ExC-2019-1");
         cbConceptos.setEnabled(false);
         tfConceptoNuevo.setEnabled(false);
         ButtonGroup bg = new ButtonGroup();
         bg.add(btnNuevo);
         bg.add(btnComun);
+        
+        btnCancelar.setBackground(Color.decode("#cee5f2"));
+        btnRegistrar.setBackground(Color.decode("#7c98b3"));
+        btnCancelar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/cancelar24.png")));
+        btnRegistrar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/entrar24.png")));
         
         btnComun.addActionListener((ActionEvent)->{
             cbConceptos.setEnabled(true);

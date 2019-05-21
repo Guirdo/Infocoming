@@ -1,6 +1,7 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -28,6 +29,7 @@ public class DMGestionUsuario extends PantallaModal {
         cbUsuario.addItem("Recepcionista");
         cbUsuario.addItem("CoordinadorAca");
         btnModificar.setBackground(Color.decode("#cee5f2"));
+        btnModificar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/modificar24.png")));
 
         this.add(new JLabel("Usuario: "));
         this.add(cbUsuario, "wrap");
