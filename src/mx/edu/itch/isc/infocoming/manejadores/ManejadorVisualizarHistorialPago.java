@@ -67,9 +67,8 @@ public class ManejadorVisualizarHistorialPago implements ActionListener, KeyList
         SimpleDateFormat formato = new SimpleDateFormat(patronFecha);
         String fecha = formato.format((Date)datos[0][4]);
         
-        vgp.lblNombre.setText((String) datos[0][0]);
-        vgp.lblApellidoP.setText((String) datos[0][1]);
-        vgp.lblApellidoM.setText((String) datos[0][2]);
+        String nombre = ((String) datos[0][0]) + " " + ((String) datos[0][1]) + " " + ((String) datos[0][2]);
+        vgp.lblNombre.setText(nombre);
         vgp.lblFolio.setText((int) datos[0][3]+"");
         vgp.lblFecha.setText(fecha);
         vgp.lblCantidad.setText((Double) datos[0][5]+"");

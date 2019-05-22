@@ -8,6 +8,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -36,7 +37,7 @@ public class DMEscanearDocumento extends PantallaModal{
     
     
     public DMEscanearDocumento() {
-        super("Escanear documentos del alumno: ",  new MigLayout("wrap 3", "[][150][]","10[]15[]10[150]10[]10[]10[]10[]10[]10[]10"));
+        super("Escanear documentos del alumno: ",  new MigLayout("wrap 3", "[][170]15[]","10[]15[]10[150]10[]10[]10[]10[]10[]10[]10"));
         
         titulo1 = new JLabel("Alumnos inscritos");
         titulo1.setFont(new Font("Arial",1,16));
@@ -67,7 +68,7 @@ public class DMEscanearDocumento extends PantallaModal{
         fcSelector.setFileFilter(filtro);
         
         //Buscar
-        TextPrompt b = new TextPrompt("Nombre alumno", buscar);
+        TextPrompt b = new TextPrompt("Apellido o matrícula", buscar);
         b.changeAlpha(0.75f);
         b.changeStyle(Font.ITALIC);
         
@@ -80,7 +81,8 @@ public class DMEscanearDocumento extends PantallaModal{
         btn1= new JButton("Seleccionar archivo");
         btn2= new JButton("Escanear documento");
         btn2.setBackground(Color.decode("#7c98b3"));
-        panel = new JPanel(new MigLayout("wrap 2", "[][::170]", "[]10[][][][][]"));
+        btn2.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/agregar24.png")));
+        panel = new JPanel(new MigLayout("wrap 2", "[][:170:]", "[]10[][][][][]"));
         panel.setBackground(Color.decode("#accbe1"));
         
         ButtonGroup group = new ButtonGroup();

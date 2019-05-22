@@ -7,6 +7,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -33,7 +34,7 @@ public class DMGenerarDocumentos extends PantallaModal{
     
     
     public DMGenerarDocumentos() {
-        super("Generar documentos institucionales",  new MigLayout("debug, wrap 3", "[][150][]","10[]15[]10[150]10[]10[]10[]10[]10[]10[]10"));
+        super("Generar documentos institucionales",  new MigLayout("wrap 3", "[][150][]","10[]15[]10[150]10[]10[]10[]10[]10[]10[]10"));
         
         titulo1 = new JLabel("Alumnos inscritos");
         titulo1.setFont(new Font("Arial",1,16));
@@ -62,11 +63,12 @@ public class DMGenerarDocumentos extends PantallaModal{
         diploma= new JCheckBox("Diploma");
         btn1= new JButton("Seleccionar archivo");
         btn2= new JButton("Generar documento");
+        btn2.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/agregar24.png")));
         btn2.setBackground(Color.decode("#7c98b3"));
-        panel = new JPanel(new MigLayout("debug, wrap 2", "[][]", "[]10[][][][][]"));
+        panel = new JPanel(new MigLayout("wrap 2", "[][]", "[]10[][][][][]"));
         panel.setBackground(Color.decode("#accbe1"));
         //Buscar
-        TextPrompt b = new TextPrompt("Nombre alumno", buscar);
+        TextPrompt b = new TextPrompt("Apellido o matrícula", buscar);
         b.changeAlpha(0.75f);
         b.changeStyle(Font.ITALIC);
         

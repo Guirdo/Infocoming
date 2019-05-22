@@ -43,7 +43,7 @@ public class VReinscribirAlumno extends Pantalla{
         
         btnReinscribir.setBackground(Color.decode("#c3c3c3"));
         btnReinscribir.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/modificar24.png")));
-        TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
+        TextPrompt ph = new TextPrompt("Apellido o matricula...", tfBuscar);
         ph.changeAlpha(0.75f);
         ph.changeStyle(Font.ITALIC);
         

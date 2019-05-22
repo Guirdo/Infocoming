@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -40,6 +41,7 @@ public class DMRegistroES extends PantallaModal{
         tabla.setModel(new DefaultTableModel(new Object[]{"ClaveEmpleado","Nombre","HoraEntrada","HoraSalida"},0));
         lblFecha.setText(fecha.get(Calendar.DATE)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR));
         btnRegistrar.setBackground(Color.decode("#7c98b3"));
+        btnRegistrar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/entrar24.png")));
         
         this.add(lblTitulo);
         this.add(new JScrollPane(tabla));

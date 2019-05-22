@@ -7,6 +7,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -28,7 +29,7 @@ public class VBajaAlumno extends Pantalla{
     public JTable tabla;
     
     public VBajaAlumno(){
-        super("Baja alumno",new MigLayout("debug, wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10" ));
+        super("Baja alumno",new MigLayout("wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10" ));
         
         titulo1 = new JLabel ("Alumnos inscritos");
         titulo1.setFont(new Font("Arial",1,16));
@@ -50,8 +51,9 @@ public class VBajaAlumno extends Pantalla{
         tabla = new JTable();
         btn = new JButton("Dar de baja");
         btn.setBackground(Color.decode("#cee5f2"));
+        btn.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/basura24.png")));
         
-        TextPrompt b = new TextPrompt("Apellidop o matricula", buscar);
+        TextPrompt b = new TextPrompt("Apellido o matricula", buscar);
         b.changeAlpha(0.75f);
         b.changeStyle(Font.ITALIC);
 
