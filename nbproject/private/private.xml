@@ -3,28 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalRecepcionista.java</file>
-            <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorExamenCENNI.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorReinscribirAlumno.java</file>
-            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorRegistrarPago.java</file>
-            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
-            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorRegistrarEvaluaciones.java</file>
-            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistrarEvaluacion.java</file>
-=======
             <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorPrincipal.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorInscribirAlumno.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistroES.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalAdministrador.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorVisualizarAlumnos.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesbd/InterfazBD.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorExamenCENNI.java</file>
-            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorVisualizarHistorialPago.java</file>
->>>>>>> e7c048557cb60def3f4ab40109f0f7b2c017ad08
->>>>>>> cbb50d9c362cfc5990ab14074c5368f0eedea962
+            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalRecepcionista.java</file>
+            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMRegistrarEvaluacion.java</file>
+            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorGenerarLista.java</file>
+            <file>file:/C:/Users/diann/Documents/6sem/FIS/Infocoming/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/Pantalla.java</file>
         </group>
     </open-files>
 </project-private>
