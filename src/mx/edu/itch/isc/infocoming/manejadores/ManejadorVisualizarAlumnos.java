@@ -70,10 +70,9 @@ public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener, 
     private void consultarAlumnoVentana(int matri) throws SQLException {
         Object[][] datos = intBD.consultar(" select idAlumno, nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, domicilioAlumno, telefonoAlumno,  horario, tipocurso from Alumno, Grupo, Curso where idAlumno="+matri+" and idgrupo=grupid and idcurso=curso;");
         
+        String nombre = ((String) datos[0][1]) + " " + ((String) datos[0][2]) + " " + ((String) datos[0][3]);
         vv.lblMatricula.setText((int) datos[0][0]+"");
-        vv.lblNombre.setText((String) datos[0][1]);
-        vv.lblApellidoP.setText((String) datos[0][2]);
-        vv.lblApellidoM.setText((String) datos[0][3]);
+        vv.lblNombre.setText(nombre);
         vv.lblDomicilio.setText((String) datos[0][4]);
         vv.lblTelefono.setText((String) datos[0][5]);
         vv.lblCurso.setText((String) datos[0][6]);
@@ -93,7 +92,7 @@ public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener, 
             //Si el textfield no esta vacio entonces..
             if (!vv.tfBuscar.getText().isEmpty()) {
                 String busqueda = vv.tfBuscar.getText();
-
+                vv.tabla.getSelectionModel().removeListSelectionListener(this);
                 try {
                     if (busqueda.matches("[A-Za-z]+")) {
                         this.buscarAlumnoPorApellido();
@@ -103,6 +102,7 @@ public class ManejadorVisualizarAlumnos implements ActionListener, KeyListener, 
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+                vv.tabla.getSelectionModel().addListSelectionListener(this);
             }
         }
     }

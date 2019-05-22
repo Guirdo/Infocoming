@@ -8,6 +8,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -28,7 +29,7 @@ public class DMRegistrarEvaluacion extends PantallaModal {
     public JButton btn,busca;
     public JTable tabla;
     public DMRegistrarEvaluacion() {
-        super("Registrar evaluación",new MigLayout("debug, wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10[]10" ) );
+        super("Registrar evaluación",new MigLayout("wrap 3", "[][][]","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10[]10" ) );
         
         titulo1 = new JLabel("Evaluación");
         titulo1.setFont(new Font("Arial",1,16));
@@ -50,12 +51,13 @@ public class DMRegistrarEvaluacion extends PantallaModal {
         cal.setFont(new Font("Arial",2,12));
         btn = new JButton("Registrar evaluación");
         btn.setBackground(Color.decode("#7c98b3"));
+        btn.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/registrar24.png")));
         busca = new JButton("Buscar");
         busca.setBackground(Color.decode("#7c98b3"));
         tabla = new JTable();
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre", "Curso", "Parcial", "Calificación"},5));
         //Buscar
-        TextPrompt b = new TextPrompt("Nombre alumno", buscar);
+        TextPrompt b = new TextPrompt("Apellido o matrícula", buscar);
         b.changeAlpha(0.75f);
         b.changeStyle(Font.ITALIC);
         

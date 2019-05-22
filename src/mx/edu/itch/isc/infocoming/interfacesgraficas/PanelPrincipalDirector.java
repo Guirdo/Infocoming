@@ -25,7 +25,7 @@ public class PanelPrincipalDirector extends Pantalla{
     public JPanel panel1, panel2;
     public PanelPrincipalDirector(){
         
-        super("Director",new MigLayout("debug, wrap 3", "100[:100:]100[:100:]100","100[100][:100:][100]100" ));
+        super("Director",new MigLayout("wrap 3", "100[:100:]100[:100:]100","100[100][:100:][100]100" ));
         
         titulo1 = new JLabel ("Gestión del alumnado");
         titulo1.setFont(new Font("Arial",2,16));
@@ -36,15 +36,23 @@ public class PanelPrincipalDirector extends Pantalla{
         visualizar = new JButton ("Visualizar alumnos");
         visualizar.setFont(new Font("Arial",2,15));
         visualizar.setForeground(Color.decode("#7c98b3"));
+        visualizar.setBorder(null);
+        visualizar.setBackground(Color.decode("#f5f6fa"));
         bajaA = new JButton ("Dar baja a alumno");
         bajaA.setFont(new Font("Arial",2,15));
         bajaA.setForeground(Color.decode("#7c98b3"));
+        bajaA.setBorder(null);
+        bajaA.setBackground(Color.decode("#f5f6fa"));
         registrarE = new JButton ("Registrar empleado");
         registrarE.setFont(new Font("Arial",2,15));
         registrarE.setForeground(Color.decode("#7c98b3"));
+        registrarE.setBorder(null);
+        registrarE.setBackground(Color.decode("#f5f6fa"));
         btnVisualizarPersonal = new JButton ("Visualizar personal");
         btnVisualizarPersonal.setFont(new Font("Arial",2,15));
         btnVisualizarPersonal.setForeground(Color.decode("#7c98b3"));
+        btnVisualizarPersonal.setBorder(null);
+        btnVisualizarPersonal.setBackground(Color.decode("#f5f6fa"));
         
         JLabel iconoA = new JLabel();
         Image img = new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/gestionAlumno64.png")).getImage();

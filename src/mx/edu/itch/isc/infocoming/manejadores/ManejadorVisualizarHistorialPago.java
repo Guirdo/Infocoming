@@ -12,6 +12,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -59,15 +61,19 @@ public class ManejadorVisualizarHistorialPago implements ActionListener, KeyList
     }
     
     private void consultarAlumnoVentana(int[] dat) throws SQLException {
-        Object[][] datos = intBD.consultar("select nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, idpago, cantidad, conceptopago, horario from pago, alumno, concepto, grupo where idAlumno=idalum and idAlumno="+dat[0]+" and idconcepto=conceptoid and idGrupo=grupid and idpago="+dat[1]);
+        Object[][] datos = intBD.consultar("select nombreAlumno, apellidoPaternoAlumno, apellidoMaternoAlumno, idpago, fecha, cantidad, conceptopago, horario from pago, alumno, concepto, grupo where idAlumno=idalum and idAlumno="+dat[0]+" and idconcepto=conceptoid and idGrupo=grupid and idpago="+dat[1]);
         
-        vgp.lblNombre.setText((String) datos[0][0]);
-        vgp.lblApellidoP.setText((String) datos[0][1]);
-        vgp.lblApellidoM.setText((String) datos[0][2]);
+        String patronFecha = "yyyy-MM-dd hh:mm:ss";
+        SimpleDateFormat formato = new SimpleDateFormat(patronFecha);
+        String fecha = formato.format((Date)datos[0][4]);
+        
+        String nombre = ((String) datos[0][0]) + " " + ((String) datos[0][1]) + " " + ((String) datos[0][2]);
+        vgp.lblNombre.setText(nombre);
         vgp.lblFolio.setText((int) datos[0][3]+"");
-        vgp.lblCantidad.setText((Double) datos[0][4]+"");
-        vgp.lblConcepto.setText((String) datos[0][5]);
-        vgp.lblHorario.setText((String) datos[0][6]);
+        vgp.lblFecha.setText(fecha);
+        vgp.lblCantidad.setText((Double) datos[0][5]+"");
+        vgp.lblConcepto.setText((String) datos[0][6]);
+        vgp.lblHorario.setText((String) datos[0][7]);
         
     }
     @Override

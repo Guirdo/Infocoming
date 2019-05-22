@@ -8,6 +8,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -60,6 +61,8 @@ public class DMInscribirAlumno extends PantallaModal{
         btn1.setBackground(Color.decode("#7c98b3"));
         btn2 = new JButton("Cancelar");
         btn2.setBackground(Color.decode("#cee5f2"));
+        btn1.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/confirm24.png")));
+        btn2.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/cancelar24.png")));
         
         this.add(titulo, "span 4 1");
         this.add(nombre, "cell 0 1");

@@ -12,7 +12,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class VGestionPagos extends Pantalla{
     
-    public JLabel lblNombre,lblApellidoP,lblApellidoM, lblFolio,lblCantidad, lblConcepto, lblHorario;
+    public JLabel lblNombre, lblFolio,lblCantidad, lblConcepto, lblHorario, lblFecha;
     public JTextField tfBuscar;
     public JTable tabla;
 
@@ -28,15 +28,14 @@ public class VGestionPagos extends Pantalla{
         tfBuscar = new JTextField(12);
         tabla = new JTable();
         lblNombre = new JLabel();
-        lblApellidoP = new JLabel();
-        lblApellidoM = new JLabel();
         lblFolio =new JLabel();
+        lblFecha= new JLabel();
         lblCantidad = new JLabel();
         lblConcepto= new JLabel();
         lblHorario = new JLabel(); 
         
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre","Fecha pago","Concepto pago, Folio"}, 5));
-        TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
+        TextPrompt ph = new TextPrompt("Apellido o matrícula", tfBuscar);
         ph.changeAlpha(0.75f);
         ph.changeStyle(Font.ITALIC);
         
@@ -46,12 +45,10 @@ public class VGestionPagos extends Pantalla{
         this.add(lblTitulo1,"span 3");
         this.add(new JLabel("Nombre: "));
         this.add(lblNombre,"wrap");
-        this.add(new JLabel("Apellido Paterno: "));
-        this.add(lblApellidoP, "wrap");
-        this.add(new JLabel("Apellido Materno: "));
-        this.add(lblApellidoM,"wrap");
         this.add(new JLabel("Folio: "));
         this.add(lblFolio,"wrap");
+        this.add(new JLabel("Fecha: "));
+        this.add(lblFecha, "wrap");
         this.add(new JLabel("Cantidad: "));
         this.add(lblCantidad,"wrap");
         this.add(new JLabel("Concepto: "));

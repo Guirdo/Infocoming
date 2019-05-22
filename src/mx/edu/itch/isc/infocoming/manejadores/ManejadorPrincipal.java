@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import mx.edu.itch.isc.infocoming.interfacesbd.InterfazBD;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMEscanearDocumento;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMExamen_CENNI;
+import mx.edu.itch.isc.infocoming.interfacesgraficas.DMGenerarDocumentos;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMInscribirAlumno;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarEvaluacion;
 import mx.edu.itch.isc.infocoming.interfacesgraficas.DMRegistrarPago;
@@ -64,7 +65,11 @@ public class ManejadorPrincipal implements ActionListener {
         ppa.titulo5.addActionListener(this);
         ppa.etiqueta6.addActionListener(this);
         ppa.etiqueta10.addActionListener(this);
+
+        ppa.etiqueta4.addActionListener(this);
+
         ppa.etiqueta9.addActionListener(this);
+
         ppa.setVisible(true);
 
     }
@@ -101,6 +106,9 @@ public class ManejadorPrincipal implements ActionListener {
         ppr.etiqueta1.addActionListener(this);//Visualizar alumno
         ppr.etiqueta4.addActionListener(this);//Visualizar pago
         ppr.etiqueta2.addActionListener(this);
+
+        ppr.etiqueta3.addActionListener(this);
+
         ppr.setVisible(true);
     }
 
@@ -124,12 +132,19 @@ public class ManejadorPrincipal implements ActionListener {
                     this.ManejaEventoExamenCENNI();
                 } else if (e.getSource() == ppa.etiqueta2) {
                     this.manejaEventoVisualizarAlumno();
-                } else if (e.getSource() == ppa.etiqueta10) {
+
+                }else if (e.getSource() == ppa.etiqueta10) {
+
                     this.ManejaEventoRegistrarPago();
                 } else if (e.getSource() == ppa.etiqueta8) {
                     this.manejaEventoRegistrarEmpleado();
+
+                }else if(e.getSource()==ppa.etiqueta4){
+                    this.ManejaEventoGenerardocumento();
+
                 } else if (e.getSource() == ppa.etiqueta9) {
                     this.manejaEventoModificarContrasena();
+
                 }
             } else if (ppd != null) {//PanelDirector
                 if (e.getSource() == ppd.bajaA) {
@@ -158,6 +173,9 @@ public class ManejadorPrincipal implements ActionListener {
                     this.ManejaEventoVisualizarHistPago();
                 } else if (e.getSource() == ppr.etiqueta2) {
                     this.manejaEventoRegistroES();
+                }else if (e.getSource() == ppr.etiqueta3) {
+                    this.ManejaEventoRegistrarPago();
+
                 }
             }
         } catch (SQLException ex) {
@@ -227,8 +245,15 @@ public class ManejadorPrincipal implements ActionListener {
         }
     }
 
-    private void ManejaEventoRegistrarPago() {
-        new ManejadorRegistrarPago(new DMRegistrarPago());
+    private void ManejaEventoRegistrarPago() throws SQLException {
+        if (ppa != null) {
+            
+            new ManejadorRegistrarPago(intBD,new DMRegistrarPago());
+        }else if (ppr != null) {
+            
+            new ManejadorRegistrarPago(intBD,new DMRegistrarPago());
+        }
+        
     }
 
     private void ManejaEventoVisualizarHistPago() throws SQLException {
@@ -253,11 +278,16 @@ public class ManejadorPrincipal implements ActionListener {
         new ManejadorExamenCENNI(intBD, new DMExamen_CENNI());
     }
 
-    private void manejaEventoRegistrarevaluacion() throws SQLException {
-        new ManejadorRegistrarEvaluaciones(intBD, new DMRegistrarEvaluacion());
-    }
+    private void manejaEventoRegistrarevaluacion() throws  SQLException{
+        new ManejadorRegistrarEvaluaciones(intBD,new DMRegistrarEvaluacion());
+    }   
+    private void ManejaEventoGenerardocumento()throws SQLException{
+        new ManejadorGenerarDocumento(intBD,new DMGenerarDocumentos());
 
+    }
+   
     private void manejaEventoModificarContrasena() {
         new ManejadorModificarContrasena(intBD);
+
     }
 }

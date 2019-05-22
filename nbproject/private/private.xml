@@ -3,10 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorModificarContrasena.java</file>
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/VValidarUsuario.java</file>
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorGenerarLista.java</file>
             <file>file:/C:/Users/aldom/Documents/Codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMConfirmarBaja.java</file>
+=======
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalRecepcionista.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMGenerarDocumentos.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorModificarContrasena.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/DMCrearGrupo.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/manejadores/ManejadorRegistroES.java</file>
+            <file>file:/C:/Users/pacop/Documents/trabajos%20tano/fis/codigo/Infocoming/src/mx/edu/itch/isc/infocoming/interfacesgraficas/PanelPrincipalAdministrador.java</file>
+>>>>>>> 6a258830c0560e43901fe44fc911c568200e6954
         </group>
     </open-files>
 </project-private>

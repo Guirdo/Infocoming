@@ -28,7 +28,7 @@ public class ManejadorRegistrarEvaluaciones implements ActionListener, KeyListen
 
     private DMRegistrarEvaluacion dm = null;
     private InterfazBD intBD;
-    
+ 
     public int alumnoSeleccionado = 0;
     public double calificacion = 0;
 
@@ -141,6 +141,7 @@ public class ManejadorRegistrarEvaluaciones implements ActionListener, KeyListen
     }
 
     private void manejaEventoRegistrarEvaluacioin() throws SQLException {
+        
         intBD.actualizar("insert into evaluacion values(" + alumnoSeleccionado + "," + calificacion + ")");
 
     }

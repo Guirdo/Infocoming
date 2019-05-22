@@ -7,6 +7,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -39,6 +40,7 @@ public class DMExamen_CENNI extends PantallaModal{
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula", "Nombre", "Curso",},3));
         btn= new JButton("Imprimir lista");
         btn.setBackground(Color.decode("#c3c3c3"));
+        btn.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/imprimir24.png")));
         
         this.add(titulo,"span 2 1");
         this.add(select, "span 2 1");

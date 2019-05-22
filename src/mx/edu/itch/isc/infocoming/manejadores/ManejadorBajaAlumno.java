@@ -146,7 +146,6 @@ public class ManejadorBajaAlumno implements ActionListener,ListSelectionListener
             //Si el textfield no esta vacio entonces..
             if (!v.buscar.getText().isEmpty()) {
                 String busqueda = v.buscar.getText();
-
                 try {
                     if (busqueda.matches("[A-Za-z]+")) {
                         this.buscarAlumnoPorApellido();
