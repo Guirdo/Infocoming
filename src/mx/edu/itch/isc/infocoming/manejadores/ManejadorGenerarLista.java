@@ -51,6 +51,8 @@ public class ManejadorGenerarLista implements ActionListener, KeyListener, ListS
         v.buscar.addKeyListener(this);
         v.tabla.getSelectionModel().addListSelectionListener(this);
         v.addWindowListener(this);
+        
+        v.btn2.setEnabled(false);
 
         this.consultarGrupos();
 
@@ -189,12 +191,12 @@ public class ManejadorGenerarLista implements ActionListener, KeyListener, ListS
     public void valueChanged(ListSelectionEvent e) {
         try {
             grupoSeleccionado = (int) v.tabla.getValueAt(v.tabla.getSelectedRow(), 0);
-
+            v.btn2.setEnabled(true);
             this.consultarGrupo();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
+        } 
     }
 
     @Override

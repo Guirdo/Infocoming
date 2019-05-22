@@ -32,7 +32,4 @@ public class DMConfirmarBaja extends PantallaModal{
         this.pack();
         this.setLocationRelativeTo(null);
     }
-
-    
-    
 }
