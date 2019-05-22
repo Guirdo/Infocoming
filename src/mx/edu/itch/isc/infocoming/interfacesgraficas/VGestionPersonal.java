@@ -29,7 +29,7 @@ public class VGestionPersonal extends Pantalla {
     public JLabel lblNombre,lblClave,lblDomicilio,lblTelefono;
 
     public VGestionPersonal() {
-        super("Gestion Personal", new MigLayout("debug,wrap 3","[][][]","20[]15[100]20[]15[]10[]10[]10[]10[]10[]"));
+        super("Gestion Personal", new MigLayout("wrap 3","[][][]","20[]15[100]20[]15[]10[]10[]10[]10[]10[]"));
         titulo1= new JLabel("Persona que labora en la empresa");
         titulo2= new JLabel("Datos del empleado");
         claveEmpleado= new JLabel("Clave empleado:");

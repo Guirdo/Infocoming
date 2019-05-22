@@ -120,8 +120,6 @@ public class ManejadorExamenCENNI implements ActionListener, KeyListener{
         }
         if(ae.getSource()==dm.examenes){
           int index=dm.examenes.getSelectedIndex();
-          System.out.println(index);
-          System.out.println(index+4);
             try {
                 this.consultaCandidatos(index);
             } catch (SQLException ex) {

@@ -14,10 +14,10 @@ public class VVisualizarAlumnos extends Pantalla{
     
     public JTextField tfBuscar;
     public JTable tabla;
-    public JLabel lblMatricula,lblNombre,lblCurso,lblHorario, lblApellidoP, lblApellidoM, lblDomicilio, lblTelefono;
+    public JLabel lblMatricula,lblNombre,lblCurso,lblHorario, lblDomicilio, lblTelefono;
     
     public VVisualizarAlumnos() {
-        super("Alumnos inscritos",new MigLayout("wrap 3","10[][][]10","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10[]10[]10"));
+        super("Alumnos inscritos",new MigLayout("wrap 3","10[][][]10","10[]15[]10[150]20[]15[]10[]10[]10[]10[]10[]10"));
         
         //Objetos que no cambian
         JLabel lblTitulo = new JLabel("Alumnos inscritos");
@@ -34,8 +34,6 @@ public class VVisualizarAlumnos extends Pantalla{
         tabla = new JTable();
         lblMatricula = new JLabel();
         lblNombre = new JLabel();
-        lblApellidoP = new JLabel();
-        lblApellidoM= new JLabel();
         lblDomicilio = new JLabel();
         lblTelefono = new JLabel();
         lblCurso = new JLabel();
@@ -43,7 +41,7 @@ public class VVisualizarAlumnos extends Pantalla{
         
         //Configuraciones de los objetos que cambian
         tabla.setModel(new DefaultTableModel(new Object[]{"Matrícula","Nombre, Apellido Paterno, Apellido Materno"},4 ));
-        TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
+        TextPrompt ph = new TextPrompt("Apellido o matrícula", tfBuscar);
         ph.changeAlpha(0.75f);
         ph.changeStyle(Font.ITALIC);
         
@@ -56,10 +54,6 @@ public class VVisualizarAlumnos extends Pantalla{
         this.add(lblMatricula,"wrap");
         this.add(new JLabel("Nombre"));//<-- Objetos anónimo
         this.add(lblNombre,"wrap");
-        this.add(new JLabel("Apellido Paterno:"));
-        this.add(lblApellidoP,"wrap");
-        this.add(new JLabel("Apellido Materno:"));
-        this.add(lblApellidoM, "wrap");
         this.add(new JLabel("Domicilio:"));
         this.add(lblDomicilio,"wrap");
         this.add(new JLabel("Teléfono:"));
