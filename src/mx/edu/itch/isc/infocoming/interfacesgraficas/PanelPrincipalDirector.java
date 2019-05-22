@@ -25,7 +25,7 @@ public class PanelPrincipalDirector extends Pantalla{
     public JPanel panel1, panel2;
     public PanelPrincipalDirector(){
         
-        super("Director",new MigLayout("debug, wrap 3", "100[:100:]100[:100:]100","100[100][:100:][100]100" ));
+        super("Director",new MigLayout("wrap 3", "100[:100:]100[:100:]100","100[100][:100:][100]100" ));
         
         titulo1 = new JLabel ("Gestión del alumnado");
         titulo1.setFont(new Font("Arial",2,16));

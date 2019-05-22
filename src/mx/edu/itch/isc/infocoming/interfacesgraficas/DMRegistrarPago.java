@@ -1,5 +1,6 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Font;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,32 +13,37 @@ import net.miginfocom.swing.MigLayout;
 
 public class DMRegistrarPago extends PantallaModal {
     
-    private JRadioButton btnComun,btnNuevo;
-    private JComboBox<String> cbConceptos;
+    public JRadioButton btnComun,btnNuevo;
+    public JComboBox<String> cbConceptos;
 
-    private JTextField tfConceptoNuevo;
-    public JButton btnCancelar;
+    public JTextField tfConceptoNuevo;
+    
     public JButton btnRegistrar;
+    public JTextField busca;
+    public JLabel nombre,curso,horario;
 
-    private JTextField tfAlumno;
+    
 
-    private JSpinner spnPago;
+    public JSpinner spnPago;
 
     public DMRegistrarPago() {
-        super("Registrar pago", new MigLayout("wrap 2", "[]15[]", "[]10[]10[]10[]10[]10[]"));
+        super("Registrar pago", new MigLayout("wrap 2", "[]15[]", "[]10[]10[]10[]10[]10[]10[]"));
 
-        tfAlumno = new JTextField(12);
+        nombre=new JLabel();
+        nombre.setFont(new Font("Arial",2,12));        
+        curso = new JLabel ();
+        curso.setFont(new Font("Arial",2,12));
+        horario=new JLabel();
+        horario.setFont(new Font("Arial",1,12));
         btnComun = new JRadioButton("Común");
         btnNuevo = new JRadioButton("Nuevo");
         cbConceptos = new JComboBox<>();
         tfConceptoNuevo = new JTextField(12);
-        btnCancelar = new JButton("Cancelar");
+       
         btnRegistrar = new JButton("Registrar pago");
-        spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));
-
-        cbConceptos.addItem("Pago semanal");
-        cbConceptos.addItem("Inscripción");
-        cbConceptos.addItem("ExC-2019-1");
+        spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));        
+        busca = new JTextField (12);
+        busca.setFont(new Font("Arial",2,12));
         cbConceptos.setEnabled(false);
         tfConceptoNuevo.setEnabled(false);
         ButtonGroup bg = new ButtonGroup();
@@ -55,15 +61,20 @@ public class DMRegistrarPago extends PantallaModal {
         });
         
         this.add(new JLabel("Matrícula: "));
-        this.add(tfAlumno);
+        this.add(busca,"wrap");
+        this.add(new JLabel("Nombre alumno: "));
+        this.add(nombre,"wrap");
+        this.add(new JLabel("curso"));
+        this.add(curso,"wrap");
+        this.add(new JLabel("Horario"));
+        this.add(horario,"wrap");
         this.add(new JLabel("Concepto: "),"span 2");
         this.add(btnComun);
         this.add(cbConceptos);
         this.add(btnNuevo);
         this.add(tfConceptoNuevo);
         this.add(new JLabel("Pago: "));
-        this.add(spnPago,"growx");
-        this.add(btnCancelar);
+        this.add(spnPago,"growx");     
         this.add(btnRegistrar);
 
         this.pack();
