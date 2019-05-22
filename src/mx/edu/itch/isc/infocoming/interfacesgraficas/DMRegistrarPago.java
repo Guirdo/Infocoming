@@ -1,7 +1,11 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+
 import java.awt.Font;
+
+import java.awt.Color;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -41,14 +45,21 @@ public class DMRegistrarPago extends PantallaModal {
         tfConceptoNuevo = new JTextField(12);
        
         btnRegistrar = new JButton("Registrar pago");
+
         spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));        
         busca = new JTextField (12);
         busca.setFont(new Font("Arial",2,12));
+        spnPago = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 1000000, 0.5));
         cbConceptos.setEnabled(false);
         tfConceptoNuevo.setEnabled(false);
         ButtonGroup bg = new ButtonGroup();
         bg.add(btnNuevo);
         bg.add(btnComun);
+        
+        
+        btnRegistrar.setBackground(Color.decode("#7c98b3"));
+        
+        btnRegistrar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/entrar24.png")));
         
         btnComun.addActionListener((ActionEvent)->{
             cbConceptos.setEnabled(true);

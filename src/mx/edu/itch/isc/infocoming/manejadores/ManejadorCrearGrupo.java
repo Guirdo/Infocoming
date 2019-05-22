@@ -3,8 +3,7 @@ package mx.edu.itch.isc.infocoming.manejadores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -81,11 +80,13 @@ public class ManejadorCrearGrupo implements ActionListener,ListSelectionListener
         }
         
         String horario = dias +" "+horarioSeleccionado;
-        
+        String patronFecha = "dd-MM-yyyy";
+        SimpleDateFormat formato = new SimpleDateFormat(patronFecha);
+        String fechaInicio = formato.format(dm.fechaSelector.getDate());
         int cursoSeleccionado = dm.cbCursos.getSelectedIndex()+1;
         
-        intBD.procedimientoInsertar("{call insertarGrupo(?,?,?)}",
-                                    horario,cursoSeleccionado,maestroSeleccionado );
+        intBD.procedimientoInsertar("{call insertarGrupo(?,?,?,?)}",
+                                    horario,cursoSeleccionado,fechaInicio,maestroSeleccionado );
         
         dm.dispose();
         
@@ -95,7 +96,6 @@ public class ManejadorCrearGrupo implements ActionListener,ListSelectionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == dm.btnCrear) {
             try {
-                System.out.println("Estoy aqui...");
                 this.manejaEventoCrearGrupo();
             } catch (RegistroGrupoInvalidoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -132,8 +132,6 @@ public class ManejadorCrearGrupo implements ActionListener,ListSelectionListener
     @Override
     public void valueChanged(ListSelectionEvent e) {
         maestroSeleccionado = (int) dm.tabla.getValueAt(dm.tabla.getSelectedRow(),0);
-        
-        System.out.println("Maestro: "+maestroSeleccionado);
     }
 
 }

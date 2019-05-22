@@ -1,6 +1,9 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,7 +41,9 @@ public class VReinscribirAlumno extends Pantalla{
         lblHorario = new JLabel();
         btnReinscribir= new JButton("Reinscribir alumno");
         
-        TextPrompt ph = new TextPrompt("Nombre del alumno...", tfBuscar);
+        btnReinscribir.setBackground(Color.decode("#c3c3c3"));
+        btnReinscribir.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/modificar24.png")));
+        TextPrompt ph = new TextPrompt("Apellido o matricula...", tfBuscar);
         ph.changeAlpha(0.75f);
         ph.changeStyle(Font.ITALIC);
         

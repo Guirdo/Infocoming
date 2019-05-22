@@ -5,7 +5,6 @@
  */
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,7 +26,6 @@ public class DMReinscribirAlumno extends PantallaModal {
     
     public DMReinscribirAlumno(){
         super("Reinscribir Alumno", new MigLayout("wrap 2", "10[]5[]10", "10[]15[]15[]15[]15[]15[]15[150]10"));
-//        this.getContentPane().setBackground(Color.getColor("#f5f6fa"));
         lblTitulo=new JLabel("Datos del alumno a modificar");
         lblNombre = new JLabel();
         lblApellidoPaterno = new JLabel();

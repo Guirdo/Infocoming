@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -71,15 +73,19 @@ public class ManejadorGenerarLista implements ActionListener, KeyListener, ListS
 
     private void consultarGrupo() throws SQLException {
         Object[][] datos = intBD.consultar("select p.nombrepersonal,apellidoPaternopersonal,"
-                + "apellidoMaternopersonal,g.horario,c.tipocurso"
+                + "apellidoMaternopersonal,g.horario,fechaInicio,c.tipocurso"
                 + "    from Personal p join(Grupo g join Curso c on g.curso = c.idCurso)"
                 + "    on p.idPersonal = g.Personalid"
                 + "    where idGrupo = " + grupoSeleccionado);
 
         String maestro = ((String) datos[0][0]) + " " + ((String) datos[0][1]) + " " + ((String) datos[0][2]);
+        String patronFecha = "dd-MM-yyyy";
+        SimpleDateFormat formato = new SimpleDateFormat(patronFecha);
+        String fechaInicio = formato.format((Date)datos[0][4]);
 
         v.horario.setText((String) datos[0][3]);
-        v.curso.setText((String) datos[0][4]);
+        v.fechaInicio.setText(fechaInicio);
+        v.curso.setText((String) datos[0][5]);
         v.maestro.setText(maestro);
     }
 
@@ -137,6 +143,9 @@ public class ManejadorGenerarLista implements ActionListener, KeyListener, ListS
         if (e.getSource() == v.btn1) {
             try {
                 new ManejadorCrearGrupo(intBD, new DMCrearGrupo());
+                v.tabla.getSelectionModel().removeListSelectionListener(this);
+                this.consultarGrupos();
+                v.tabla.getSelectionModel().addListSelectionListener(this);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

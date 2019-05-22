@@ -28,7 +28,7 @@ public class PanelPrincipalAdministrador extends Pantalla {
         titulo1 = new JLabel("Gestión del alumnado");
         titulo2 = new JLabel("Gestión del personal");
         titulo3 = new JLabel("Gestión del usuarios");
-        etiqueta1 = new JButton("Incribir Alumno");
+        etiqueta1 = new JButton("Inscribir Alumno");
         etiqueta2 = new JButton("Visualizar Alumno");
         etiqueta3 = new JButton("Reinscribir Alumno");
         etiqueta4 = new JButton("Generar Documentos");

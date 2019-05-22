@@ -1,8 +1,10 @@
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -28,6 +30,7 @@ public class DMRegistroES extends PantallaModal{
         
         JLabel lblTitulo = new JLabel("Lista de asistencia de empleados");
         lblTitulo.setFont(new Font("Arial",1,16));
+        lblTitulo.setForeground(Color.decode("#37718e"));
         
         lblFecha = new JLabel();
         tabla = new JTable();
@@ -37,6 +40,8 @@ public class DMRegistroES extends PantallaModal{
         
         tabla.setModel(new DefaultTableModel(new Object[]{"ClaveEmpleado","Nombre","HoraEntrada","HoraSalida"},0));
         lblFecha.setText(fecha.get(Calendar.DATE)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR));
+        btnRegistrar.setBackground(Color.decode("#7c98b3"));
+        btnRegistrar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/entrar24.png")));
         
         this.add(lblTitulo);
         this.add(new JScrollPane(tabla));
@@ -49,7 +54,7 @@ public class DMRegistroES extends PantallaModal{
     
     private JPanel darPanel(){
         JPanel panel = new JPanel(new MigLayout("wrap 2","[]15[]","[]10[]10[]15[]"));
-        
+        panel.setBackground(Color.decode("#accbe1"));
         cbTipo.addItem("ENTRADA");
         cbTipo.addItem("SALIDA");
         
@@ -57,7 +62,7 @@ public class DMRegistroES extends PantallaModal{
         panel.add(lblFecha);
         panel.add(new JLabel("Clave del empleado: "));
         panel.add(tfClaveEmpleado);
-        panel.add(cbTipo);
+        panel.add(cbTipo,"span 2,center");
         panel.add(btnRegistrar,"span 2,center");
         
         return panel;

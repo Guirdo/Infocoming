@@ -21,7 +21,7 @@ import net.miginfocom.swing.MigLayout;
 public class PanelPrincipalDirector extends Pantalla{
     
     public JLabel titulo1, titulo2;
-    public JButton visualizar, bajaA, registrarE, bajaE;
+    public JButton visualizar, bajaA, registrarE, btnVisualizarPersonal;
     public JPanel panel1, panel2;
     public PanelPrincipalDirector(){
         
@@ -42,9 +42,9 @@ public class PanelPrincipalDirector extends Pantalla{
         registrarE = new JButton ("Registrar empleado");
         registrarE.setFont(new Font("Arial",2,15));
         registrarE.setForeground(Color.decode("#7c98b3"));
-        bajaE = new JButton ("Dar baja a empleado");
-        bajaE.setFont(new Font("Arial",2,15));
-        bajaE.setForeground(Color.decode("#7c98b3"));
+        btnVisualizarPersonal = new JButton ("Visualizar personal");
+        btnVisualizarPersonal.setFont(new Font("Arial",2,15));
+        btnVisualizarPersonal.setForeground(Color.decode("#7c98b3"));
         
         JLabel iconoA = new JLabel();
         Image img = new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/gestionAlumno64.png")).getImage();
@@ -68,7 +68,7 @@ public class PanelPrincipalDirector extends Pantalla{
         panel2.add(iconoP,"w 64, h 64,span 2, center");
         panel2.add(titulo2);
         panel2.add(registrarE);
-        panel2.add(bajaE);
+        panel2.add(btnVisualizarPersonal);
         
         this.add(panel1, "cell 0 1");
         this.add(panel2, "cell 1 1");

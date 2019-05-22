@@ -8,6 +8,7 @@ package mx.edu.itch.isc.infocoming.interfacesgraficas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ import net.miginfocom.swing.MigLayout;
  */
 public class VGestionGrupo extends Pantalla{
     
-    public JLabel titulo1, titulo2, horario, curso, maestro, semanas;
+    public JLabel titulo1, titulo2, horario, curso, maestro, fechaInicio;
     public JTextField buscar;
     public JTable tabla;
     public JButton btn1, btn2;
@@ -44,8 +45,8 @@ public class VGestionGrupo extends Pantalla{
         curso.setFont(new Font("Arial",2,12));
         maestro = new JLabel();
         maestro.setFont(new Font("Arial",2,12));
-        semanas = new JLabel();
-        semanas.setFont(new Font("Arial",2,12));
+        fechaInicio = new JLabel();
+        fechaInicio.setFont(new Font("Arial",2,12));
         buscar = new JTextField(10);
         buscar.setFont(new Font("Arial",2,12));
         tabla = new JTable();
@@ -55,7 +56,10 @@ public class VGestionGrupo extends Pantalla{
         btn2 = new JButton("Imprimir lista");
         btn2.setBackground(Color.decode("#c3c3c3"));
         
-        
+        btn1.setBackground(Color.decode("#7c98b3"));
+        btn1.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/agregar24.png")));
+        btn2.setBackground(Color.decode("#c3c3c3"));
+        btn2.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/imprimir24.png")));
         //Buscar
         TextPrompt b = new TextPrompt("Numero de grupo...", buscar);
         b.changeAlpha(0.75f);
@@ -73,8 +77,8 @@ public class VGestionGrupo extends Pantalla{
         this.add(curso,"wrap");
         this.add(new JLabel("Maestro asignado: "));
         this.add(maestro,"wrap");
-//        this.add(new JLabel("Semanas: "));
-//        this.add(semanas,"wrap");
+        this.add(new JLabel("Fecha Inicio: "));
+        this.add(fechaInicio,"wrap");
         this.add(btn2, "span 3 1, right");
         this.pack();
         this.setLocationRelativeTo(null);

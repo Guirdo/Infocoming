@@ -20,8 +20,8 @@ import net.miginfocom.swing.MigLayout;
  */
 public class PanelPrincipalRecepcionista extends Pantalla {
 
-    public JButton etiqueta1, etiqueta2, titulo3, etiqueta3, etiqueta4,titulo4;
-    private JLabel titulo1, titulo2;
+    public JButton etiqueta1, etiqueta2, etiqueta3, etiqueta4,titulo4;
+    private JLabel titulo1, titulo2,titulo3;
 
     public PanelPrincipalRecepcionista() {
         super("Panel principal", new MigLayout("wrap 2", "100[150,center]50[150,center]100", "20[150]20[100]20[100]20"));
@@ -31,7 +31,7 @@ public class PanelPrincipalRecepcionista extends Pantalla {
         etiqueta2 = new JButton("Registrar entrada y salida del personal");
         etiqueta3 = new JButton("Registrar Pago");
         etiqueta4 = new JButton("Visualizar historial de pagos");
-        titulo3 = new JButton("Gestión de Pagos");
+        titulo3 = new JLabel("Gestión de Pagos");
         titulo4 = new JButton("Gestión de Grupos");
         titulo1.setFont(new Font("Arial", 1, 16));
         titulo2.setFont(new Font("Arial", 1, 16));

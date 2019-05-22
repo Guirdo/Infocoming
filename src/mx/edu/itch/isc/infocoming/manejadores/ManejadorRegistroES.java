@@ -48,7 +48,7 @@ public class ManejadorRegistroES implements ActionListener {
     }
 
     private void consultaES() throws SQLException {
-        Object[][] datos = iBD.consultar("select idPersonal,fecha, "
+        Object[][] datos = iBD.consultar("select idPer,fecha, "
           + "tipo from AsistenciaP ");
         
         dm.tabla.setModel(new DefaultTableModel(datos,new Object[]{"idPersonal","Fecha y hora","Tipo"}));
