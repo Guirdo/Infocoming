@@ -39,6 +39,8 @@ public class VReinscribirAlumno extends Pantalla{
         lblApePat = new JLabel();
         lblApeMat=new JLabel();
         lblHorario = new JLabel();
+        lblTitulo1.setForeground(Color.decode("#37718e"));
+        lblTitulo2.setForeground(Color.decode("#7c98b3"));
         btnReinscribir= new JButton("Reinscribir alumno");
         
         btnReinscribir.setBackground(Color.decode("#c3c3c3"));

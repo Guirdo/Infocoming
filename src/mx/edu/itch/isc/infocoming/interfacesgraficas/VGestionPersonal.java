@@ -5,6 +5,7 @@
  */
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.LayoutManager;
@@ -24,7 +25,6 @@ import net.miginfocom.swing.MigLayout;
  */
 public class VGestionPersonal extends Pantalla {
      public JLabel titulo1, titulo2, claveEmpleado, nombre, domicilio,telefono;
-     public JButton btnBajaEmpleado;
     public JTable tabla;
     public JLabel lblNombre,lblClave,lblDomicilio,lblTelefono;
 
@@ -37,13 +37,14 @@ public class VGestionPersonal extends Pantalla {
         domicilio= new JLabel("Domicilio:");
         telefono= new JLabel("Telefono:");
         tabla=new JTable(new DefaultTableModel(new Object []{"Clave Empleado","Nombre"},10));
-        btnBajaEmpleado=new JButton("Dar de baja");
         titulo1.setFont(new Font("Arial",1,16));
         titulo2.setFont(new Font("Arial",1,15));
         claveEmpleado.setFont(new Font("Arial",0,12));
         nombre.setFont(new Font("Arial",0,12));
         domicilio.setFont(new Font("Arial",0,12));
         telefono.setFont(new Font("Arial",0,12));
+        titulo1.setForeground(Color.decode("#37718e"));
+        titulo2.setForeground(Color.decode("#37718e"));
         
         lblNombre = new JLabel();
         lblClave = new JLabel();

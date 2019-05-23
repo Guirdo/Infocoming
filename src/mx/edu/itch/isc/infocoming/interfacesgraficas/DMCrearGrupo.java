@@ -38,7 +38,7 @@ public class DMCrearGrupo extends PantallaModal{
         tabla = new JTable();
         btnCrear = new JButton("Crear grupo");
         fechaSelector = new com.toedter.calendar.JDateChooser();
-        
+        lblTitulo.setBackground(Color.decode("#37718e"));
         btnCrear.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/agregar24.png")));
         btnCrear.setBackground(Color.decode("#7c98b3"));
         this.cargarCBHoras();

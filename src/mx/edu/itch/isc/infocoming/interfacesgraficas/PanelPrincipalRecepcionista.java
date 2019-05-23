@@ -49,6 +49,16 @@ public class PanelPrincipalRecepcionista extends Pantalla {
         etiqueta2.setForeground(Color.decode("#7c98b3"));
         etiqueta3.setForeground(Color.decode("#7c98b3"));
         etiqueta4.setForeground(Color.decode("#7c98b3"));
+        etiqueta3.setBorder(null);
+        etiqueta4.setBorder(null);
+        etiqueta1.setBorder(null);
+        etiqueta2.setBorder(null);
+        titulo4.setBorder(null);
+        etiqueta1.setBackground(Color.decode("#f5f6fa"));
+        etiqueta2.setBackground(Color.decode("#f5f6fa"));
+        etiqueta3.setBackground(Color.decode("#f5f6fa"));
+        etiqueta4.setBackground(Color.decode("#f5f6fa"));       
+        titulo4.setBackground(Color.decode("#f5f6fa"));
         JLabel iconoA = new JLabel();
         Image img = new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/gestionAlumno64.png")).getImage();
         iconoA.setIcon(new ImageIcon(img));        

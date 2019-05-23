@@ -35,6 +35,12 @@ public class PanelPrincipalCoordinadorAcademico extends Pantalla {
         visualizarAlumno.setForeground(Color.decode("#7c98b3"));
         darBajaAlumno.setForeground(Color.decode("#7c98b3"));
         registrarEvaluaciones.setForeground(Color.decode("#7c98b3"));
+        visualizarAlumno.setBorder(null);
+        darBajaAlumno.setBorder(null);
+        registrarEvaluaciones.setBorder(null);
+        visualizarAlumno.setBackground(Color.decode("#f5f6fa"));
+        darBajaAlumno.setBackground(Color.decode("#f5f6fa"));
+        registrarEvaluaciones.setBackground(Color.decode("#f5f6fa"));
         JLabel iconoA = new JLabel();
         Image img = new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/gestionAlumno64.png")).getImage();
         iconoA.setIcon(new ImageIcon(img));        

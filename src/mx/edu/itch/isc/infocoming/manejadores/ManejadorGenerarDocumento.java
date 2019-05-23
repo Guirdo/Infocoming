@@ -111,46 +111,7 @@ public class ManejadorGenerarDocumento implements ActionListener, KeyListener, L
         document.close();
         Desktop.getDesktop().open(new File("src/mx/edu/itch/isc/infocoming/archivos/constancia.pdf"));
     }
-//    public void gCertificado()throws FileNotFoundException, IOException, SQLException{
-//        Object[][] listacal = intBD.consultar("select tipocurso,calificacion from alumno,grupo,curso,evaluacion where idalumno=alumno_id and idcurso=curso and idgrupo=grupid and idAlumno = " + dm.matricula.getText());
-//        Calendar fecha = new GregorianCalendar();
-//        fechaac=fecha.get(Calendar.DATE)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR);
-//        PdfDocument pdf = new PdfDocument(new PdfWriter("src/mx/edu/itch/isc/infocoming/archivos/certificado.pdf"));
-//        Document document = new Document(pdf, PageSize.A4);
-//        document.setMargins(40, 30, 35, 30);
-//        Table pdfTable = new Table(new float[]{15, 15});
-//        pdfTable.setWidthPercent(100);
-//
-//        pdfTable.addHeaderCell(new Cell().add("Curso"));
-//        pdfTable.addHeaderCell(new Cell().add("calificacion"));
-//        for (Object[] fila : listacal) {
-//            pdfTable.addCell((int) fila[0] + "");
-//            pdfTable.addCell((String) fila[1] + " " + (String) fila[2] + " " + (String) fila[3]);
-//            for (int i = 0; i < 7; i++) {
-//                pdfTable.addCell("");
-//            }
-//        }
-//        document.add(new Paragraph("\n\n\n\n\nINFOCOMING\n" +
-//"\n" +
-//"Certificado\n" +
-//"\n  Nombre: "+ dm.nombre.getText()+" "+apellidop+ " "+apellidom+
-//"\n  Matricula: "+dm.matricula.getText()+
-//"\n  Nivel: "+dm.curso.getText()+
-//"\n  Fecha: " +fechaac+
-//"\n" ));
-//        document.add(pdfTable);
-//        document.add(new Paragraph("\n" +
-//"\n" +
-//"\n" +
-//"\n" +
-//"\n\n\n\n\n\n" +
-//"ATentamente\n" +
-//"EL DIRECTOR DEL INFOCOMING"));
-//
-//        document.close();
-//        Desktop.getDesktop().open(new File("src/mx/edu/itch/isc/infocoming/archivos/certificado.pdf"));
-//
-//    }
+
     public void gDiploma()throws SQLException,FileNotFoundException, IOException{
         Calendar fecha = new GregorianCalendar();
         fechaac=fecha.get(Calendar.DATE)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR);

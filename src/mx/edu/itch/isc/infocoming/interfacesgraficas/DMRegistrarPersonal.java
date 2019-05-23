@@ -1,8 +1,10 @@
 
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -20,8 +22,7 @@ public class DMRegistrarPersonal extends PantallaModal{
     public JTextField telefono,nombre,apellidoPaterno,apellidoMaterno,domicilio,cargo;
     public JRadioButton docente,administrativo;
     public JButton btnCancelar;
-    public JButton btnModificar;
-   public JButton btnRegistrarEmpleado;
+    public JButton btnRegistrarEmpleado;
     
     
     public DMRegistrarPersonal (){
@@ -43,8 +44,12 @@ public class DMRegistrarPersonal extends PantallaModal{
         btnCancelar = new JButton("Cancelar");
         btnRegistrarEmpleado = new JButton("Registrar");
         lblTitulo.setFont(new Font("Arial",1,16));
-        
+        lblTitulo.setForeground(Color.decode("#37718e"));
         ButtonGroup bg = new ButtonGroup();
+        btnCancelar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/cancelar24.png")));
+        btnCancelar.setBackground(Color.decode("#7c98b3"));
+        btnRegistrarEmpleado.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/registrar24.png")));
+        btnRegistrarEmpleado.setBackground(Color.decode("#cee5f2"));
         bg.add(docente);
         bg.add(administrativo);
         
@@ -62,10 +67,6 @@ public class DMRegistrarPersonal extends PantallaModal{
         this.add(new JLabel("Tipo de empleado: "));
         this.add(docente,"split 2");
         this.add(administrativo);
-//        this.add(new JLabel("Cargo: "),"split 2");
-//        this.add(cargo,"wrap");
-//        this.add(new JLabel("Inicio de contrato: "));
-//        this.add(inicioContrato);
         this.add(btnCancelar,"split 2");
         this.add(btnRegistrarEmpleado);
         this.pack();

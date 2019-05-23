@@ -32,7 +32,7 @@ public class ManejadorVisualizarEmpleados implements ActionListener, ListSelecti
         // v.buscar.addKeyListener(this);
         v.addWindowListener(this);
         this.consultarPersonal();
-        v.btnBajaEmpleado.setEnabled(false);
+//        v.btnBajaEmpleado.setEnabled(false);
         v.setVisible(true);
     }
 
@@ -68,7 +68,7 @@ public class ManejadorVisualizarEmpleados implements ActionListener, ListSelecti
             personalSeleccion = (int) v.tabla.getValueAt(v.tabla.getSelectedRow(), 0);//<-- Este ultimo numero corresponde a la col de la tabla
             try {
                 this.consultarPersonalVentana(personalSeleccion);
-                v.btnBajaEmpleado.setEnabled(true);
+//                v.btnBajaEmpleado.setEnabled(true);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

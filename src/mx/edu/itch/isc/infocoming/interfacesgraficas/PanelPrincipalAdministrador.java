@@ -51,10 +51,13 @@ public class PanelPrincipalAdministrador extends Pantalla {
         titulo4.setForeground(Color.decode("#37718e"));
         titulo5.setFont(new Font("Arial", 1, 16));
         titulo5.setForeground(Color.decode("#37718e"));
+        titulo5.setBorder(null);
         etiqueta1.setFont(new Font("Arial", 2, 12));
         etiqueta1.setForeground(Color.decode("#7c98b3"));
+        etiqueta1.setBorder(null);
         etiqueta2.setFont(new Font("Arial", 2, 12));
         etiqueta2.setForeground(Color.decode("#7c98b3"));
+        etiqueta2.setBorder(null);
         etiqueta3.setFont(new Font("Arial", 2, 12));
         etiqueta3.setForeground(Color.decode("#7c98b3"));
         etiqueta4.setFont(new Font("Arial", 2, 12));
@@ -73,6 +76,30 @@ public class PanelPrincipalAdministrador extends Pantalla {
         etiqueta10.setForeground(Color.decode("#7c98b3"));
         etiqueta11.setFont(new Font("Arial", 2, 12));
         etiqueta11.setForeground(Color.decode("#7c98b3"));        
+        etiqueta3.setBorder(null);
+        etiqueta4.setBorder(null);
+        etiqueta5.setBorder(null);
+        etiqueta6.setBorder(null);
+        etiqueta7.setBorder(null);
+        etiqueta8.setBorder(null);
+        etiqueta9.setBorder(null);
+        etiqueta10.setBorder(null);
+        etiqueta11.setBorder(null);
+        etiqueta1.setBackground(Color.decode("#f5f6fa"));
+        etiqueta2.setBackground(Color.decode("#f5f6fa"));
+        etiqueta3.setBackground(Color.decode("#f5f6fa"));
+        etiqueta4.setBackground(Color.decode("#f5f6fa"));
+        etiqueta5.setBackground(Color.decode("#f5f6fa"));
+        etiqueta6.setBackground(Color.decode("#f5f6fa"));
+        etiqueta7.setBackground(Color.decode("#f5f6fa"));
+        etiqueta8.setBackground(Color.decode("#f5f6fa"));
+        etiqueta9.setBackground(Color.decode("#f5f6fa"));
+        etiqueta10.setBackground(Color.decode("#f5f6fa"));
+        etiqueta11.setBackground(Color.decode("#f5f6fa"));
+        titulo5.setBackground(Color.decode("#f5f6fa"));
+        
+        
+        
         JLabel iconoA = new JLabel();
         Image img = new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/gestionAlumno64.png")).getImage();
         iconoA.setIcon(new ImageIcon(img));        

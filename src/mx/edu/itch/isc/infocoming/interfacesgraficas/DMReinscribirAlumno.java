@@ -5,7 +5,9 @@
  */
 package mx.edu.itch.isc.infocoming.interfacesgraficas;
 
+import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -36,6 +38,11 @@ public class DMReinscribirAlumno extends PantallaModal {
         btnModificar = new JButton("Modificar alumno");
         tabla=new JTable(new DefaultTableModel(new Object []{"Horario","Curso"},10));
         lblTitulo.setFont(new Font("Arial",1,16));
+        lblTitulo.setForeground(Color.decode("#37718e"));
+        btnCancelar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/cancelar24.png")));
+        btnCancelar.setBackground(Color.decode("#7c98b3"));
+        btnModificar.setIcon(new ImageIcon(this.getClass().getResource("/mx/edu/itch/isc/infocoming/iconos/modificar24.png")));
+        btnModificar.setBackground(Color.decode("#cee5f2"));
         this.add(lblTitulo,"span 2");
         this.add(new JLabel("Nombre: "));
         this.add(lblNombre);
